@@ -11,14 +11,15 @@ class TabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpTabs()
 
     }
     func setUpTabs() {
-        let home = self.createNav(with: "Home", and: UIImage(systemName: "film")!, and: HomeViewController())
-        let category = self.createNav(with: "People", and: UIImage(systemName: "person.fill")!, and: CategoryViewController())
-        let favorite = self.createNav(with: "Login", and: UIImage(systemName: "person.crop.circle")!, and: FavoriteViewController())
-        let basket = self.createNav(with: "Login", and: UIImage(systemName: "person.crop.circle")!, and: BasketViewController())
-        let setting = self.createNav(with: "Login", and: UIImage(systemName: "person.crop.circle")!, and: SettingViewController())
+        let home = self.createNav(with: "Home", and: UIImage(systemName: "house")!, and: HomeViewController())
+        let category = self.createNav(with: "Category", and: UIImage(systemName: "square.grid.2x2")!, and: CategoryViewController())
+        let favorite = self.createNav(with: "Favorite", and: UIImage(systemName: "heart")!, and: FavoriteViewController())
+        let basket = self.createNav(with: "Basket", and: UIImage(systemName: "basket")!, and: BasketViewController())
+        let setting = self.createNav(with: "Setting", and: UIImage(systemName: "gearshape")!, and: SettingViewController())
         viewControllers = [home, category, favorite, basket, setting]
     }
 
