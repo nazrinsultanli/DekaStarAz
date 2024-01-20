@@ -33,7 +33,8 @@ class HomeViewController: UIViewController {
     }
     
     private func configureUI() {
-        title = "DEKASTAR COMPANY"
+        navigationItem.title = "DEKASTAR COMPANY"
+       // navigationBar.topItem.title = "DEKASTAR COMPANY"
         view.backgroundColor = .white
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: UIImage(systemName: "magnifyingglass"),
