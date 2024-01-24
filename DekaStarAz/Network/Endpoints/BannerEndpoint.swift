@@ -9,5 +9,4 @@ import Foundation
 
 enum BannerEndpoint: String {
     case bannerEndpoint = "banners"
-    
 }

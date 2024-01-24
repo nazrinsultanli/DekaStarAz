@@ -8,5 +8,5 @@
 import Foundation
 
 protocol BannerListUseCase {
-    func getBannerList(completion: @escaping((BannerModel?,String?)-> Void))
+    func getBannerList(completion: @escaping(([BannerModel]?, String?)-> Void))
 }

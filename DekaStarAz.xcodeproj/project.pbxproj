@@ -31,6 +31,13 @@
 		10F1505C2B611ACF0049D670 /* HomeCollectionHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F1505B2B611ACF0049D670 /* HomeCollectionHeaderCell.swift */; };
 		10F1505F2B6120490049D670 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F1505E2B6120490049D670 /* Extensions.swift */; };
 		10F150622B6120640049D670 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 10F150612B6120640049D670 /* Kingfisher */; };
+		10F150642B6146160049D670 /* HomePageProductsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F150632B6146160049D670 /* HomePageProductsModel.swift */; };
+		10F150662B6158490049D670 /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F150652B6158490049D670 /* CategoryModel.swift */; };
+		10F150682B615BAC0049D670 /* CategoryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F150672B615BAC0049D670 /* CategoryUseCase.swift */; };
+		10F1506A2B615C590049D670 /* CategoryEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F150692B615C590049D670 /* CategoryEndpoint.swift */; };
+		10F1506C2B615F710049D670 /* HomeItemsEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F1506B2B615F710049D670 /* HomeItemsEndpoint.swift */; };
+		10F1506E2B6162900049D670 /* HomeItemUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F1506D2B6162900049D670 /* HomeItemUseCase.swift */; };
+		10F150702B61779C0049D670 /* HomeBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F1506F2B61779C0049D670 /* HomeBannerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +65,13 @@
 		10F150592B61095D0049D670 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		10F1505B2B611ACF0049D670 /* HomeCollectionHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionHeaderCell.swift; sourceTree = "<group>"; };
 		10F1505E2B6120490049D670 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		10F150632B6146160049D670 /* HomePageProductsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageProductsModel.swift; sourceTree = "<group>"; };
+		10F150652B6158490049D670 /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
+		10F150672B615BAC0049D670 /* CategoryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryUseCase.swift; sourceTree = "<group>"; };
+		10F150692B615C590049D670 /* CategoryEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryEndpoint.swift; sourceTree = "<group>"; };
+		10F1506B2B615F710049D670 /* HomeItemsEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeItemsEndpoint.swift; sourceTree = "<group>"; };
+		10F1506D2B6162900049D670 /* HomeItemUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeItemUseCase.swift; sourceTree = "<group>"; };
+		10F1506F2B61779C0049D670 /* HomeBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBannerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +119,8 @@
 			isa = PBXGroup;
 			children = (
 				107168B02B5BCAE1005D7F36 /* BannerModel.swift */,
+				10F150632B6146160049D670 /* HomePageProductsModel.swift */,
+				10F150652B6158490049D670 /* CategoryModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -124,6 +140,7 @@
 		1037438E2B5171B100BB7CA8 /* HomePage */ = {
 			isa = PBXGroup;
 			children = (
+				10F1506F2B61779C0049D670 /* HomeBannerView.swift */,
 				10F1505D2B611D4F0049D670 /* HomeView */,
 				10F150592B61095D0049D670 /* HomeViewModel.swift */,
 				103743932B51720400BB7CA8 /* HomeViewController.swift */,
@@ -201,6 +218,8 @@
 			isa = PBXGroup;
 			children = (
 				107168AE2B5BCA4C005D7F36 /* BannerEndpoint.swift */,
+				10F150692B615C590049D670 /* CategoryEndpoint.swift */,
+				10F1506B2B615F710049D670 /* HomeItemsEndpoint.swift */,
 			);
 			path = Endpoints;
 			sourceTree = "<group>";
@@ -218,6 +237,8 @@
 			isa = PBXGroup;
 			children = (
 				107168BC2B5BD00A005D7F36 /* BannerListUseCase.swift */,
+				10F150672B615BAC0049D670 /* CategoryUseCase.swift */,
+				10F1506D2B6162900049D670 /* HomeItemUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -317,22 +338,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				10F1506A2B615C590049D670 /* CategoryEndpoint.swift in Sources */,
+				10F150642B6146160049D670 /* HomePageProductsModel.swift in Sources */,
 				105A338B2B56E8F000E8CBC2 /* TopImageButtomLabelS.swift in Sources */,
 				10F1505A2B61095D0049D670 /* HomeViewModel.swift in Sources */,
 				105A33872B56E47C00E8CBC2 /* HomeCollectionCell.swift in Sources */,
 				107168B12B5BCAE1005D7F36 /* BannerModel.swift in Sources */,
 				103743942B51720400BB7CA8 /* HomeViewController.swift in Sources */,
 				106042AD2B4F3BCA003BD0CC /* DekaStarAz.xcdatamodeld in Sources */,
+				10F150662B6158490049D670 /* CategoryModel.swift in Sources */,
 				1037438D2B51714200BB7CA8 /* TabBarController.swift in Sources */,
+				10F150702B61779C0049D670 /* HomeBannerView.swift in Sources */,
 				103743982B51722D00BB7CA8 /* FavoriteViewController.swift in Sources */,
 				107168BF2B5BD158005D7F36 /* HomePageManager.swift in Sources */,
 				106042A32B4F3BCA003BD0CC /* AppDelegate.swift in Sources */,
 				1037439C2B51728A00BB7CA8 /* SettingViewController.swift in Sources */,
 				107168B42B5BCBFC005D7F36 /* NetworkHelperLinker.swift in Sources */,
+				10F1506C2B615F710049D670 /* HomeItemsEndpoint.swift in Sources */,
 				103743962B51721D00BB7CA8 /* CategoryViewController.swift in Sources */,
 				1037439A2B51726900BB7CA8 /* BasketViewController.swift in Sources */,
+				10F150682B615BAC0049D670 /* CategoryUseCase.swift in Sources */,
 				107168B62B5BCC47005D7F36 /* NetworkManager.swift in Sources */,
 				10F1505F2B6120490049D670 /* Extensions.swift in Sources */,
+				10F1506E2B6162900049D670 /* HomeItemUseCase.swift in Sources */,
 				10F1505C2B611ACF0049D670 /* HomeCollectionHeaderCell.swift in Sources */,
 				107168BD2B5BD00A005D7F36 /* BannerListUseCase.swift in Sources */,
 				107168AF2B5BCA4C005D7F36 /* BannerEndpoint.swift in Sources */,

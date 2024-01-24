@@ -82,10 +82,27 @@ extension HomeViewController:UICollectionViewDataSource, UICollectionViewDelegat
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCollectionCell.reuseID, for: indexPath) as! HomeCollectionCell
         cell.backgroundColor = .blue
+        return cell
+        
+//        let item = viewModel.homeItems[indexPath.item]
+//        switch item.type {
+//        case .recent(let recent):
+//            guard let  cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCollectionCell.reuseID, for: indexPath) as? HomeCollectionCell else { return UICollectionViewCell() }
+//            cell.configure(title: <#T##String#>, homeItems: <#T##[HomePageProductsModel]#>, endpoint: <#T##HomeItemsEndpoint#>)
+//           // cell.configure(item: media ?? "")
+//            return cell
+//        case .discounted:
+//            guard let  cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCollectionCell.reuseID, for: indexPath) as? HomeCollectionCell else { return UICollectionViewCell() }
+//            //cell.configure(item: title ?? "")
+//            return cell
+//        default:
+//            guard let  cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCollectionCell.reuseID, for: indexPath) as? HomeCollectionCell else { return UICollectionViewCell() }
+//            return cell
+//        }
+        //-----------
 //        let item = viewModel.items[indexPath.row]
 //        cell.delegate = self
 //        cell.configure(title: item.title, movies: item.result, endpoint: item.endPoint)
-        return cell
     }
     
 
@@ -96,8 +113,9 @@ extension HomeViewController:UICollectionViewDataSource, UICollectionViewDelegat
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionHeader {
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                         withReuseIdentifier: HomeCollectionHeaderCell.reuseID,
-                                                                         for: indexPath)
+                                                                         withReuseIdentifier: "\(HomeBannerView.self)",
+                                                                         for: indexPath) as! HomeBannerView
+//            header.configure(item: viewModel.bannerItems[0])
             header.backgroundColor = .blue
             return header
         }

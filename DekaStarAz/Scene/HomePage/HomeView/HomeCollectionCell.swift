@@ -19,8 +19,8 @@ class HomeCollectionCell: UICollectionViewCell {
 //    weak var delegate: HomePageCollectionViewCellDelegate?
     
     static let reuseID = "HomeCollectionCell"
-//    var movies = [MovieResult]()
-//    var endPoint: MovieEndpoint?
+    var homeItems = [HomePageProductsModel]()
+    var endPoint: HomeItemsEndpoint?
     
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -71,12 +71,12 @@ class HomeCollectionCell: UICollectionViewCell {
         fatalError("Init(coder:) has not been implemented")
     }
     
-//    func configure(title: String, movies: [MovieResult], endpoint: MovieEndpoint) {
-//        titleLabel.text = title
-//        self.movies = movies
-//        self.endPoint = endpoint
-//        collectionView.reloadData()
-//    }
+    func configure(title: String, homeItems: [HomePageProductsModel], endpoint: HomeItemsEndpoint) {
+        titleLabel.text = title
+        self.homeItems = homeItems
+        self.endPoint = endpoint
+        collectionView.reloadData()
+    }
     private func setUpCell() {
         let stack = UIStackView()
         stack.addArrangedSubview(titleLabel)
