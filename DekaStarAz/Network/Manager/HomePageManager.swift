@@ -8,10 +8,11 @@
 import Foundation
 
 class HomePageManager: BannerListUseCase {
-    func getBannerList(pageNumber: Int, endPoint: BannerEndpoint, completion: @escaping ((BannerModel?, String?) -> Void)) {
+    func getBannerList(completion: @escaping ((BannerModel?, String?) -> Void)) {
         NetworkManager.request(model: BannerModel.self,
                                url: BannerEndpoint.bannerEndpoint.rawValue,
                                completion: completion)
     }
+    
     
 }

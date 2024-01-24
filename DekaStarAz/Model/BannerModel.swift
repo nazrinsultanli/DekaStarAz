@@ -12,10 +12,5 @@ struct BannerModel: Codable {
     let id: Int?
     let image: String?
     let link: String?
-    let isActive: Bool?
-
-    enum CodingKeys: String, CodingKey {
-        case id, image, link
-        case isActive = "is_active"
-    }
+    let is_active: Bool?
 }
