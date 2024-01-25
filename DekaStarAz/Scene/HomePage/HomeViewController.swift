@@ -17,14 +17,13 @@ class HomeViewController: UIViewController {
                                           collectionViewLayout: layout)
         collection.showsHorizontalScrollIndicator = false
         collection.translatesAutoresizingMaskIntoConstraints = false
-        collection.delegate = self
-        collection.dataSource = self
+        
         
         collection.register(HomeCollectionCell.self,
                             forCellWithReuseIdentifier: HomeCollectionCell.reuseID)
-        collection.register(HomeCollectionHeaderCell.self,
+        collection.register(HomeBannerView.self,
                             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-                            withReuseIdentifier: HomeCollectionHeaderCell.reuseID)
+                            withReuseIdentifier: HomeBannerView.reuseID)
         return collection
     }()
 
@@ -45,6 +44,8 @@ class HomeViewController: UIViewController {
             print("Error:\(errorMessage)")
         }
         viewModel.success =  {
+            self.collectionView.delegate = self
+            self.collectionView.dataSource = self
             self.collectionView.reloadData()
         }
     }
@@ -115,8 +116,7 @@ extension HomeViewController:UICollectionViewDataSource, UICollectionViewDelegat
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                                          withReuseIdentifier: "\(HomeBannerView.self)",
                                                                          for: indexPath) as! HomeBannerView
-//            header.configure(item: viewModel.bannerItems[0])
-            header.backgroundColor = .blue
+            header.bannerItemsReusableView = viewModel.bannerItems
             return header
         }
         return UICollectionReusableView()
