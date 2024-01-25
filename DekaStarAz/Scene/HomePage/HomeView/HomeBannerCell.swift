@@ -12,10 +12,10 @@ class HomeBannerCell: UICollectionViewCell {
     private let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.layer.cornerRadius = 25
+        imageView.layer.cornerRadius = 5
         imageView.layer.masksToBounds = true
-        imageView.contentMode = .scaleAspectFill
-        imageView.backgroundColor = .red
+        imageView.contentMode = .scaleToFill
+        imageView.backgroundColor = .clear
         return imageView
     }()
     
@@ -29,8 +29,6 @@ class HomeBannerCell: UICollectionViewCell {
     }
     override func layoutSubviews() {
         super.layoutSubviews()
-        imageView.frame = bounds
-        contentView.backgroundColor = .red
     }
 
     
@@ -39,12 +37,14 @@ class HomeBannerCell: UICollectionViewCell {
     }
     
     private func configureContraints() {
-//        NSLayoutConstraint.activate([
-//            imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-//            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-//            imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-//            imageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor )
-//        ])
+        addSubview(imageView)
+        NSLayoutConstraint.activate([
+            imageView.topAnchor.constraint(equalTo: topAnchor),
+            imageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            imageView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            imageView.bottomAnchor.constraint(equalTo: bottomAnchor ),
+
+        ])
         
     }
 }

@@ -20,7 +20,6 @@ class HomeBannerView: UICollectionReusableView {
         collection.translatesAutoresizingMaskIntoConstraints = false
         collection.delegate = self
         collection.dataSource = self
-        collection.backgroundColor = .green
         collection.register(HomeBannerCell.self,
                             forCellWithReuseIdentifier: HomeBannerCell.reuseID)
         
@@ -53,7 +52,7 @@ class HomeBannerView: UICollectionReusableView {
     
 }
  
-extension HomeBannerView: UICollectionViewDelegate, UICollectionViewDataSource {
+extension HomeBannerView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         bannerItemsReusableView.count
     }
@@ -62,6 +61,9 @@ extension HomeBannerView: UICollectionViewDelegate, UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeBannerCell.reuseID, for: indexPath) as! HomeBannerCell
         cell.configure(item: bannerItemsReusableView[indexPath.item])
         return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        .init(width: collectionView.frame.width, height: collectionView.frame.height)
     }
     
     
