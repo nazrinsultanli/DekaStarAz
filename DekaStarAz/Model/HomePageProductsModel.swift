@@ -11,7 +11,7 @@ import Foundation
 struct HomePageProductsModel: Codable {
     let links: Links?
     let currentPage, count, totalPages, perPage: Int?
-    let results: [Result]?
+    let results: [HomeProductResult]?
 
     enum CodingKeys: String, CodingKey {
         case links
@@ -30,7 +30,24 @@ struct Links: Codable {
 }
 
 // MARK: - Result
-struct Result: Codable {
+struct HomeProductResult: Codable, HomePagesItemsProtocols {
+    var titleText: String {
+        name ?? ""
+    }
+    
+    var photoLink: String {
+        getImageFeature ?? ""
+    }
+    
+    var originalPrice: String {
+        regularPrice ?? ""
+    }
+    
+    var saledPrice: String {
+        discountPrice ?? ""
+    }
+    
+    
     let id: Int?
     let name, slug, regularPrice: String?
     let discount: Int?
@@ -38,6 +55,8 @@ struct Result: Codable {
     let inStock: Bool?
     let getImageFeature, isActiveDisplayValue, inStockDisplayValue, createdAt: String?
     let updatedAt: String?
+    
+    
 
     enum CodingKeys: String, CodingKey {
         case id, name, slug

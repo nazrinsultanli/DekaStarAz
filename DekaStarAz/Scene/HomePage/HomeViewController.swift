@@ -40,6 +40,7 @@ class HomeViewController: UIViewController {
     }
     private func configureViewModel(){
         viewModel.getBanners()
+        viewModel.getAllHomeItems()
         viewModel.error = { errorMessage in
             print("Error:\(errorMessage)")
         }
@@ -48,6 +49,8 @@ class HomeViewController: UIViewController {
             self.collectionView.dataSource = self
             self.collectionView.reloadData()
         }
+        
+        
     }
     private func configureUI() {
         navigationItem.title = "DEKASTAR COMPANY"
@@ -74,36 +77,20 @@ class HomeViewController: UIViewController {
 
 
 extension HomeViewController:UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    //MARK: Collection view for rest Items
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
        // viewModel.items.count
-        5
+        viewModel.homeItems.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCollectionCell.reuseID, for: indexPath) as! HomeCollectionCell
         cell.backgroundColor = .blue
-        return cell
+        let item = viewModel.homeItems[indexPath.item]
         
-//        let item = viewModel.homeItems[indexPath.item]
-//        switch item.type {
-//        case .recent(let recent):
-//            guard let  cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCollectionCell.reuseID, for: indexPath) as? HomeCollectionCell else { return UICollectionViewCell() }
-//            cell.configure(title: <#T##String#>, homeItems: <#T##[HomePageProductsModel]#>, endpoint: <#T##HomeItemsEndpoint#>)
-//           // cell.configure(item: media ?? "")
-//            return cell
-//        case .discounted:
-//            guard let  cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCollectionCell.reuseID, for: indexPath) as? HomeCollectionCell else { return UICollectionViewCell() }
-//            //cell.configure(item: title ?? "")
-//            return cell
-//        default:
-//            guard let  cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCollectionCell.reuseID, for: indexPath) as? HomeCollectionCell else { return UICollectionViewCell() }
-//            return cell
-//        }
-        //-----------
-//        let item = viewModel.items[indexPath.row]
-//        cell.delegate = self
-//        cell.configure(title: item.title, movies: item.result, endpoint: item.endPoint)
+        cell.configure(title: item.title , homeItems: item.resultData, type: item.type)
+        return cell
     }
     
 
@@ -111,6 +98,7 @@ extension HomeViewController:UICollectionViewDataSource, UICollectionViewDelegat
         .init(width: collectionView.frame.width, height: 296)
     }
     
+    //MARK: HEADER View
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionHeader {
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,

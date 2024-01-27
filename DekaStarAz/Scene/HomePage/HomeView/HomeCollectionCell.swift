@@ -19,8 +19,8 @@ class HomeCollectionCell: UICollectionViewCell {
 //    weak var delegate: HomePageCollectionViewCellDelegate?
     
     static let reuseID = "HomeCollectionCell"
-    var homeItems = [HomePageProductsModel]()
-    var endPoint: HomeItemsEndpoint?
+    var homeItems = [HomeProductResult]()
+    var homeItemsType: HomePageItemType?
     
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -71,10 +71,10 @@ class HomeCollectionCell: UICollectionViewCell {
         fatalError("Init(coder:) has not been implemented")
     }
     
-    func configure(title: String, homeItems: [HomePageProductsModel], endpoint: HomeItemsEndpoint) {
+    func configure(title: String, homeItems: [HomeProductResult], type: HomePageItemType) {
         titleLabel.text = title
         self.homeItems = homeItems
-        self.endPoint = endpoint
+        self.homeItemsType = type
         collectionView.reloadData()
     }
     private func setUpCell() {
@@ -108,13 +108,45 @@ class HomeCollectionCell: UICollectionViewCell {
 extension HomeCollectionCell:  UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 //        movies.count
-        5
+        homeItems.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopImageButtomLabelS.reuseID, for: indexPath) as! TopImageButtomLabelS
-//        cell.configure(item: movies[indexPath.row] )
+        cell.backgroundColor = .blue
+        let item = homeItems[indexPath.item]
+        cell.configure(item: item)
         return cell
+        
+//        let item = viewModel.homeItems[indexPath.item]
+//        switch item.type {
+//        case .recent(let recent):
+//            guard let  cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCollectionCell.reuseID, for: indexPath) as? HomeCollectionCell else { return UICollectionViewCell() }
+//            cell.configure(title: <#T##String#>, homeItems: <#T##[HomePageProductsModel]#>, endpoint: <#T##HomeItemsEndpoint#>)
+//           // cell.configure(item: media ?? "")
+//            return cell
+//        case .discounted:
+//            guard let  cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCollectionCell.reuseID, for: indexPath) as? HomeCollectionCell else { return UICollectionViewCell() }
+//            //cell.configure(item: title ?? "")
+//            return cell
+//        default:
+//            guard let  cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCollectionCell.reuseID, for: indexPath) as? HomeCollectionCell else { return UICollectionViewCell() }
+//            return cell
+//        }
+        //-----------
+//        let item = viewModel.items[indexPath.row]
+//        cell.delegate = self
+//        cell.configure(title: item.title, movies: item.result, endpoint: item.endPoint)
+        
+        
+        
+        
+        
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopImageButtomLabelS.reuseID, for: indexPath) as! TopImageButtomLabelS
+//        
+////        cell.configure(item: movies[indexPath.row] )
+//        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

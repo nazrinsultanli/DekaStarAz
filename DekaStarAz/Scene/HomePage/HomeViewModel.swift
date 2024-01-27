@@ -9,13 +9,14 @@ import Foundation
 
 enum HomePageItemType {
     case category
-    case recent(HomePageProductsModel?)
-    case discounted(HomePageProductsModel?)
+    case recent
+    case discounted
 }
 struct HomePageStruct {
     let title: String
+    let endPoint: HomeItemsEndpoint
     let type: HomePageItemType
-    var height: CGFloat
+    let resultData: [HomeProductResult]
 }
 
 class HomeViewModel {
@@ -24,6 +25,10 @@ class HomeViewModel {
     var error: ((String) -> Void)?
     var bannerItems = [BannerModel]()
     var homeItems = [HomePageStruct]()
+    var saledItems = [HomePageProductsModel]()
+    var recentItems = [HomePageProductsModel]()
+    
+    var items = [HomePagesItemsProtocols]()
     
     func getBanners() {
         manager.getBannerList(){ data, errorMessage in
@@ -37,23 +42,25 @@ class HomeViewModel {
         }
     }
     
-//    
-//    func homeItems() {
-//        getEachItems(endpoint: HomeItemsEndpoint.recentEndpoint, title: "Recent Products")
-//        getEachItems(endpoint: HomeItemsEndpoint.discountedEndpoint, title: "Discounted Products")
-//    }
-//    
-//    func getEachItems(endpoint: HomeItemsEndpoint, title: String) {
-//        
-//        manager.getHomeItems(endPoint: endpoint){ data, errorMessage in
-//            
-//            if let errorMessage {
-//                self.error?(errorMessage)
-//            } else if let data {
-//                guard let results = data else  {return}
-//                self.homeItems.append(.init(title: title, endPoint: endpoint, result: results))
-//                self.success?()
-//            }
-//        }
-//    }
+    
+    func getAllHomeItems() {
+        getEachItems(endPoint: HomeItemsEndpoint.recentEndpoint, title: "Recent Products", type: .recent)
+        getEachItems(endPoint: HomeItemsEndpoint.discountedEndpoint, title: "Discounted Products", type: .discounted)
+    }
+    
+    func getEachItems(endPoint: HomeItemsEndpoint, title: String, type: HomePageItemType ) {
+        
+        manager.getHomeItems(endPoint: endPoint){ data, errorMessage in
+            
+            if let errorMessage {
+                self.error?(errorMessage)
+            } else if let data {
+                self.homeItems.append(.init(title: title, endPoint: endPoint, type: type, resultData: data.results ?? []))
+                
+                //self.items.append(contentsOf: self.homeItems)
+                
+                self.success?()
+            }
+        }
+    }
 }
