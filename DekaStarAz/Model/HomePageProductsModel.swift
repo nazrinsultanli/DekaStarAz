@@ -36,7 +36,7 @@ struct HomeProductResult: Codable, HomePagesItemsProtocols {
     }
     
     var photoLink: String {
-        getImageFeature ?? ""
+        imagefeatureurl ?? ""
     }
     
     var originalPrice: String {
@@ -53,7 +53,7 @@ struct HomeProductResult: Codable, HomePagesItemsProtocols {
     let discount: Int?
     let discountPrice: String?
     let inStock: Bool?
-    let getImageFeature, isActiveDisplayValue, inStockDisplayValue, createdAt: String?
+    let imagefeatureurl, isActiveDisplayValue, inStockDisplayValue, createdAt: String?
     let updatedAt: String?
     
     
@@ -64,7 +64,7 @@ struct HomeProductResult: Codable, HomePagesItemsProtocols {
         case discount
         case discountPrice = "discount_price"
         case inStock = "in_stock"
-        case getImageFeature = "get_image_feature"
+        case imagefeatureurl = "image_feature_url"
         case isActiveDisplayValue = "is_active_display_value"
         case inStockDisplayValue = "in_stock_display_value"
         case createdAt = "created_at"

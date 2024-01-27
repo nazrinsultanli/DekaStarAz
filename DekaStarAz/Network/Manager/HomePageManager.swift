@@ -16,8 +16,8 @@ class HomePageManager: BannerListUseCase, CategoryUseCase, HomeItemUseCase {
     
 
     
-    func getCategoryList(completion: @escaping ((CategoryModel?, String?) -> Void)) {
-        NetworkManager.request(model: CategoryModel.self,
+    func getCategoryList(completion: @escaping (([CategoryModel]?, String?) -> Void)) {
+        NetworkManager.request(model: [CategoryModel].self,
                                url: CategoryEndpoint.categoryEndpoint.rawValue,
                                completion: completion)
     }

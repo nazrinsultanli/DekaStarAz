@@ -19,17 +19,17 @@ class TopImageButtomLabelS: UICollectionViewCell {
     static let reuseID = "TopImageButtomLabelS"
     
     private lazy var whiteUIView: UIView = {
-         let whiteBack = UIView()
+        let whiteBack = UIView()
         whiteBack.translatesAutoresizingMaskIntoConstraints = false
-        whiteBack.backgroundColor = . red
+        whiteBack.backgroundColor = .systemGray6
         whiteBack.layer.cornerRadius = 10
-        whiteBack.layer.borderWidth = 1
-         return whiteBack
+       // whiteBack.layer.borderWidth = 1
+        return whiteBack
      }()
     private let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.layer.cornerRadius = 20
+        imageView.layer.cornerRadius = 10
         imageView.layer.masksToBounds = true
         imageView.contentMode = .scaleToFill
         imageView.backgroundColor = .brown
@@ -39,18 +39,16 @@ class TopImageButtomLabelS: UICollectionViewCell {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 16)
-        label.textAlignment = .center
-        
+        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.textAlignment = .left
         label.numberOfLines = 0
         return label
     }()
     private let kolleksiyaLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 16)
-        label.textAlignment = .center
-        
+        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.textAlignment = .left
         label.numberOfLines = 0
         return label
     }()
@@ -58,9 +56,8 @@ class TopImageButtomLabelS: UICollectionViewCell {
     private let originalPriceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 12)
-        label.textAlignment = .center
-        
+        label.font = UIFont.boldSystemFont(ofSize: 10)
+        label.textAlignment = .left
         label.numberOfLines = 0
         return label
     }()
@@ -68,9 +65,8 @@ class TopImageButtomLabelS: UICollectionViewCell {
     private let saledPriceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 12)
-        label.textAlignment = .center
-        
+        label.font = UIFont.boldSystemFont(ofSize: 10)
+        label.textAlignment = .left
         label.numberOfLines = 0
         return label
     }()
@@ -104,24 +100,24 @@ class TopImageButtomLabelS: UICollectionViewCell {
             imageView.trailingAnchor.constraint(equalTo: whiteUIView.trailingAnchor, constant: 0),
             
             titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 0),
-            titleLabel.leadingAnchor.constraint(equalTo: imageView.leadingAnchor, constant: 0),
+            titleLabel.leadingAnchor.constraint(equalTo: imageView.leadingAnchor, constant: 4),
             titleLabel.trailingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 0),
             titleLabel.heightAnchor.constraint(equalToConstant: 16),
             
-            kolleksiyaLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 0),
-            kolleksiyaLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor, constant: 0),
+            kolleksiyaLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 2),
+            kolleksiyaLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor, constant: 4),
             kolleksiyaLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor, constant: 0),
             kolleksiyaLabel.heightAnchor.constraint(equalToConstant: 16),
             
-            originalPriceLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 0),
-            originalPriceLabel.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor, constant: 0),
+            originalPriceLabel.topAnchor.constraint(equalTo: kolleksiyaLabel.bottomAnchor, constant: 0),
+            originalPriceLabel.leadingAnchor.constraint(equalTo: kolleksiyaLabel.leadingAnchor, constant: 4),
            // originalPriceLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor, constant: 0),
             originalPriceLabel.heightAnchor.constraint(equalToConstant: 16),
-            originalPriceLabel.widthAnchor.constraint(equalToConstant: 30),
+            originalPriceLabel.widthAnchor.constraint(equalToConstant: 50),
             
-            saledPriceLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 0),
-            saledPriceLabel.leadingAnchor.constraint(equalTo: originalPriceLabel.leadingAnchor, constant: 4),
-            saledPriceLabel.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor, constant: 0),
+            saledPriceLabel.topAnchor.constraint(equalTo: kolleksiyaLabel.bottomAnchor, constant: 0),
+            saledPriceLabel.leadingAnchor.constraint(equalTo: originalPriceLabel.trailingAnchor, constant: 0),
+            saledPriceLabel.trailingAnchor.constraint(equalTo: kolleksiyaLabel.trailingAnchor, constant: 0),
             saledPriceLabel.heightAnchor.constraint(equalToConstant: 16),
             
         ])
@@ -132,11 +128,11 @@ class TopImageButtomLabelS: UICollectionViewCell {
 //        imageView.loadImage(url: item.imageString)
 //    }
     
-    func configure(item: HomeProductResult){
-        imageView.loadImage(url: item.photoLink )
-        titleLabel.text = item.name
+    func configure(item: HomePagesItemsProtocols){
+        imageView.loadImage(url: item.photoLink)
+        titleLabel.text = item.titleText
         kolleksiyaLabel.text = "kolleksiya1"
-        originalPriceLabel.text = item.originalPrice
-        saledPriceLabel.text = item.discountPrice
+        originalPriceLabel.attributedText = item.originalPrice.strikeThrough()
+        saledPriceLabel.text = item.saledPrice
     }
 }

@@ -7,5 +7,5 @@
 
 import Foundation
 protocol CategoryUseCase {
-    func getCategoryList(completion: @escaping((CategoryModel?,String?)-> Void))
+    func getCategoryList(completion: @escaping(([CategoryModel]?,String?)-> Void))
 }

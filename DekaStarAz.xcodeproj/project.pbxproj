@@ -29,6 +29,7 @@
 		107168BD2B5BD00A005D7F36 /* BannerListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107168BC2B5BD00A005D7F36 /* BannerListUseCase.swift */; };
 		107168BF2B5BD158005D7F36 /* HomePageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107168BE2B5BD158005D7F36 /* HomePageManager.swift */; };
 		1093CD852B640C6500D0BBBF /* HomePagesItemsProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1093CD842B640C6500D0BBBF /* HomePagesItemsProtocols.swift */; };
+		10B373C22B650C2D00C9DE7A /* HomeKolleksiyaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B373C12B650C2D00C9DE7A /* HomeKolleksiyaCell.swift */; };
 		10F1505A2B61095D0049D670 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F150592B61095D0049D670 /* HomeViewModel.swift */; };
 		10F1505F2B6120490049D670 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10F1505E2B6120490049D670 /* Extensions.swift */; };
 		10F150622B6120640049D670 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 10F150612B6120640049D670 /* Kingfisher */; };
@@ -65,6 +66,7 @@
 		107168BC2B5BD00A005D7F36 /* BannerListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerListUseCase.swift; sourceTree = "<group>"; };
 		107168BE2B5BD158005D7F36 /* HomePageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageManager.swift; sourceTree = "<group>"; };
 		1093CD842B640C6500D0BBBF /* HomePagesItemsProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePagesItemsProtocols.swift; sourceTree = "<group>"; };
+		10B373C12B650C2D00C9DE7A /* HomeKolleksiyaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeKolleksiyaCell.swift; sourceTree = "<group>"; };
 		10F150592B61095D0049D670 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		10F1505E2B6120490049D670 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		10F150632B6146160049D670 /* HomePageProductsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageProductsModel.swift; sourceTree = "<group>"; };
@@ -255,9 +257,10 @@
 		10F1505D2B611D4F0049D670 /* HomeView */ = {
 			isa = PBXGroup;
 			children = (
+				105A33862B56E47C00E8CBC2 /* HomeCollectionCell.swift */,
 				10F1506F2B61779C0049D670 /* HomeBannerView.swift */,
 				100B78CB2B62CB5D004B1FCB /* HomeBannerCell.swift */,
-				105A33862B56E47C00E8CBC2 /* HomeCollectionCell.swift */,
+				10B373C12B650C2D00C9DE7A /* HomeKolleksiyaCell.swift */,
 				1093CD842B640C6500D0BBBF /* HomePagesItemsProtocols.swift */,
 			);
 			path = HomeView;
@@ -355,6 +358,7 @@
 				103743982B51722D00BB7CA8 /* FavoriteViewController.swift in Sources */,
 				107168BF2B5BD158005D7F36 /* HomePageManager.swift in Sources */,
 				106042A32B4F3BCA003BD0CC /* AppDelegate.swift in Sources */,
+				10B373C22B650C2D00C9DE7A /* HomeKolleksiyaCell.swift in Sources */,
 				1037439C2B51728A00BB7CA8 /* SettingViewController.swift in Sources */,
 				107168B42B5BCBFC005D7F36 /* NetworkHelperLinker.swift in Sources */,
 				10F1506C2B615F710049D670 /* HomeItemsEndpoint.swift in Sources */,

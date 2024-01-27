@@ -9,7 +9,23 @@ import Foundation
 
 
 // MARK: - MovieElement
-struct CategoryModel: Codable {
+struct CategoryModel: Codable  , HomePagesItemsProtocols {
+    var titleText: String {
+        name ?? ""
+    }
+    
+    var photoLink: String {
+        coverImage ?? ""
+    }
+    
+    var originalPrice: String {
+        ""
+    }
+    
+    var saledPrice: String {
+        ""
+    }
+    
     let id: Int?
     let name, slug: String?
     let parent: Int?

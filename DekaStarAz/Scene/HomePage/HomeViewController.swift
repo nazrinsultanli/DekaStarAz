@@ -79,23 +79,21 @@ class HomeViewController: UIViewController {
 extension HomeViewController:UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     //MARK: Collection view for rest Items
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-       // viewModel.items.count
         viewModel.homeItems.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCollectionCell.reuseID, for: indexPath) as! HomeCollectionCell
-        cell.backgroundColor = .blue
         let item = viewModel.homeItems[indexPath.item]
-        
+        cell.homeItemsType = viewModel.homeItems[indexPath.item].type
         cell.configure(title: item.title , homeItems: item.resultData, type: item.type)
         return cell
     }
     
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        .init(width: collectionView.frame.width, height: 296)
+        .init(width: collectionView.frame.width, height: 250)
     }
     
     //MARK: HEADER View
