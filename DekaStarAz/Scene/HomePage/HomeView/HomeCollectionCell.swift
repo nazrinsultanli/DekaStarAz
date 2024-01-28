@@ -8,15 +8,14 @@
 import UIKit
 
 //1
-//protocol HomePageCollectionViewCellDelegate: AnyObject {
-//    func didSelectMovie(_ movie: Int)
-//    func didSelectSeeAll(endpoint: MovieEndpoint)
-//}
+protocol HomeCollectionCellDelegate: AnyObject {
+    func didSelectSeeAll(itemType: HomePageItemType)
+}
 
 
 class HomeCollectionCell: UICollectionViewCell {
     //2
-//    weak var delegate: HomePageCollectionViewCellDelegate?
+    weak var delegate: HomeCollectionCellDelegate?
     
     static let reuseID = "HomeCollectionCell"
     var homeItems = [HomePagesItemsProtocols]()
@@ -59,13 +58,13 @@ class HomeCollectionCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setUpCell()
-//        seeAllButton.addTarget(self, action: #selector(seeAllButtonClicked), for: .touchUpInside)
+        configureConstraints()
+        seeAllButton.addTarget(self, action: #selector(seeAllButtonClicked), for: .touchUpInside)
     }
     
-//    @objc func seeAllButtonClicked(_ sender: UIButton?) {
-//        delegate?.didSelectSeeAll(endpoint: endPoint ?? .popular)
-//    }
+    @objc func seeAllButtonClicked(_ sender: UIButton?) {
+        delegate?.didSelectSeeAll(itemType: homeItemsType ?? .category)
+    }
     
     required init?(coder: NSCoder) {
         fatalError("Init(coder:) has not been implemented")
@@ -78,7 +77,7 @@ class HomeCollectionCell: UICollectionViewCell {
         collectionView.reloadData()
     }
     
-    private func setUpCell() {
+    private func configureConstraints() {
         let stack = UIStackView()
         stack.addArrangedSubview(titleLabel)
         stack.addArrangedSubview(seeAllButton)
@@ -108,7 +107,6 @@ class HomeCollectionCell: UICollectionViewCell {
 
 extension HomeCollectionCell:  UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        movies.count
         homeItems.count
     }
     
@@ -120,7 +118,6 @@ extension HomeCollectionCell:  UICollectionViewDelegate, UICollectionViewDataSou
             cell.configure(item: item)
             return cell
         case .recent:
-           // let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopImageButtomLabelS.reuseID, for: indexPath) as! TopImageButtomLabelS
             guard let  cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopImageButtomLabelS.reuseID, for: indexPath) as? TopImageButtomLabelS else { return UICollectionViewCell() }
             cell.configure(item: item)
             return cell

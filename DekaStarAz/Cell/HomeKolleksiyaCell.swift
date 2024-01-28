@@ -37,6 +37,7 @@ class HomeKolleksiyaCell: UICollectionViewCell {
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.textAlignment = .center
         label.numberOfLines = 0
+        label.textColor = .white
         return label
     }()
    

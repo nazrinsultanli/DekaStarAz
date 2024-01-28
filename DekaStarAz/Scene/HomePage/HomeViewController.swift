@@ -113,8 +113,16 @@ extension HomeViewController:UICollectionViewDataSource, UICollectionViewDelegat
     }
 }
 
+
+extension HomeViewController: HomeCollectionCellDelegate {
+    func didSelectSeeAll(itemType: HomePageItemType) {
+        let controller = CategoryViewController()
+        controller.homeItemsType = itemType
+        navigationController?.show(controller, sender: nil)
+    }
+    
+    
 //
-//extension HomeViewController: HomePageCollectionViewCellDelegate {
 //    func didSelectSeeAll(endpoint: MovieEndpoint) {
 //        let controller = SeeAllCoordinator(navigationController: navigationController ?? UINavigationController(), endpoint: endpoint)
 //        controller.start()
@@ -125,5 +133,5 @@ extension HomeViewController:UICollectionViewDataSource, UICollectionViewDelegat
 //        let controller = MovieDetailedCoordinator(navigationController: navigationController ?? UINavigationController(), movieID: movie)
 //        controller.start()
 //       }
-//}
-//
+}
+
