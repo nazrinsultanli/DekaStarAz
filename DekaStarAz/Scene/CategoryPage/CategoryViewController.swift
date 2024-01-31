@@ -10,6 +10,7 @@ import UIKit
 class CategoryViewController: UIViewController {
     
     var homeItemsType: HomePageItemType?
+    var viewModel = CategoryViewModel()
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -19,8 +20,6 @@ class CategoryViewController: UIViewController {
                                           collectionViewLayout: layout)
         collection.showsHorizontalScrollIndicator = false
         collection.translatesAutoresizingMaskIntoConstraints = false
-        
-        
         collection.register(HomeKolleksiyaCell.self,
                             forCellWithReuseIdentifier: HomeKolleksiyaCell.reuseID)
        
@@ -29,19 +28,29 @@ class CategoryViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         configureUI()
         configureConstraints()
         configureViewModel()
     }
+    
+ 
     
     private func configureUI() {
         title = "Kateqoriya"
         view.backgroundColor = .systemGray4
         
     }
-    private func configureViewModel(){
-        collectionView.delegate = self
-        collectionView.dataSource = self
+    private func configureViewModel() {
+        viewModel.getCategoryItem()
+        viewModel.error = { errorMessage in
+            print("Error:\(errorMessage)")
+        }
+        viewModel.success =  {
+            self.collectionView.delegate = self
+            self.collectionView.dataSource = self
+            self.collectionView.reloadData()
+        }
     }
 
     private func configureConstraints() {
@@ -59,38 +68,23 @@ class CategoryViewController: UIViewController {
 extension CategoryViewController:UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     //MARK: Collection view for rest Items
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-       15
+        viewModel.categoryItems.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        switch homeItemsType {
-        case .category:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeKolleksiyaCell.reuseID, for: indexPath) as! HomeKolleksiyaCell
-            cell.backgroundColor = .red
-            return cell
-        default:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeKolleksiyaCell.reuseID, for: indexPath) as! HomeKolleksiyaCell
-            cell.backgroundColor = .red
-            return cell
-            
-        }
-        
-    }
+     
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeKolleksiyaCell.reuseID, for: indexPath) as! HomeKolleksiyaCell
+        cell.configure(item: viewModel.categoryItems[indexPath.item])
+        return cell
     
+    }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        .init(width: collectionView.frame.width/2-20, height: 260)
+        .init(width: collectionView.frame.width-20, height: 260)
     }
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt  section: Int) -> UIEdgeInsets {
-        
-        return UIEdgeInsets.init(top: 10, left: 10, bottom: 0, right: 10)
-        
+        .init(top: 10, left: 20, bottom: 0, right: 20)
     }
-    
-   
 }
-
-

@@ -83,9 +83,9 @@ extension HomeViewController:UICollectionViewDataSource, UICollectionViewDelegat
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCollectionCell.reuseID, for: indexPath) as! HomeCollectionCell
         let item = viewModel.homeItems[indexPath.item]
+        cell.delegate = self
         cell.homeItemsType = viewModel.homeItems[indexPath.item].type
         cell.configure(title: item.title , homeItems: item.resultData, type: item.type)
         return cell
@@ -116,9 +116,12 @@ extension HomeViewController:UICollectionViewDataSource, UICollectionViewDelegat
 
 extension HomeViewController: HomeCollectionCellDelegate {
     func didSelectSeeAll(itemType: HomePageItemType) {
-        let controller = CategoryViewController()
-        controller.homeItemsType = itemType
-        navigationController?.show(controller, sender: nil)
+        if itemType == .category {
+            let controller = CategoryViewController()
+            controller.homeItemsType = itemType
+            tabBarController?.selectedIndex = 1
+        }
+        
     }
     
     

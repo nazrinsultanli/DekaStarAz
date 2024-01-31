@@ -157,8 +157,8 @@
 		1037438F2B5171BC00BB7CA8 /* CategoryPage */ = {
 			isa = PBXGroup;
 			children = (
-				103743952B51721D00BB7CA8 /* CategoryViewController.swift */,
 				10ACFCB62B665E10006F6B2A /* CategoryViewModel.swift */,
+				103743952B51721D00BB7CA8 /* CategoryViewController.swift */,
 			);
 			path = CategoryPage;
 			sourceTree = "<group>";

@@ -13,6 +13,8 @@ class HomeBannerView: UICollectionReusableView {
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
+        layout.minimumLineSpacing = 0
+        layout.minimumInteritemSpacing = 0
         
         let collection = UICollectionView(frame: .zero,
                                           collectionViewLayout: layout)
@@ -20,6 +22,7 @@ class HomeBannerView: UICollectionReusableView {
         collection.translatesAutoresizingMaskIntoConstraints = false
         collection.delegate = self
         collection.dataSource = self
+        collection.isPagingEnabled = true
         collection.register(HomeBannerCell.self,
                             forCellWithReuseIdentifier: HomeBannerCell.reuseID)
         
