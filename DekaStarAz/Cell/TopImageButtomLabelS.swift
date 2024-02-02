@@ -23,6 +23,7 @@ class TopImageButtomLabelS: UICollectionViewCell {
         whiteBack.translatesAutoresizingMaskIntoConstraints = false
         whiteBack.backgroundColor = .systemGray6
         whiteBack.layer.cornerRadius = 10
+//        whiteBack.backgroundColor = .red
        // whiteBack.layer.borderWidth = 1
         return whiteBack
      }()

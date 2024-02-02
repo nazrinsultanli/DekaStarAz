@@ -121,6 +121,11 @@ extension HomeViewController: HomeCollectionCellDelegate {
             controller.homeItemsType = itemType
             tabBarController?.selectedIndex = 1
         }
+        else {
+            let controller = ProductsViewController()
+            controller.homeItemsType = itemType
+            navigationController?.show(controller, sender: nil)
+        }
         
     }
     
