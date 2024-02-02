@@ -9,5 +9,6 @@ import Foundation
 
 class NetworkHelperLinker {
     static var baseUrl = "https://dekastar.az/api/"
+    static var language = "?lang="
 }
 

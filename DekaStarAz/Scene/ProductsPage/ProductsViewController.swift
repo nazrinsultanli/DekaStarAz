@@ -89,4 +89,8 @@ extension ProductsViewController: UICollectionViewDataSource, UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt  section: Int) -> UIEdgeInsets {
         .init(top: 10, left: 10, bottom: 0, right: 10)
     }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let controller = ProductDetailedViewController()
+        controller.viewModel.slug = viewModel.productsItems[indexPath.item].slug
+    }
 }
