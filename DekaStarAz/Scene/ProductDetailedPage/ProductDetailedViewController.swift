@@ -7,7 +7,8 @@
 
 import UIKit
 
-class ProductDetailedViewController: UIViewController {
+class ProductDetailedViewController: UIViewController{
+    
     var viewModel = ProductDetailedViewModel()
     private lazy var  tableView: UITableView = {
            let tableView = UITableView()
@@ -32,17 +33,15 @@ class ProductDetailedViewController: UIViewController {
         
     }
     private func configureViewModel() {
-//        if let homeItemsType = homeItemsType {
-//            viewModel.getItems(type: homeItemsType)
-//        }
-//        viewModel.error = { errorMessage in
-//            print("Error:\(errorMessage)")
-//        }
-//        viewModel.success =  {
-//            self.collectionView.delegate = self
-//            self.collectionView.dataSource = self
-//            self.collectionView.reloadData()
-//        }
+        viewModel.getSingleProduct()
+        viewModel.error = { errorMessage in
+            print("Error:\(errorMessage)")
+        }
+        viewModel.success =  {
+            self.tableView.delegate = self
+            self.tableView.dataSource = self
+            self.tableView.reloadData()
+        }
     }
 
     private func configureConstraints() {
@@ -55,4 +54,17 @@ class ProductDetailedViewController: UIViewController {
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,constant: 0)])
     }
 
+}
+
+
+extension  ProductDetailedViewController:  UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        5
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        return cell
+    }
+    
 }

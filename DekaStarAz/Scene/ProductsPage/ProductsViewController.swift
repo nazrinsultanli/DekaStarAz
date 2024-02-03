@@ -92,5 +92,6 @@ extension ProductsViewController: UICollectionViewDataSource, UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let controller = ProductDetailedViewController()
         controller.viewModel.slug = viewModel.productsItems[indexPath.item].slug
+        navigationController?.show(controller, sender: nil)
     }
 }
