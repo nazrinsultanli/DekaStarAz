@@ -31,6 +31,10 @@ struct Links: Codable {
 
 // MARK: - Result
 struct HomeProductResult: Codable, HomePagesItemsProtocols {
+    var slugId: String {
+        slug ?? ""
+    }
+    
     var titleText: String {
         name ?? ""
     }

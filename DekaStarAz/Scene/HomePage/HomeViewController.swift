@@ -115,6 +115,21 @@ extension HomeViewController:UICollectionViewDataSource, UICollectionViewDelegat
 
 
 extension HomeViewController: HomeCollectionCellDelegate {
+    func didSelectProductId(item: String, itemType: HomePageItemType) {
+        if itemType == .category {
+            let controller = ProductsViewController()
+//            controller.homeItemsType = itemType
+//            tabBarController?.selectedIndex = 1
+        }
+        else {
+            let controller = ProductDetailedViewController()
+            controller.viewModel.slug = item
+            navigationController?.show(controller, sender: nil)
+        }
+    }
+    
+   
+    
     func didSelectSeeAll(itemType: HomePageItemType) {
         if itemType == .category {
             let controller = CategoryViewController()

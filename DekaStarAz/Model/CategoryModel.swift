@@ -10,6 +10,10 @@ import Foundation
 
 // MARK: - MovieElement
 struct CategoryModel: Codable  , HomePagesItemsProtocols {
+    var slugId: String {
+        slug ??  ""
+    }
+    
     var titleText: String {
         name ?? ""
     }

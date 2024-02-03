@@ -11,9 +11,12 @@ class ProductDetailedViewController: UIViewController{
     
     var viewModel = ProductDetailedViewModel()
     private lazy var  tableView: UITableView = {
-           let tableView = UITableView()
-           tableView.translatesAutoresizingMaskIntoConstraints = false
-           tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.register(ProductDetailedCell.self, forCellReuseIdentifier: ProductDetailedCell.reuseID)
+        tableView.register(ProductDetailedHeader.self, forHeaderFooterViewReuseIdentifier: "ProductDetailedHeader")
+//        tableView.register(YourFooterViewClass.self, forHeaderFooterViewReuseIdentifier: "YourFooterIdentifier")
+
            return tableView
        }()
     
@@ -59,12 +62,39 @@ class ProductDetailedViewController: UIViewController{
 
 extension  ProductDetailedViewController:  UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        5
+        1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: ProductDetailedCell.reuseID, for: indexPath) as! ProductDetailedCell
+        if let item = viewModel.singleProduct {
+            cell.configure(item: item)
+        }
         return cell
     }
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: ProductDetailedHeader.reuseID) as! ProductDetailedHeader
+        headerView.singleProduct = viewModel.singleProduct 
+        return headerView
+    }
+
+//    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+//        let footerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "YourFooterIdentifier")
+//        // Configure the footer view
+//        return footerView
+//    }
+
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 200 // Set the desired height for your header
+    }
+
+//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+//        return 50 // Set the desired height for your footer
+//    }
+    
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 500 // Set the desired height for your cells
+//    }
 }

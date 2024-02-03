@@ -10,6 +10,7 @@ import UIKit
 //1
 protocol HomeCollectionCellDelegate: AnyObject {
     func didSelectSeeAll(itemType: HomePageItemType)
+    func didSelectProductId(item: String, itemType: HomePageItemType )
 }
 
 
@@ -155,10 +156,15 @@ extension HomeCollectionCell:  UICollectionViewDelegate, UICollectionViewDataSou
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 20
     }
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        //3
-//        if let selectedMovie = movies[indexPath.row].id {
-//            delegate?.didSelectMovie(selectedMovie)
-//        }
-//        }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        //3
+        switch homeItemsType {
+        case .category:
+            delegate?.didSelectProductId(item: homeItems[indexPath.item].slugId, itemType: .category ) // elebele
+        default:
+            delegate?.didSelectProductId(item: homeItems[indexPath.item].slugId, itemType: .discounted )
+           
+        }
+
+        }
 }

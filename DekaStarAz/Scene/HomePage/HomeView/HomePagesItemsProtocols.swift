@@ -12,4 +12,6 @@ protocol HomePagesItemsProtocols {
     var photoLink: String { get }
     var originalPrice: String { get }
     var saledPrice: String { get }
+    var slugId: String { get }
+    
 }
