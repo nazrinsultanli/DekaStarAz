@@ -1,5 +1,5 @@
 //
-//  ProductDetailedFooterView.swift
+//  ProductDetailedFooter.swift
 //  DekaStarAz
 //
 //  Created by Nazrin Sultanlı on 04.02.24.
@@ -7,8 +7,7 @@
 
 import UIKit
 
-class ProductDetailedFooter: UITableViewHeaderFooterView {
-
+class ProductDetailedFooter: UICollectionReusableView {
     static let reuseID = "ProductDetailedFooter"
     
     private lazy var addToBasketButton: UIButton = {
@@ -23,20 +22,17 @@ class ProductDetailedFooter: UITableViewHeaderFooterView {
     }()
 
     
-    override init(reuseIdentifier: String?) {
-          super.init(reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         configureContraints()
-      }
-      
-      required init?(coder: NSCoder) {
-          super.init(coder: coder)
-          // Implement initialization from storyboard or nib
-          configureContraints()
-      }
-      
-      override func layoutSubviews() {
-          super.layoutSubviews()
-      }
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
+    override func layoutSubviews() {
+        super.layoutSubviews()
+    }
     
     @objc func buttonTapped() {
         // Handle button tap action

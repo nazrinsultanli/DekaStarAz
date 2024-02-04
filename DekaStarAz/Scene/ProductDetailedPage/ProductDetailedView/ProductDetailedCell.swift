@@ -1,13 +1,13 @@
 //
-//  ProductDetailedCell.swift
+//  ProductDetailedCell1.swift
 //  DekaStarAz
 //
-//  Created by Nazrin Sultanlı on 03.02.24.
+//  Created by Nazrin Sultanlı on 04.02.24.
 //
 
 import UIKit
 
-class ProductDetailedCell: UITableViewCell {
+class ProductDetailedCell: UICollectionViewCell {
     static let reuseID = "ProductDetailedCell"
     
     private let modelNameLabel: UILabel = {
@@ -146,102 +146,21 @@ class ProductDetailedCell: UITableViewCell {
         label.text = "m2nfidbc/nfdfref/nfrefr/nfref/ngtr/ngtr/ngtr"
         return label
     }()
-  
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         configureConstraints()
-      
     }
-/*
-    private func configureConstraints() {
-        let leftStack = UIStackView()
-        leftStack.axis = .vertical
-        leftStack.addArrangedSubview(kodText)
-        leftStack.addArrangedSubview(kateqoriyaText)
-        leftStack.addArrangedSubview(kolleksiyaText)
-        leftStack.addArrangedSubview(movcudluqText)
-        leftStack.addArrangedSubview(sayLabel)
-        leftStack.distribution = .fillEqually
-        leftStack.translatesAutoresizingMaskIntoConstraints = false
-        leftStack.alignment = .fill
-        
-        let sayUnit = UIStackView()
-        sayUnit.addArrangedSubview(sayTextField)
-        sayUnit.addArrangedSubview(unitLabel)
-        sayUnit.axis = .horizontal
-        sayUnit.translatesAutoresizingMaskIntoConstraints = false
-        
-        let rightStack = UIStackView()
-        rightStack.axis = .vertical
-        rightStack.addArrangedSubview(kodLabel)
-        rightStack.addArrangedSubview(kateqoriyaLabel)
-        rightStack.addArrangedSubview(kolleksiyaLabel)
-        rightStack.addArrangedSubview(movcudluqLabel)
-        rightStack.addArrangedSubview(sayUnit)
-        rightStack.distribution = .fillEqually
-        rightStack.translatesAutoresizingMaskIntoConstraints = false
-        rightStack.alignment = .fill
-//        rightStack.spacing = 10.0
-        
-        let leftRightStack = UIStackView()
-        leftRightStack.addArrangedSubview(leftStack)
-        leftRightStack.addArrangedSubview(rightStack)
-        leftRightStack.axis = .horizontal
-        leftRightStack.translatesAutoresizingMaskIntoConstraints = false
-        
-        contentView.addSubview(modelNameLabel)
-        contentView.addSubview(originalPriceLabel)
-        contentView.addSubview(discountedPriceLAbel)
-        contentView.addSubview(leftRightStack)
-        contentView.addSubview(descriptionLabel)
-        
-        modelNameLabel.backgroundColor = .red
-        originalPriceLabel.backgroundColor = .green
-        discountedPriceLAbel.backgroundColor = .purple
-        leftStack.backgroundColor = .yellow
-        rightStack.backgroundColor = .gray
-        descriptionLabel.backgroundColor = .blue
-        
-        NSLayoutConstraint.activate([
-            
-            unitLabel.widthAnchor.constraint(equalToConstant: 60),
-            modelNameLabel.topAnchor.constraint(equalTo: topAnchor),
-            modelNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            modelNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            modelNameLabel.heightAnchor.constraint(equalToConstant: 80),
-            
-            originalPriceLabel.topAnchor.constraint(equalTo: modelNameLabel.bottomAnchor),
-            originalPriceLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            originalPriceLabel.heightAnchor.constraint(equalToConstant: 60),
-            originalPriceLabel.widthAnchor.constraint(equalToConstant: 80),
-            
-            discountedPriceLAbel.topAnchor.constraint(equalTo: modelNameLabel.bottomAnchor),
-            discountedPriceLAbel.leadingAnchor.constraint(equalTo: originalPriceLabel.trailingAnchor),
-            discountedPriceLAbel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            discountedPriceLAbel.heightAnchor.constraint(equalToConstant: 60),
-           
-            leftRightStack.topAnchor.constraint(equalTo: originalPriceLabel.bottomAnchor),
-            leftRightStack.leadingAnchor.constraint(equalTo: leadingAnchor),
-            leftRightStack.trailingAnchor.constraint(equalTo: trailingAnchor),
-            leftRightStack.heightAnchor.constraint(equalToConstant: 300),
-            
-            sayUnit.heightAnchor.constraint(equalToConstant: 60),
-            leftStack.widthAnchor.constraint(equalToConstant: 150),
+    
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
+    override func layoutSubviews() {
+        super.layoutSubviews()
+    }
 
-            descriptionLabel.topAnchor.constraint(equalTo: leftRightStack.bottomAnchor),
-            descriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            descriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            descriptionLabel.heightAnchor.constraint(equalToConstant: 200),
-          
-        ])
-    }
-*/
- ///*
+
     private func configureConstraints() {
         let kodStack = UIStackView()
         kodStack.addArrangedSubview(kodText)

@@ -10,15 +10,25 @@ import UIKit
 class ProductDetailedViewController: UIViewController{
     
     var viewModel = ProductDetailedViewModel()
-    private lazy var  tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(ProductDetailedCell.self, forCellReuseIdentifier: ProductDetailedCell.reuseID)
-        tableView.register(ProductDetailedHeader.self, forHeaderFooterViewReuseIdentifier: "ProductDetailedHeader")
-        tableView.register(ProductDetailedFooter.self, forHeaderFooterViewReuseIdentifier: "ProductDetailedFooter")
-        tableView.isScrollEnabled = true
-        return tableView
-       }()
+
+    private lazy var collectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        
+        let collection = UICollectionView(frame: .zero,
+                                          collectionViewLayout: layout)
+        collection.showsHorizontalScrollIndicator = false
+        collection.translatesAutoresizingMaskIntoConstraints = false
+        collection.register(ProductDetailedCell.self,
+                            forCellWithReuseIdentifier: ProductDetailedCell.reuseID)
+        collection.register(ProductDetailedHeader.self,
+                            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                            withReuseIdentifier: ProductDetailedHeader.reuseID)
+        collection.register(ProductDetailedFooter.self,
+                           forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
+                            withReuseIdentifier: ProductDetailedFooter.reuseID)
+        return collection
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,65 +51,66 @@ class ProductDetailedViewController: UIViewController{
             print("Error:\(errorMessage)")
         }
         viewModel.success =  {
-            self.tableView.delegate = self
-            self.tableView.dataSource = self
-            self.tableView.layoutIfNeeded()
-            self.tableView.reloadData()
+            self.collectionView.delegate = self
+            self.collectionView.dataSource = self
+            self.collectionView.reloadData()
         }
     }
 
     private func configureConstraints() {
-        view.addSubview(tableView)
+        view.addSubview(collectionView)
         
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
-            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,constant: 0),
-            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,constant: 0),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,constant: 0)])
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,constant: 0),
+            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,constant: 0),
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,constant: 0)])
     }
+
 
 }
 
 
-extension  ProductDetailedViewController:  UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        1
+extension  ProductDetailedViewController:  UICollectionViewDataSource, UICollectionViewDelegate , UICollectionViewDelegateFlowLayout{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+       1
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: ProductDetailedCell.reuseID, for: indexPath) as! ProductDetailedCell
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductDetailedCell.reuseID, for: indexPath) as! ProductDetailedCell
         if let item = viewModel.singleProduct {
             cell.configure(item: item)
         }
         return cell
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: ProductDetailedHeader.reuseID) as! ProductDetailedHeader
-        headerView.singleProduct = viewModel.singleProduct 
-        return headerView
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        .init(width: collectionView.frame.width, height: collectionView.frame.height)
     }
-
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let footerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: ProductDetailedFooter.reuseID) as! ProductDetailedFooter
-        return footerView
-    }
-
+  
     
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 200 // Set the desired height for your header
+    //MARK: HEADER View
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == UICollectionView.elementKindSectionHeader {
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                         withReuseIdentifier: "\(ProductDetailedHeader.self)",
+                                                                         for: indexPath) as! ProductDetailedHeader
+            header.singleProduct = viewModel.singleProduct
+            return header
+        }
+        else {
+            let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                         withReuseIdentifier: "\(ProductDetailedFooter.self)",
+                                                                         for: indexPath) as! ProductDetailedFooter
+            return footerView
+        }
     }
-
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 60 // Set the desired height for your footer
+    //-----------------
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        CGSize(width: view.frame.size.width, height: view.frame.size.width*2/3)
     }
     
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 1000 // Set the desired height for your cells
-//    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableView.automaticDimension
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        CGSize(width: view.frame.size.width, height: 60)
     }
-
 }

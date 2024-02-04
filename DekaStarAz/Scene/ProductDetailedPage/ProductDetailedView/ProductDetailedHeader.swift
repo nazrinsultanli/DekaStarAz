@@ -1,5 +1,5 @@
 //
-//  ProductDetailedHeaderFooter.swift
+//  ProductDetailedHeader.swift
 //  DekaStarAz
 //
 //  Created by Nazrin Sultanlı on 04.02.24.
@@ -7,8 +7,8 @@
 
 import UIKit
 
-class ProductDetailedHeader: UITableViewHeaderFooterView {
-
+class ProductDetailedHeader: UICollectionReusableView {
+ 
     static let reuseID = "ProductDetailedHeader"
     var singleProduct: ProductModel?
     private lazy var collectionView: UICollectionView = {
@@ -30,20 +30,17 @@ class ProductDetailedHeader: UITableViewHeaderFooterView {
         return collection
     }()
     
-    override init(reuseIdentifier: String?) {
-          super.init(reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         configureContraints()
-      }
-      
-      required init?(coder: NSCoder) {
-          super.init(coder: coder)
-          // Implement initialization from storyboard or nib
-          configureContraints()
-      }
-      
-      override func layoutSubviews() {
-          super.layoutSubviews()
-      }
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
+    override func layoutSubviews() {
+        super.layoutSubviews()
+    }
     
     private func configureContraints() {
         addSubview(collectionView)
@@ -58,23 +55,43 @@ class ProductDetailedHeader: UITableViewHeaderFooterView {
     }
     
 }
- 
+// 
+//extension ProductDetailedHeader: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        singleProduct?.images?.count ?? 0
+//    }
+//    
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductDetailedHeaderCell.reuseID, for: indexPath) as! ProductDetailedHeaderCell
+//        if let image = singleProduct?.images?[indexPath.row] {
+//            cell.configure(item: image)
+//        }
+//        
+//        return cell
+//    }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        .init(width: collectionView.frame.width, height: collectionView.frame.height)
+//    }
+//    
+//    
+//}
+
 extension ProductDetailedHeader: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        singleProduct?.images?.count ?? 0
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductDetailedHeaderCell.reuseID, for: indexPath) as! ProductDetailedHeaderCell
-        if let image = singleProduct?.images?[indexPath.row] {
-            cell.configure(item: image)
-        }
-        
-        return cell
-    }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        .init(width: collectionView.frame.width, height: collectionView.frame.height)
-    }
-    
-    
+           singleProduct?.images?.count ?? 0
+       }
+   
+       func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+           let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductDetailedHeaderCell.reuseID, for: indexPath) as! ProductDetailedHeaderCell
+           if let image = singleProduct?.images?[indexPath.row] {
+               cell.configure(item: image)
+           }
+   
+           return cell
+       }
+       func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+           .init(width: collectionView.frame.width, height: collectionView.frame.height)
+       }
 }
