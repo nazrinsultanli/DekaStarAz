@@ -15,9 +15,9 @@ class ProductDetailedViewController: UIViewController{
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(ProductDetailedCell.self, forCellReuseIdentifier: ProductDetailedCell.reuseID)
         tableView.register(ProductDetailedHeader.self, forHeaderFooterViewReuseIdentifier: "ProductDetailedHeader")
-//        tableView.register(YourFooterViewClass.self, forHeaderFooterViewReuseIdentifier: "YourFooterIdentifier")
-
-           return tableView
+        tableView.register(ProductDetailedFooter.self, forHeaderFooterViewReuseIdentifier: "ProductDetailedFooter")
+        tableView.isScrollEnabled = true
+        return tableView
        }()
     
     override func viewDidLoad() {
@@ -43,6 +43,7 @@ class ProductDetailedViewController: UIViewController{
         viewModel.success =  {
             self.tableView.delegate = self
             self.tableView.dataSource = self
+            self.tableView.layoutIfNeeded()
             self.tableView.reloadData()
         }
     }
@@ -79,22 +80,26 @@ extension  ProductDetailedViewController:  UITableViewDelegate, UITableViewDataS
         return headerView
     }
 
-//    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-//        let footerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: "YourFooterIdentifier")
-//        // Configure the footer view
-//        return footerView
-//    }
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: ProductDetailedFooter.reuseID) as! ProductDetailedFooter
+        return footerView
+    }
 
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 200 // Set the desired height for your header
     }
 
-//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-//        return 50 // Set the desired height for your footer
-//    }
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 60 // Set the desired height for your footer
+    }
     
 //    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 500 // Set the desired height for your cells
+//        return 1000 // Set the desired height for your cells
 //    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+
 }

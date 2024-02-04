@@ -36,6 +36,7 @@
 		108060D62B6E3732005E6217 /* ProductUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108060D52B6E3732005E6217 /* ProductUseCase.swift */; };
 		108060D82B6E37DE005E6217 /* ProductEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 108060D72B6E37DE005E6217 /* ProductEndpoint.swift */; };
 		1093CD852B640C6500D0BBBF /* HomePagesItemsProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1093CD842B640C6500D0BBBF /* HomePagesItemsProtocols.swift */; };
+		10A8D6092B6FAD8D0036D63F /* ProductDetailedFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A8D6082B6FAD8D0036D63F /* ProductDetailedFooter.swift */; };
 		10ACFCB72B665E10006F6B2A /* CategoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10ACFCB62B665E10006F6B2A /* CategoryViewModel.swift */; };
 		10B373C22B650C2D00C9DE7A /* HomeKolleksiyaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10B373C12B650C2D00C9DE7A /* HomeKolleksiyaCell.swift */; };
 		10BE9FE82B6D3DBF006F4D51 /* ProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BE9FE72B6D3DBF006F4D51 /* ProductsViewController.swift */; };
@@ -85,6 +86,7 @@
 		108060D52B6E3732005E6217 /* ProductUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductUseCase.swift; sourceTree = "<group>"; };
 		108060D72B6E37DE005E6217 /* ProductEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductEndpoint.swift; sourceTree = "<group>"; };
 		1093CD842B640C6500D0BBBF /* HomePagesItemsProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePagesItemsProtocols.swift; sourceTree = "<group>"; };
+		10A8D6082B6FAD8D0036D63F /* ProductDetailedFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailedFooter.swift; sourceTree = "<group>"; };
 		10ACFCB62B665E10006F6B2A /* CategoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewModel.swift; sourceTree = "<group>"; };
 		10B373C12B650C2D00C9DE7A /* HomeKolleksiyaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeKolleksiyaCell.swift; sourceTree = "<group>"; };
 		10BE9FE72B6D3DBF006F4D51 /* ProductsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewController.swift; sourceTree = "<group>"; };
@@ -286,6 +288,17 @@
 			path = Manager;
 			sourceTree = "<group>";
 		};
+		10A8D6072B6FAD350036D63F /* ProductDetailedView */ = {
+			isa = PBXGroup;
+			children = (
+				105C986C2B6EEF850011318A /* ProductDetailedHeader.swift */,
+				105C986E2B6EF15D0011318A /* ProductDetailedHeaderCell.swift */,
+				10A8D6082B6FAD8D0036D63F /* ProductDetailedFooter.swift */,
+				105C986A2B6EA0D70011318A /* ProductDetailedCell.swift */,
+			);
+			path = ProductDetailedView;
+			sourceTree = "<group>";
+		};
 		10BE9FE62B6D3D22006F4D51 /* ProductsPage */ = {
 			isa = PBXGroup;
 			children = (
@@ -298,9 +311,7 @@
 		10BE9FEB2B6D4F78006F4D51 /* ProductDetailedPage */ = {
 			isa = PBXGroup;
 			children = (
-				105C986C2B6EEF850011318A /* ProductDetailedHeader.swift */,
-				105C986E2B6EF15D0011318A /* ProductDetailedHeaderCell.swift */,
-				105C986A2B6EA0D70011318A /* ProductDetailedCell.swift */,
+				10A8D6072B6FAD350036D63F /* ProductDetailedView */,
 				10BE9FEE2B6D544D006F4D51 /* ProductDetailedViewModel.swift */,
 				10BE9FEC2B6D4FA5006F4D51 /* ProductDetailedViewController.swift */,
 			);
@@ -427,6 +438,7 @@
 				105C986D2B6EEF850011318A /* ProductDetailedHeader.swift in Sources */,
 				108060D42B6E3715005E6217 /* ProductManager.swift in Sources */,
 				1093CD852B640C6500D0BBBF /* HomePagesItemsProtocols.swift in Sources */,
+				10A8D6092B6FAD8D0036D63F /* ProductDetailedFooter.swift in Sources */,
 				10ACFCB72B665E10006F6B2A /* CategoryViewModel.swift in Sources */,
 				10F150682B615BAC0049D670 /* CategoryUseCase.swift in Sources */,
 				107168B62B5BCC47005D7F36 /* NetworkManager.swift in Sources */,

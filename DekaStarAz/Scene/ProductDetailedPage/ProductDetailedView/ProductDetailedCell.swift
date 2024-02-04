@@ -141,6 +141,9 @@ class ProductDetailedCell: UITableViewCell {
         label.font = UIFont.boldSystemFont(ofSize: 14)
         label.textAlignment = .left
         label.numberOfLines = 0
+        label.setContentCompressionResistancePriority(.required, for: .vertical)
+        label.setContentHuggingPriority(.required, for: .vertical)
+        label.text = "m2nfidbc/nfdfref/nfrefr/nfref/ngtr/ngtr/ngtr"
         return label
     }()
   
