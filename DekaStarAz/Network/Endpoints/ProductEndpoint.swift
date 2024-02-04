@@ -9,4 +9,5 @@ import Foundation
 
 enum ProductEndpoint: String {
     case productEndpoint = "store/products/"
+    case filterEndpoint = "store/products"
 }

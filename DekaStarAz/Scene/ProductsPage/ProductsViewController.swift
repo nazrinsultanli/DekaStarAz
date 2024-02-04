@@ -9,7 +9,7 @@ import UIKit
 
 class ProductsViewController: UIViewController {
     
-    var homeItemsType: HomePageItemType?
+    
     var viewModel = ProductsViewModel()
     
     private lazy var collectionView: UICollectionView = {
@@ -41,7 +41,7 @@ class ProductsViewController: UIViewController {
         
     }
     private func configureViewModel() {
-        if let homeItemsType = homeItemsType {
+        if let homeItemsType = viewModel.homeItemsType {
             viewModel.getItems(type: homeItemsType)
         }
         viewModel.error = { errorMessage in

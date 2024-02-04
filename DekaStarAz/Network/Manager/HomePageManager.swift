@@ -7,7 +7,15 @@
 
 import Foundation
 
-class HomePageManager: BannerListUseCase, CategoryUseCase, HomeItemUseCase {
+class HomePageManager: BannerListUseCase, CategoryUseCase, HomeItemUseCase,  FilterUseCase {
+    func getFilteredPrododuct(categoryKey: String, language: String, completion: @escaping ((HomePageProductsModel?, String?) -> Void)) {
+        let filterUrl = ProductEndpoint.filterEndpoint.rawValue + "?category={" + categoryKey  + "}&" + NetworkHelperLinker.language + language
+        NetworkManager.request(model: HomePageProductsModel.self,
+                               url: filterUrl,
+                               completion: completion)
+    }
+
+
     func getHomeItems(endPoint: HomeItemsEndpoint, completion: @escaping ((HomePageProductsModel?, String?) -> Void)) {
         NetworkManager.request(model: HomePageProductsModel.self,
                                url: endPoint.rawValue,

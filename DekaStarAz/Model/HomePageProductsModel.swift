@@ -59,11 +59,11 @@ struct HomeProductResult: Codable, HomePagesItemsProtocols {
     let inStock: Bool?
     let imagefeatureurl, isActiveDisplayValue, inStockDisplayValue, createdAt: String?
     let updatedAt: String?
-    
+    let collection: CollectionModel?
     
 
     enum CodingKeys: String, CodingKey {
-        case id, name, slug
+        case id, name, slug, collection
         case regularPrice = "regular_price"
         case discount
         case discountPrice = "discount_price"
@@ -76,3 +76,19 @@ struct HomeProductResult: Codable, HomePagesItemsProtocols {
     }
 }
 
+struct CollectionModel: Codable {
+        
+        let id: Int?
+        let name, slug: String?
+        let coverImage: String?
+        let categoryName, createdAt, updatedAt: String?
+
+        enum CodingKeys: String, CodingKey {
+            case id, name, slug
+            case coverImage = "cover_image"
+            case categoryName = "category_name"
+            case createdAt = "created_at"
+            case updatedAt = "updated_at"
+        }
+    
+}

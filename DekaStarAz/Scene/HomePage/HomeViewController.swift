@@ -118,8 +118,9 @@ extension HomeViewController: HomeCollectionCellDelegate {
     func didSelectProductId(item: String, itemType: HomePageItemType) {
         if itemType == .category {
             let controller = ProductsViewController()
-//            controller.homeItemsType = itemType
-//            tabBarController?.selectedIndex = 1
+            controller.viewModel.categorySlugId = item
+            controller.viewModel.homeItemsType = itemType
+            navigationController?.show(controller, sender: nil)
         }
         else {
             let controller = ProductDetailedViewController()
@@ -138,7 +139,7 @@ extension HomeViewController: HomeCollectionCellDelegate {
         }
         else {
             let controller = ProductsViewController()
-            controller.homeItemsType = itemType
+            controller.viewModel.homeItemsType  = itemType
             navigationController?.show(controller, sender: nil)
         }
         

@@ -11,9 +11,10 @@ class ProductsViewModel {
     private let manager = HomePageManager()
     var success: (() -> Void)?
     var error: ((String) -> Void)?
-    
+    var categorySlugId: String?
     var product: HomePageProductsModel?
     var productsItems = [HomeProductResult]()
+    var homeItemsType: HomePageItemType?
     
     
     func getItems(type: HomePageItemType) {
@@ -39,9 +40,17 @@ class ProductsViewModel {
                 }
             }
         case .category:
-            break
+            manager.getFilteredPrododuct(categoryKey: categorySlugId ?? "", language: "az") { data, errorMessage in
+                if let errorMessage {
+                    self.error?(errorMessage)
+                } else if let data {
+                    self.product = data
+                    self.productsItems.append(contentsOf:data.results ?? [])
+                    self.success?()
+                }
+            }
+            
         }
-
     }
     
 }
