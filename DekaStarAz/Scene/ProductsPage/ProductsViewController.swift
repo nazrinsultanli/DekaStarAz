@@ -39,6 +39,18 @@ class ProductsViewController: UIViewController {
         title = "Products"
         view.backgroundColor = .systemGray4
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: UIImage(systemName: "line.3.horizontal.decrease.circle.fill"),
+            style: .done,
+            target: self,
+            action:  #selector(filterButton)
+        )
+        
+    }
+    
+    @objc func filterButton() {
+        let cv = FilterPageController()
+        navigationController?.show(cv, sender: nil)
     }
     private func configureViewModel() {
         if let homeItemsType = viewModel.homeItemsType {

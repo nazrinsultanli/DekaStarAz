@@ -87,4 +87,10 @@ extension CategoryViewController:UICollectionViewDataSource, UICollectionViewDel
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt  section: Int) -> UIEdgeInsets {
         .init(top: 10, left: 20, bottom: 0, right: 20)
     }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let controller = ProductsViewController()
+        controller.viewModel.categorySlugId = viewModel.categoryItems[indexPath.item].slugId
+        controller.viewModel.homeItemsType = .category
+        navigationController?.show(controller, sender: nil)
+    }
 }
