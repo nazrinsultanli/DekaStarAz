@@ -16,7 +16,7 @@ enum filterItemsNames: String, CaseIterable {
 }
 
 
-struct FilterViewModel {
+class FilterViewModel {
     var filterItems: [filterItemsNames] = filterItemsNames.allCases
         
 }

@@ -7,5 +7,11 @@
 
 import Foundation
 protocol FilterUseCase {
-    func getFilteredPrododuct(categoryKey:String, language: String,  completion: @escaping((HomePageProductsModel?,String?) ->Void))
+    func getFilteredPrododuct(categoryKey:String, 
+                              collection:String,
+                              inStock: Bool,
+                              minPrice:String,
+                              maxPrice:String,
+                              language: String,
+                              completion: @escaping((HomePageProductsModel?,String?) ->Void))
 }

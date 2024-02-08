@@ -114,3 +114,4 @@ extension  ProductDetailedViewController:  UICollectionViewDataSource, UICollect
         CGSize(width: view.frame.size.width, height: 60)
     }
 }
+

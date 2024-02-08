@@ -20,6 +20,11 @@ class FilterPageController: UIViewController {
         collection.translatesAutoresizingMaskIntoConstraints = false
         collection.register(FilterPagaCell.self,
                             forCellWithReuseIdentifier: FilterPagaCell.reuseID)
+        collection.register(FilterPageTitleTextfieldCell.self,
+                            forCellWithReuseIdentifier: FilterPageTitleTextfieldCell.reuseID)
+        collection.register(FilterPageTitleButtonCell.self,
+                            forCellWithReuseIdentifier: FilterPageTitleButtonCell.reuseID)
+        
         return collection
     }()
 
@@ -114,7 +119,7 @@ class FilterPageController: UIViewController {
 //            temizleButton.topAnchor.constraint(equalTo: tamamlaButton.bottomAnchor, constant: 10),
             temizleButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,constant: 0),
             temizleButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,constant: 0),
-            tamamlaButton.heightAnchor.constraint(equalToConstant: 80),
+            temizleButton.heightAnchor.constraint(equalToConstant: 80),
             temizleButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,constant: 0),
         
         ])
@@ -125,29 +130,60 @@ class FilterPageController: UIViewController {
 extension FilterPageController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     //MARK: Collection view for rest Items
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-       // viewModel.categoryItems.count
         viewModel.filterItems.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
      
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FilterPagaCell.reuseID, for: indexPath) as! FilterPagaCell
-        cell.configure(item: viewModel.filterItems[indexPath.item].rawValue)
-        return cell
+        let itemType = viewModel.filterItems[indexPath.item]
+        switch itemType {
+        case .category:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FilterPagaCell.reuseID, for: indexPath) as! FilterPagaCell
+            cell.configure(item: itemType.rawValue)
+            return cell
+        case .collection:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FilterPagaCell.reuseID, for: indexPath) as! FilterPagaCell
+            cell.configure(item: itemType.rawValue)
+            return cell
+        case .inStock:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FilterPageTitleButtonCell.reuseID, for: indexPath) as! FilterPageTitleButtonCell
+            cell.configure(item: itemType.rawValue)
+            return cell
+        case .minPrice:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FilterPageTitleTextfieldCell.reuseID, for: indexPath) as! FilterPageTitleTextfieldCell
+            cell.configure(item: itemType.rawValue)
+            return cell
+        case .maxPrice:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FilterPageTitleTextfieldCell.reuseID, for: indexPath) as! FilterPageTitleTextfieldCell
+            cell.configure(item: itemType.rawValue)
+            return cell
+        }
+        
     
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        .init(width: collectionView.frame.width, height: 60)
+        .init(width: collectionView.frame.width * 0.92, height: 60)
     }
     
 //
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt  section: Int) -> UIEdgeInsets {
-        .init(top: 0, left: 50, bottom: 0, right: 50)
-    }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt  section: Int) -> UIEdgeInsets {
+//        .init(top: 0, left: 50, bottom: 0, right: 50)
+//    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let controller = ProductDetailedViewController()
-//        controller.viewModel.slug = viewModel.productsItems[indexPath.item].slug
-//        navigationController?.show(controller, sender: nil)
+        let controller = FilterDetailController()
+        let itemType = viewModel.filterItems[indexPath.item]
+        switch itemType {
+        case .category:
+            controller.viewModel.filterType = itemType
+            navigationController?.show(controller, sender: nil)
+        case .collection:
+            controller.viewModel.filterType = itemType
+            navigationController?.show(controller, sender: nil)
+        default:
+            break
+        }
+        
     }
 }

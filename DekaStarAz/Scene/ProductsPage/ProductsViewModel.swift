@@ -40,7 +40,13 @@ class ProductsViewModel {
                 }
             }
         case .category:
-            manager.getFilteredPrododuct(categoryKey: categorySlugId ?? "", language: "az") { data, errorMessage in
+            manager.getFilteredPrododuct(categoryKey: categorySlugId ?? "",
+                                         collection: "",
+                                         inStock: true,
+                                         minPrice: "",
+                                         maxPrice: "",
+                                         language:
+                                            "az"){ data, errorMessage in
                 if let errorMessage {
                     self.error?(errorMessage)
                 } else if let data {
@@ -49,7 +55,6 @@ class ProductsViewModel {
                     self.success?()
                 }
             }
-            
         }
     }
     
