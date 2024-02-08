@@ -8,14 +8,27 @@
 import Foundation
 
 class HomePageManager: BannerListUseCase, CategoryUseCase, HomeItemUseCase,  FilterUseCase {
+
+    func getFilterEntries(completion: @escaping ((FilterEntriesModel?, String?) -> Void)) {
+        NetworkManager.request(model: FilterEntriesModel.self,
+                               url: ProductEndpoint.filterEntriesEndoint.rawValue,
+                               completion: completion)
+    }
+    
     func getFilteredPrododuct(categoryKey: String, 
                               collection: String,
+                              brand: String,
                               inStock: Bool,
                               minPrice: String,
                               maxPrice: String,
                               language: String,
                               completion: @escaping ((HomePageProductsModel?, String?) -> Void)) {
-        let filterUrl = ProductEndpoint.filterEndpoint.rawValue + "?category=" + categoryKey  + "&" + NetworkHelperLinker.language + language
+        let stock = (inStock == true) ? "1" : "0"
+       
+        let filterUrl = ProductEndpoint.filterEndpoint.rawValue + "?collection=" + collection + "&in_stock=" + stock + "&min_price=" + minPrice + "&max_price=" + maxPrice + "&category=" + categoryKey + "&lang=" + language
+        
+       
+        
         NetworkManager.request(model: HomePageProductsModel.self,
                                url: filterUrl,
                                completion: completion)
@@ -31,8 +44,8 @@ class HomePageManager: BannerListUseCase, CategoryUseCase, HomeItemUseCase,  Fil
     
 
     
-    func getCategoryList(completion: @escaping (([CategoryModel]?, String?) -> Void)) {
-        NetworkManager.request(model: [CategoryModel].self,
+    func getCategoryList(completion: @escaping (([OneEntryModel]?, String?) -> Void)) {
+        NetworkManager.request(model: [OneEntryModel].self,
                                url: CategoryEndpoint.categoryEndpoint.rawValue,
                                completion: completion)
     }

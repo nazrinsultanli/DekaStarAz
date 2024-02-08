@@ -7,9 +7,10 @@
 
 import Foundation
 
-enum filterItemsNames: String, CaseIterable {
+enum FilterItemsNames: String, CaseIterable {
     case category = "Kateqoriya"
     case collection = "Kolleksiya"
+    case brand = "Brand"
     case inStock = "Movcuddur"
     case minPrice = "Minimum qiymet"
     case maxPrice = "Maximum qiymet"
@@ -17,6 +18,6 @@ enum filterItemsNames: String, CaseIterable {
 
 
 class FilterViewModel {
-    var filterItems: [filterItemsNames] = filterItemsNames.allCases
+    var filterItems: [FilterItemsNames] = FilterItemsNames.allCases
         
 }

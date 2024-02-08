@@ -52,7 +52,7 @@ class FilterPagaCell: UICollectionViewCell {
 
         contentView.addSubview(filterNameLabel)
         contentView.addSubview(disclosureIndicator)
-        filterNameLabel.backgroundColor = .red
+       // filterNameLabel.backgroundColor = .red
         
         
         NSLayoutConstraint.activate([

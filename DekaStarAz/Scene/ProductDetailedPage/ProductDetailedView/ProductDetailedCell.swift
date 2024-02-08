@@ -219,7 +219,7 @@ class ProductDetailedCell: UICollectionViewCell {
         contentView.addSubview(generalStack)
         contentView.addSubview(descriptionLabel)
         
-        modelNameLabel.backgroundColor = .red
+        //modelNameLabel.backgroundColor = .red
         originalPriceLabel.backgroundColor = .green
         discountedPriceLAbel.backgroundColor = .purple
 //        leftStack.backgroundColor = .yellow

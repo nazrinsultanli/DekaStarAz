@@ -22,7 +22,7 @@ class FilterPageTitleTextfieldCell: UICollectionViewCell {
     private let priceField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.placeholder = "min qiymet"
+        textField.placeholder = "qiymet"
         textField.font = UIFont.systemFont(ofSize: 14)
         textField.borderStyle = .roundedRect
         textField.textAlignment = .left
@@ -59,7 +59,7 @@ class FilterPageTitleTextfieldCell: UICollectionViewCell {
         contentView.addSubview(filterNameLabel)
         contentView.addSubview(priceField)
         contentView.addSubview(priceUnit)
-        filterNameLabel.backgroundColor = .red
+       // filterNameLabel.backgroundColor = .red
         
         
         NSLayoutConstraint.activate([
@@ -76,7 +76,7 @@ class FilterPageTitleTextfieldCell: UICollectionViewCell {
             priceField.widthAnchor.constraint(equalToConstant: 100),
             
             priceUnit.topAnchor.constraint(equalTo: topAnchor),
-            priceUnit.leadingAnchor.constraint(equalTo: priceField.trailingAnchor),
+            priceUnit.leadingAnchor.constraint(equalTo: priceField.trailingAnchor, constant: 20),
 //            disclosureIndicator.trailingAnchor.constraint(equalTo: trailingAnchor),
             priceUnit.bottomAnchor.constraint(equalTo: bottomAnchor),
             priceUnit.widthAnchor.constraint(equalToConstant: 40),

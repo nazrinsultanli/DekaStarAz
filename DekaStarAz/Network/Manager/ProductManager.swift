@@ -8,8 +8,15 @@
 import Foundation
 
 class ProductManager: ProductUseCase, FilterUseCase {
+    func getFilterEntries(completion: @escaping ((FilterEntriesModel?, String?) -> Void)) {
+        NetworkManager.request(model: FilterEntriesModel.self,
+                               url: ProductEndpoint.filterEntriesEndoint.rawValue,
+                               completion: completion)
+    }
+    
     func getFilteredPrododuct(categoryKey: String, 
                               collection: String,
+                              brand: String,
                               inStock: Bool,
                               minPrice: String,
                               maxPrice: String,

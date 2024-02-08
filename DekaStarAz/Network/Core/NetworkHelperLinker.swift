@@ -6,10 +6,11 @@
 //
 
 import Foundation
-
+import Alamofire
 class NetworkHelperLinker {
     static var baseUrl = "https://dekastar.az/api/"
     static var language = "lang="
+    static var header: HTTPHeaders = ["X-Api-Key" : "HqSu5ZZV.3qgoKJO12U0X7Lk2jtiSDyiiqHnD7Zy7"]
 }
 
 //

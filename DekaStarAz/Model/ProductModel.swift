@@ -46,7 +46,7 @@ struct ProductCollection: Codable {
     let id: Int?
     let name, slug: String?
     let coverImage: String?
-    let category: CategoryModel?
+    let category: OneEntryModel?
     let brand: BrandModel?
     let createdAt, updatedAt: String?
 

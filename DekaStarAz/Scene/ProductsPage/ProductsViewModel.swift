@@ -6,6 +6,10 @@
 //
 
 import Foundation
+struct SpecificProductModel {
+    var filterType: FilterItemsNames
+    var filterSlug: Any
+}
 
 class ProductsViewModel {
     private let manager = HomePageManager()
@@ -16,6 +20,7 @@ class ProductsViewModel {
     var productsItems = [HomeProductResult]()
     var homeItemsType: HomePageItemType?
     
+    var specificProductSlugs = [SpecificProductModel]()
     
     func getItems(type: HomePageItemType) {
         switch type {
@@ -42,6 +47,7 @@ class ProductsViewModel {
         case .category:
             manager.getFilteredPrododuct(categoryKey: categorySlugId ?? "",
                                          collection: "",
+                                         brand: "",
                                          inStock: true,
                                          minPrice: "",
                                          maxPrice: "",

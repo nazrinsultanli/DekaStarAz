@@ -145,6 +145,10 @@ extension FilterPageController: UICollectionViewDataSource, UICollectionViewDele
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FilterPagaCell.reuseID, for: indexPath) as! FilterPagaCell
             cell.configure(item: itemType.rawValue)
             return cell
+        case .brand:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FilterPagaCell.reuseID, for: indexPath) as! FilterPagaCell
+            cell.configure(item: itemType.rawValue)
+            return cell
         case .inStock:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FilterPageTitleButtonCell.reuseID, for: indexPath) as! FilterPageTitleButtonCell
             cell.configure(item: itemType.rawValue)
@@ -157,6 +161,7 @@ extension FilterPageController: UICollectionViewDataSource, UICollectionViewDele
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FilterPageTitleTextfieldCell.reuseID, for: indexPath) as! FilterPageTitleTextfieldCell
             cell.configure(item: itemType.rawValue)
             return cell
+       
         }
         
     

@@ -46,7 +46,7 @@ class FilterPageTitleButtonCell: UICollectionViewCell {
 
         contentView.addSubview(filterNameLabel)
         contentView.addSubview(checkButton)
-        filterNameLabel.backgroundColor = .red
+        //filterNameLabel.backgroundColor = .red
         
         
         NSLayoutConstraint.activate([

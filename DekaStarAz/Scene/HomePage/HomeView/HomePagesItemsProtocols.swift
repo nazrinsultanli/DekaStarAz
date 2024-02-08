@@ -13,5 +13,6 @@ protocol HomePagesItemsProtocols {
     var originalPrice: String { get }
     var saledPrice: String { get }
     var slugId: String { get }
+    var originalId: Int { get }
     
 }

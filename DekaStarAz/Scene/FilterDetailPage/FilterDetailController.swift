@@ -85,8 +85,8 @@ extension FilterDetailController: UICollectionViewDataSource, UICollectionViewDe
     
    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let controller = ProductDetailedViewController()
-//        controller.viewModel.slug = viewModel.productsItems[indexPath.item].slug
+        let controller = ProductsViewController()
+        controller.viewModel.specificProductSlugs.append(.init(filterType: viewModel.filterType ?? .category, filterSlug: viewModel.filterItems[indexPath.item].slugId))
 //        navigationController?.show(controller, sender: nil)
     }
 }

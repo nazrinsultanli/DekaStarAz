@@ -9,9 +9,13 @@ import Foundation
 protocol FilterUseCase {
     func getFilteredPrododuct(categoryKey:String, 
                               collection:String,
+                              brand: String,
                               inStock: Bool,
                               minPrice:String,
                               maxPrice:String,
                               language: String,
                               completion: @escaping((HomePageProductsModel?,String?) ->Void))
+    
+    func getFilterEntries(completion: @escaping((FilterEntriesModel?,String?) ->Void))
+    
 }

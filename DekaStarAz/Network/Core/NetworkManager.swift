@@ -21,7 +21,8 @@ class NetworkManager {
         AF.request(NetworkHelperLinker.baseUrl + url,
                    method: method,
                    parameters: parameters,
-                   encoding: encoding).responseDecodable(of: T.self) { response in
+                   encoding: encoding,
+                   headers: NetworkHelperLinker.header).responseDecodable(of: T.self) { response in
             print("-----\(NetworkHelperLinker.baseUrl + url)")
             switch response.result {
             case .success(let data):
