@@ -5,12 +5,14 @@
 //  Created by Nazrin Sultanlı on 08.02.24.
 //
 
+
 import UIKit
 
 class FilterPageTitleButtonCell: UICollectionViewCell {
 
     static let reuseID = "FilterPageTitleButtonCell"
-    
+    var filterBuilder: FilterBuilder?
+    var stateButton = false
     private let filterNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -19,14 +21,19 @@ class FilterPageTitleButtonCell: UICollectionViewCell {
         label.numberOfLines = 0
         return label
     }()
+
     private let checkButton: UIButton = {
-        let button = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.backgroundColor = .clear
-        button.setImage(UIImage(systemName: "checkmark.square"), for: .normal)
-        button.setImage(UIImage(systemName: "checkmark.square.fill"), for: .highlighted)
-        return button
-    }()
+            let button = UIButton()
+            button.translatesAutoresizingMaskIntoConstraints = false
+            button.backgroundColor = .clear
+            button.setImage(UIImage(systemName: "checkmark.square"), for: .normal)
+            
+            // Change the target to self
+            button.addTarget(self, action: #selector(didChecked), for: .touchUpInside)
+            
+            button.contentMode = .scaleAspectFit
+            return button
+        }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -40,14 +47,16 @@ class FilterPageTitleButtonCell: UICollectionViewCell {
         super.layoutSubviews()
     }
 
-
+    @objc func didChecked() {
+        stateButton = stateButton ? false : true
+        checkButton.setImage(UIImage(systemName: "checkmark.square.fill"), for: .selected)
+        filterBuilder?.inStock = stateButton
+        checkButton.backgroundColor = .red
+    }
     private func configureConstraints() {
-      
-
         contentView.addSubview(filterNameLabel)
         contentView.addSubview(checkButton)
-        //filterNameLabel.backgroundColor = .red
-        
+
         
         NSLayoutConstraint.activate([
             filterNameLabel.topAnchor.constraint(equalTo: topAnchor),
@@ -69,3 +78,4 @@ class FilterPageTitleButtonCell: UICollectionViewCell {
         filterNameLabel.text = item
     }
 }
+

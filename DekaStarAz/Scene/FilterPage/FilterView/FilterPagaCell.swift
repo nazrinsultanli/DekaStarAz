@@ -30,6 +30,7 @@ class FilterPagaCell: UICollectionViewCell {
     private let disclosureIndicator: UIImageView = {
          let imageView = UIImageView(image: UIImage(systemName: "chevron.right"))
          imageView.tintColor = .gray
+        imageView.contentMode = .center
          imageView.translatesAutoresizingMaskIntoConstraints = false
          return imageView
      }()

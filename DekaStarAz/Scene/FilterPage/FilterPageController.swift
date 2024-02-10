@@ -9,6 +9,8 @@ import UIKit
 
 class FilterPageController: UIViewController {
     var viewModel = FilterViewModel()
+    var filterBuilder = FilterBuilder()
+    var filterCompleted: ((FilterItemsStructModel) -> Void)?
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -54,9 +56,11 @@ class FilterPageController: UIViewController {
     }()
 
     @objc func tamamlaButtonTapped() {
-        // Handle button tap action
-        print("Button tapped!")
+        filterCompleted?(filterBuilder.build())
+        navigationController?.popViewController(animated: true)
+        
     }
+    
     
     @objc func temizleButtonTapped() {
         // Handle button tap action
@@ -70,29 +74,19 @@ class FilterPageController: UIViewController {
         configureConstraints()
         configureViewModel()
     }
-    
- 
+
     
     private func configureUI() {
         title = "Filter"
-        view.backgroundColor = .systemGray4
-        
-
-        
+        view.backgroundColor = .white
+ 
     }
     
     private func configureViewModel() {
-//        if let homeItemsType = viewModel.homeItemsType {
-//            viewModel.getItems(type: homeItemsType)
-//        }
-//        viewModel.error = { errorMessage in
-//            print("Error:\(errorMessage)")
-//        }
-//        viewModel.success =  {
             self.collectionView.delegate = self
             self.collectionView.dataSource = self
             self.collectionView.reloadData()
-//        }
+
     }
 
     private func configureConstraints() {
@@ -101,7 +95,6 @@ class FilterPageController: UIViewController {
         view.addSubview(temizleButton)
         
         NSLayoutConstraint.activate([
-            
             
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
             collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,constant: 0),
@@ -152,14 +145,17 @@ extension FilterPageController: UICollectionViewDataSource, UICollectionViewDele
         case .inStock:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FilterPageTitleButtonCell.reuseID, for: indexPath) as! FilterPageTitleButtonCell
             cell.configure(item: itemType.rawValue)
+            cell.filterBuilder = filterBuilder
             return cell
         case .minPrice:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FilterPageTitleTextfieldCell.reuseID, for: indexPath) as! FilterPageTitleTextfieldCell
-            cell.configure(item: itemType.rawValue)
+            cell.configure(item: itemType.rawValue, itemType: itemType)
+            cell.filterBuilder = filterBuilder
             return cell
         case .maxPrice:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FilterPageTitleTextfieldCell.reuseID, for: indexPath) as! FilterPageTitleTextfieldCell
-            cell.configure(item: itemType.rawValue)
+            cell.configure(item: itemType.rawValue, itemType: itemType)
+            cell.filterBuilder = filterBuilder
             return cell
        
         }
@@ -182,9 +178,15 @@ extension FilterPageController: UICollectionViewDataSource, UICollectionViewDele
         switch itemType {
         case .category:
             controller.viewModel.filterType = itemType
+            controller.filterBuilder = filterBuilder
             navigationController?.show(controller, sender: nil)
         case .collection:
             controller.viewModel.filterType = itemType
+            controller.filterBuilder = filterBuilder
+            navigationController?.show(controller, sender: nil)
+        case .brand:
+            controller.viewModel.filterType = itemType
+            controller.filterBuilder = filterBuilder
             navigationController?.show(controller, sender: nil)
         default:
             break

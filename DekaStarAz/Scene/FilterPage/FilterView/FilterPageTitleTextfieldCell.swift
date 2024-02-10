@@ -8,9 +8,9 @@
 import UIKit
 
 class FilterPageTitleTextfieldCell: UICollectionViewCell {
-
+    var filterType: FilterItemsNames?
     static let reuseID = "FilterPageTitleTextfieldCell"
-    
+    var filterBuilder: FilterBuilder?
     private let filterNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -43,6 +43,15 @@ class FilterPageTitleTextfieldCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureConstraints()
+        
+        switch filterType {
+        case .minPrice:
+            filterBuilder?.minPrice = priceField.text
+        case .maxPrice:
+            filterBuilder?.maxPrice = priceField.text
+        default:
+            break
+        }
     }
     
     required init?(coder: NSCoder) {
@@ -54,8 +63,6 @@ class FilterPageTitleTextfieldCell: UICollectionViewCell {
 
 
     private func configureConstraints() {
-      
-
         contentView.addSubview(filterNameLabel)
         contentView.addSubview(priceField)
         contentView.addSubview(priceUnit)
@@ -86,7 +93,8 @@ class FilterPageTitleTextfieldCell: UICollectionViewCell {
             
         ])
     }
-    func configure(item: String){
+    func configure(item: String, itemType: FilterItemsNames ){
         filterNameLabel.text = item
+        filterType = itemType
     }
 }

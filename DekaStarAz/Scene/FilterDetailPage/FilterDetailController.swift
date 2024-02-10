@@ -5,23 +5,21 @@
 //  Created by Nazrin Sultanlı on 06.02.24.
 //
 
+
 import UIKit
 
 class FilterDetailController: UIViewController {
 
     var viewModel = FilterDetailViewModel()
-    
-    private lazy var collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
-        
-        let collection = UICollectionView(frame: .zero,
-                                          collectionViewLayout: layout)
-        collection.showsHorizontalScrollIndicator = false
-        collection.translatesAutoresizingMaskIntoConstraints = false
-        collection.register(FilterPageTitleButtonCell.self,
-                            forCellWithReuseIdentifier: FilterPageTitleButtonCell.reuseID)
-        return collection
+    var filterBuilder: FilterBuilder?
+    private lazy var tableView: UITableView = {
+        let table = UITableView()
+        table.translatesAutoresizingMaskIntoConstraints = false
+        table.rowHeight = 60
+        table.register(FilterDetailListCell.self, forCellReuseIdentifier: FilterDetailListCell.reuseID)
+        table.dataSource = self
+        table.delegate = self
+        return table
     }()
 
     override func viewDidLoad() {
@@ -47,46 +45,47 @@ class FilterDetailController: UIViewController {
             print("Error:\(errorMessage)")
         }
         viewModel.success =  {
-            self.collectionView.delegate = self
-            self.collectionView.dataSource = self
-            self.collectionView.reloadData()
+            self.tableView.reloadData()
         }
     }
 
     private func configureConstraints() {
-        view.addSubview(collectionView)
+        view.addSubview(tableView)
         
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
-            collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,constant: 0),
-            collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,constant: 0),
-            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,constant: 0)])
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)])
     }
 
 }
 
-extension FilterDetailController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    //MARK: Collection view for rest Items
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        viewModel.filterItems.count
+extension FilterDetailController: UITableViewDataSource, UITableViewDelegate {
+    //MARK: Table view for rest Items
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.filterItems.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-     
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FilterPageTitleButtonCell.reuseID, for: indexPath) as! FilterPageTitleButtonCell
-        cell.configure(item: viewModel.filterItems[indexPath.item].titleText)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: FilterDetailListCell.reuseID, for: indexPath) as! FilterDetailListCell
+        cell.configure(item: viewModel.filterItems[indexPath.row].titleText)
         return cell
-    
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        .init(width: collectionView.frame.width * 0.92, height: 60)
-    }
-    
-   
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let controller = ProductsViewController()
-        controller.viewModel.specificProductSlugs.append(.init(filterType: viewModel.filterType ?? .category, filterSlug: viewModel.filterItems[indexPath.item].slugId))
-//        navigationController?.show(controller, sender: nil)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch viewModel.filterType {
+        case .category:
+            filterBuilder?.category = viewModel.filterItems[indexPath.row].slugId
+        case .collection:
+            filterBuilder?.collection = viewModel.filterItems[indexPath.row].slugId
+        case .brand:
+            filterBuilder?.brand = viewModel.filterItems[indexPath.row].slugId
+        default:
+            break
+        }
+        navigationController?.popViewController(animated: true)
+        
     }
 }
+

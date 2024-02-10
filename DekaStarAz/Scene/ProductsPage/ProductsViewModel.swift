@@ -19,8 +19,26 @@ class ProductsViewModel {
     var product: HomePageProductsModel?
     var productsItems = [HomeProductResult]()
     var homeItemsType: HomePageItemType?
+    var filterManager = ProductManager()
+    var filterItemsInfo: FilterItemsStructModel?
     
     var specificProductSlugs = [SpecificProductModel]()
+    
+    func getAllItems(){
+        if filterItemsInfo == nil {
+            if let homeItemsType = homeItemsType {
+                getItems(type: homeItemsType)
+            }
+        }
+        else{
+            if let item = filterItemsInfo {
+                getFilteredItems(items: item)
+            }
+        }
+        
+        
+        
+    }
     
     func getItems(type: HomePageItemType) {
         switch type {
@@ -45,7 +63,7 @@ class ProductsViewModel {
                 }
             }
         case .category:
-            manager.getFilteredPrododuct(categoryKey: categorySlugId ?? "",
+            filterManager.getFilteredPrododuct(categoryKey: categorySlugId ?? "",
                                          collection: "",
                                          brand: "",
                                          inStock: true,
@@ -60,6 +78,24 @@ class ProductsViewModel {
                     self.productsItems.append(contentsOf:data.results ?? [])
                     self.success?()
                 }
+            }
+        }
+    }
+    
+    func getFilteredItems(items: FilterItemsStructModel) {
+        filterManager.getFilteredPrododuct(categoryKey: items.category,
+                                           collection: items.collection,
+                                           brand: items.brand,
+                                           inStock: items.inStock,
+                                           minPrice: items.minPrice,
+                                           maxPrice: items.maxPrice,
+                                           language: "az") { data, errorMessage in
+            if let errorMessage {
+                self.error?(errorMessage)
+            } else if let data {
+                self.product = data
+                self.productsItems.append(contentsOf:data.results ?? [])
+                self.success?()
             }
         }
     }

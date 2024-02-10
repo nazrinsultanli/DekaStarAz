@@ -33,7 +33,9 @@ class ProductsViewController: UIViewController {
         configureViewModel()
     }
     
- 
+    override func viewWillAppear(_ animated: Bool) {
+        configureViewModel()
+    }
     
     private func configureUI() {
         title = "Products"
@@ -48,14 +50,27 @@ class ProductsViewController: UIViewController {
         
     }
     
+//    @objc func filterButton() {
+//        let cv = FilterPageController()
+//        navigationController?.show(cv, sender: nil)
+//    }
+    
+    
     @objc func filterButton() {
-        let cv = FilterPageController()
-        navigationController?.show(cv, sender: nil)
-    }
-    private func configureViewModel() {
-        if let homeItemsType = viewModel.homeItemsType {
-            viewModel.getItems(type: homeItemsType)
+        let filterController = FilterPageController()
+        filterController.filterCompleted = { [weak self] filterItemsModel in
+            // Here, you can apply the filterItemsModel to fetch filtered products
+            // For example:
+            self?.viewModel.filterItemsInfo = filterItemsModel
+            self?.viewModel.getAllItems()
         }
+        navigationController?.pushViewController(filterController, animated: true)
+    }
+
+    
+    private func configureViewModel() {
+  
+        viewModel.getAllItems()
         viewModel.error = { errorMessage in
             print("Error:\(errorMessage)")
         }
