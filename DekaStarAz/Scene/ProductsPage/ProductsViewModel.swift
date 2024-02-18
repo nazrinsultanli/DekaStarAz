@@ -26,18 +26,17 @@ class ProductsViewModel {
     
     func getAllItems(){
         if filterItemsInfo == nil {
+            productsItems.removeAll()
             if let homeItemsType = homeItemsType {
                 getItems(type: homeItemsType)
             }
         }
         else{
+            productsItems.removeAll()
             if let item = filterItemsInfo {
                 getFilteredItems(items: item)
             }
         }
-        
-        
-        
     }
     
     func getItems(type: HomePageItemType) {

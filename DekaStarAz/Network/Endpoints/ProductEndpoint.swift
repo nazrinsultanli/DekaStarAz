@@ -11,4 +11,5 @@ enum ProductEndpoint: String {
     case productEndpoint = "store/products/"
     case filterEndpoint = "store/products"
     case filterEntriesEndoint = "store/filters?lang=az"
+    case filterSomeEntries = "store/filters?category="
 }

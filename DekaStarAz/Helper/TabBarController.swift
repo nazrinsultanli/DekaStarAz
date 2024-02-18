@@ -27,6 +27,7 @@ class TabBarController: UITabBarController {
         let nav = UINavigationController(rootViewController: vc)
         nav.tabBarItem.title = name
         nav.tabBarItem.image = image
+//        UITabBar.appearance().barTintColor = UIColor.red
         return nav
     }
 

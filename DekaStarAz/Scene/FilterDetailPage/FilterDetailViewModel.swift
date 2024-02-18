@@ -12,25 +12,53 @@ class FilterDetailViewModel {
     var error: ((String) -> Void)?
     var filterType: FilterItemsNames?
     var filterItems = [HomePagesItemsProtocols]()
+    var selectedCategory: String?
     
     func getfilterItems(){
-        manager.getFilterEntries { data, errorMessage in
-            if let errorMessage {
-                self.error?(errorMessage)
-            } else if let data {
-                
-                switch self.filterType {
-                case .category:
+        
+        
+        switch self.filterType {
+        case .category:
+            manager.getFilterEntries { data, errorMessage in
+                if let errorMessage {
+                    self.error?(errorMessage)
+                } else if let data {
                     self.filterItems = data.categories ?? []
-                case .collection:
-                    self.filterItems = data.collections ?? []
-                case .brand:
-                    self.filterItems = data.brands ?? []
-                default:
-                    break
+                    self.success?()
                 }
-                self.success?()
             }
+            
+        case .collection:
+            
+            manager.getFilterSpecificEntries(categoryKey: selectedCategory ?? "")  { data, errorMessage in
+                if let errorMessage {
+                    self.error?(errorMessage)
+                } else if let data {
+                    self.filterItems = data.collections ?? []
+                    self.success?()
+                }
+            }
+            
+        case .brand:
+            
+            manager.getFilterSpecificEntries(categoryKey: selectedCategory ?? "")  { data, errorMessage in
+                if let errorMessage {
+                    self.error?(errorMessage)
+                } else if let data {
+                    self.filterItems = data.brands ?? []
+                    self.success?()
+                }
+            }
+
+        default:
+            break
         }
+        
+        
+        
+
+        
+        
+        
     }
 }

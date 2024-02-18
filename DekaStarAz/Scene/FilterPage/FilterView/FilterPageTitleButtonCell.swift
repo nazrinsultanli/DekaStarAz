@@ -22,11 +22,12 @@ class FilterPageTitleButtonCell: UICollectionViewCell {
         return label
     }()
 
-    private let checkButton: UIButton = {
+    private lazy var checkButton: UIButton = {
             let button = UIButton()
             button.translatesAutoresizingMaskIntoConstraints = false
             button.backgroundColor = .clear
-            button.setImage(UIImage(systemName: "checkmark.square"), for: .normal)
+        button.setBackgroundImage(UIImage(systemName: "checkmark.square"), for: .normal)
+//            button.setImage(UIImage(systemName: "checkmark.square"), for: .normal)
             
             // Change the target to self
             button.addTarget(self, action: #selector(didChecked), for: .touchUpInside)
@@ -49,7 +50,14 @@ class FilterPageTitleButtonCell: UICollectionViewCell {
 
     @objc func didChecked() {
         stateButton = stateButton ? false : true
-        checkButton.setImage(UIImage(systemName: "checkmark.square.fill"), for: .selected)
+        if stateButton{
+            checkButton.setBackgroundImage(UIImage(systemName: "checkmark.square.fill"), for: .normal)
+        }
+        else{
+            checkButton.setBackgroundImage(UIImage(systemName: "checkmark.square"), for: .normal)
+        }
+//        checkButton.setImage(UIImage(systemName: "checkmark.square.fill"), for: .selected)
+        
         filterBuilder?.inStock = stateButton
         checkButton.backgroundColor = .red
     }
@@ -69,7 +77,7 @@ class FilterPageTitleButtonCell: UICollectionViewCell {
             checkButton.leadingAnchor.constraint(equalTo: filterNameLabel.trailingAnchor),
 //            disclosureIndicator.trailingAnchor.constraint(equalTo: trailingAnchor),
             checkButton.bottomAnchor.constraint(equalTo: bottomAnchor),
-            checkButton.widthAnchor.constraint(equalToConstant: 40),
+            checkButton.widthAnchor.constraint(equalToConstant: 50),
             checkButton.trailingAnchor.constraint(equalTo: trailingAnchor)
             
         ])

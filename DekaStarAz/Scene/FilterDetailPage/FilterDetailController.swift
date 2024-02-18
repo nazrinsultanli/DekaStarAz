@@ -12,6 +12,7 @@ class FilterDetailController: UIViewController {
 
     var viewModel = FilterDetailViewModel()
     var filterBuilder: FilterBuilder?
+    var didSelectCategory: ((String) -> Void)?
     private lazy var tableView: UITableView = {
         let table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false
@@ -77,6 +78,8 @@ extension FilterDetailController: UITableViewDataSource, UITableViewDelegate {
         switch viewModel.filterType {
         case .category:
             filterBuilder?.category = viewModel.filterItems[indexPath.row].slugId
+//            viewModel.selectedCategory = viewModel.filterItems[indexPath.row].slugId
+            didSelectCategory?(viewModel.filterItems[indexPath.row].slugId)
         case .collection:
             filterBuilder?.collection = viewModel.filterItems[indexPath.row].slugId
         case .brand:

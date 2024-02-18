@@ -18,4 +18,7 @@ protocol FilterUseCase {
     
     func getFilterEntries(completion: @escaping((FilterEntriesModel?,String?) ->Void))
     
+    func getFilterSpecificEntries(categoryKey:String,
+                                  completion: @escaping((FilterEntriesModel?,String?) ->Void))
+    
 }

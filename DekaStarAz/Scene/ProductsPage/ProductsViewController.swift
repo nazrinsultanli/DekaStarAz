@@ -34,12 +34,12 @@ class ProductsViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        configureViewModel()
+//        configureViewModel()
     }
     
     private func configureUI() {
         title = "Products"
-        view.backgroundColor = .systemGray4
+        view.backgroundColor = .white
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: UIImage(systemName: "line.3.horizontal.decrease.circle.fill"),
@@ -47,20 +47,12 @@ class ProductsViewController: UIViewController {
             target: self,
             action:  #selector(filterButton)
         )
-        
     }
     
-//    @objc func filterButton() {
-//        let cv = FilterPageController()
-//        navigationController?.show(cv, sender: nil)
-//    }
-    
-    
+ 
     @objc func filterButton() {
         let filterController = FilterPageController()
         filterController.filterCompleted = { [weak self] filterItemsModel in
-            // Here, you can apply the filterItemsModel to fetch filtered products
-            // For example:
             self?.viewModel.filterItemsInfo = filterItemsModel
             self?.viewModel.getAllItems()
         }
@@ -69,7 +61,6 @@ class ProductsViewController: UIViewController {
 
     
     private func configureViewModel() {
-  
         viewModel.getAllItems()
         viewModel.error = { errorMessage in
             print("Error:\(errorMessage)")

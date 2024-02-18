@@ -24,6 +24,7 @@ class HomeViewController: UIViewController {
         collection.register(HomeBannerView.self,
                             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                             withReuseIdentifier: HomeBannerView.reuseID)
+        layout.estimatedItemSize = .zero
         return collection
     }()
 
