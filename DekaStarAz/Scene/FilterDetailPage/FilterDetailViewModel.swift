@@ -8,15 +8,24 @@
 import Foundation
 class FilterDetailViewModel {
     private let manager = ProductManager()
-    var success: (() -> Void)?
-    var error: ((String) -> Void)?
+    
+    var filterBuilder: FilterBuilder?
     var filterType: FilterItemsNames?
     var filterItems = [HomePagesItemsProtocols]()
+    
     var selectedCategory: String?
     
-    func getfilterItems(){
+    var success: (() -> Void)?
+    var error: ((String) -> Void)?
+    
+    init(filterBuilder: FilterBuilder, filterType: FilterItemsNames) {
+        self.filterBuilder = filterBuilder
+        self.filterType = filterType
         
-        
+        selectedCategory = filterBuilder.selectedCategory
+    }
+    
+    func getfilterItems() {
         switch self.filterType {
         case .category:
             manager.getFilterEntries { data, errorMessage in
@@ -29,7 +38,6 @@ class FilterDetailViewModel {
             }
             
         case .collection:
-            
             manager.getFilterSpecificEntries(categoryKey: selectedCategory ?? "")  { data, errorMessage in
                 if let errorMessage {
                     self.error?(errorMessage)

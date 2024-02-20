@@ -16,7 +16,6 @@ enum FilterItemsNames: String, CaseIterable {
     case maxPrice = "Maximum qiymet"
 }
 
-
 struct FilterItemsStructModel {
     var category: String
     var collection: String
@@ -25,6 +24,7 @@ struct FilterItemsStructModel {
     var minPrice: String
     var maxPrice: String
 }
+
 class FilterBuilder {
     var category: String?
     var collection: String?
@@ -32,6 +32,8 @@ class FilterBuilder {
     var inStock: Bool?
     var minPrice: String?
     var maxPrice: String?
+    
+    var selectedCategory: String?
     
     func build() -> FilterItemsStructModel {
         .init(category: category ?? "",

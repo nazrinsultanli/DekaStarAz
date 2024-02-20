@@ -10,9 +10,10 @@ import UIKit
 
 class FilterDetailController: UIViewController {
 
-    var viewModel = FilterDetailViewModel()
-    var filterBuilder: FilterBuilder?
+    var viewModel: FilterDetailViewModel?
+    
     var didSelectCategory: ((String) -> Void)?
+    
     private lazy var tableView: UITableView = {
         let table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false
@@ -34,18 +35,18 @@ class FilterDetailController: UIViewController {
  
     
     private func configureUI() {
-        title = viewModel.filterType?.rawValue
+        title = viewModel?.filterType?.rawValue
         view.backgroundColor = .systemGray4
         
     }
     
 
     private func configureViewModel() {
-        viewModel.getfilterItems()
-        viewModel.error = { errorMessage in
+        viewModel?.getfilterItems()
+        viewModel?.error = { errorMessage in
             print("Error:\(errorMessage)")
         }
-        viewModel.success =  {
+        viewModel?.success =  {
             self.tableView.reloadData()
         }
     }
@@ -65,25 +66,25 @@ class FilterDetailController: UIViewController {
 extension FilterDetailController: UITableViewDataSource, UITableViewDelegate {
     //MARK: Table view for rest Items
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.filterItems.count
+        return viewModel?.filterItems.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FilterDetailListCell.reuseID, for: indexPath) as! FilterDetailListCell
-        cell.configure(item: viewModel.filterItems[indexPath.row].titleText)
+        cell.configure(item: viewModel?.filterItems[indexPath.row].titleText ?? "")
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch viewModel.filterType {
+        switch viewModel?.filterType {
         case .category:
-            filterBuilder?.category = viewModel.filterItems[indexPath.row].slugId
+            viewModel?.filterBuilder?.category = viewModel?.filterItems[indexPath.row].slugId ?? ""
 //            viewModel.selectedCategory = viewModel.filterItems[indexPath.row].slugId
-            didSelectCategory?(viewModel.filterItems[indexPath.row].slugId)
+            didSelectCategory?(viewModel?.filterItems[indexPath.row].slugId ?? "")
         case .collection:
-            filterBuilder?.collection = viewModel.filterItems[indexPath.row].slugId
+            viewModel?.filterBuilder?.collection = viewModel?.filterItems[indexPath.row].slugId ?? ""
         case .brand:
-            filterBuilder?.brand = viewModel.filterItems[indexPath.row].slugId
+            viewModel?.filterBuilder?.brand = viewModel?.filterItems[indexPath.row].slugId ?? ""
         default:
             break
         }

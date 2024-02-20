@@ -29,8 +29,6 @@ class FilterPageController: UIViewController {
         
         return collection
     }()
-
-    
     
     private lazy var tamamlaButton: UIButton = {
         let button = UIButton(type: .system)
@@ -42,7 +40,6 @@ class FilterPageController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-    
     
     private lazy var temizleButton: UIButton = {
         let button = UIButton(type: .system)
@@ -58,9 +55,7 @@ class FilterPageController: UIViewController {
     @objc func tamamlaButtonTapped() {
         filterCompleted?(filterBuilder.build())
         navigationController?.popViewController(animated: true)
-        
     }
-    
     
     @objc func temizleButtonTapped() {
         // Handle button tap action
@@ -75,7 +70,6 @@ class FilterPageController: UIViewController {
         configureViewModel()
     }
 
-    
     private func configureUI() {
         title = "Filter"
         view.backgroundColor = .white
@@ -117,7 +111,6 @@ class FilterPageController: UIViewController {
         
         ])
     }
-
 }
 
 extension FilterPageController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
@@ -159,8 +152,6 @@ extension FilterPageController: UICollectionViewDataSource, UICollectionViewDele
             return cell
        
         }
-        
-    
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -177,16 +168,22 @@ extension FilterPageController: UICollectionViewDataSource, UICollectionViewDele
         let itemType = viewModel.filterItems[indexPath.item]
         switch itemType {
         case .category:
-            controller.viewModel.filterType = itemType
-            controller.filterBuilder = filterBuilder
+//            controller.viewModel.filterType = itemType
+//            controller.filterBuilder = filterBuilder
+            controller.viewModel = .init(filterBuilder: filterBuilder, filterType: itemType)
+            controller.didSelectCategory = { [weak self] categorySlugId in
+                self?.filterBuilder.selectedCategory = categorySlugId
+            }
             navigationController?.show(controller, sender: nil)
         case .collection:
-            controller.viewModel.filterType = itemType
-            controller.filterBuilder = filterBuilder
+//            controller.viewModel.filterType = itemType
+//            controller.filterBuilder = filterBuilder
+            controller.viewModel = .init(filterBuilder: filterBuilder, filterType: itemType)
             navigationController?.show(controller, sender: nil)
         case .brand:
-            controller.viewModel.filterType = itemType
-            controller.filterBuilder = filterBuilder
+//            controller.viewModel.filterType = itemType
+//            controller.filterBuilder = filterBuilder
+            controller.viewModel = .init(filterBuilder: filterBuilder, filterType: itemType)
             navigationController?.show(controller, sender: nil)
         default:
             break

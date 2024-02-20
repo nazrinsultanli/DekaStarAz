@@ -45,7 +45,7 @@ class ProductManager: ProductUseCase, FilterUseCase {
                       language: String,
                       completion: @escaping ((ProductModel?, String?) -> Void)) {
         NetworkManager.request(model: ProductModel.self,
-                               url: ProductEndpoint.productEndpoint.rawValue + slug + NetworkHelperLinker.language + language,
+                               url: ProductEndpoint.productEndpoint.rawValue + slug + "?" + NetworkHelperLinker.language + language,
                                completion: completion)
     }
 }
