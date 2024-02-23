@@ -85,7 +85,7 @@ extension  ProductDetailedViewController:  UICollectionViewDataSource, UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        .init(width: collectionView.frame.width, height: collectionView.frame.height)
+        .init(width: collectionView.frame.width-30, height: collectionView.frame.height)
     }
   
     
@@ -105,13 +105,26 @@ extension  ProductDetailedViewController:  UICollectionViewDataSource, UICollect
             return footerView
         }
     }
-    //-----------------
+   
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         CGSize(width: view.frame.size.width, height: view.frame.size.width*2/3)
     }
     
+    //MARK: Footer View
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        CGSize(width: view.frame.size.width, height: 60)
+        CGSize(width: view.frame.size.width, height: 100)
     }
 }
 
+extension ProductDetailedViewController: ProductDetailFooterDelagate {
+    func didTapBFavorite(state: Bool) {
+        if state {
+            let controller = FavoriteViewController()
+            if let item = viewModel.singleProduct {
+                controller.viewModel.favoriteItems.append(item)
+            }
+        }
+    }
+    
+    
+}

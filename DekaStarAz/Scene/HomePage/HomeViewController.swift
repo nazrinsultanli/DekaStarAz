@@ -8,7 +8,10 @@
 import UIKit
 
 class HomeViewController: UIViewController {
+    //let dataSource = ["Az", "En", "Ru"]
+    
     var viewModel = HomeViewModel()
+    private var dropdownMenu: DropdownMenu?
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -28,17 +31,6 @@ class HomeViewController: UIViewController {
         return collection
     }()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        configureUI()
-        configureConstraints()
-        configureViewModel()
-    }
-    
-    @objc func searchButton() {
-        let cv = CategoryViewController()
-        navigationController?.show(cv, sender: nil)
-    }
     private func configureViewModel(){
         viewModel.getBanners()
         viewModel.getAllHomeItems()
@@ -50,21 +42,53 @@ class HomeViewController: UIViewController {
             self.collectionView.dataSource = self
             self.collectionView.reloadData()
         }
-        
-        
     }
-    private func configureUI() {
-        navigationItem.title = "DEKASTAR COMPANY"
-        view.backgroundColor = .white
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            image: UIImage(systemName: "magnifyingglass"),
-            style: .done,
-            target: self,
-            action:  #selector(searchButton)
-        )
-        
+    
+    override func viewDidLoad() {
+            super.viewDidLoad()
+            configureUI()
+            configureConstraints()
+            configureViewModel()
+        }
+
+        private func configureUI() {
+            navigationItem.title = "listTitle".localized
+            view.backgroundColor = .white
+
+            let dropdownButton = UIButton(type: .custom)
+            dropdownButton.setTitle("Language", for: .normal)
+            dropdownButton.setTitleColor(.black, for: .normal)
+            dropdownButton.addTarget(self, action: #selector(dropdownButtonTapped(sender:)), for: .touchUpInside)
+
+            let dropdownMenu = DropdownMenu(items: ["az", "en", "ru"])
+            dropdownMenu.delegate = self
+            dropdownMenu.isHidden = true
+            view.addSubview(dropdownMenu)
+            self.dropdownMenu = dropdownMenu
+
+            let dropdownBarButtonItem = UIBarButtonItem(customView: dropdownButton)
+            navigationItem.rightBarButtonItem = dropdownBarButtonItem
+        }
+
+
+    
+    @objc func dropdownButtonTapped(sender: UIButton) {
+        guard let dropdownMenu = dropdownMenu else { return }
+        dropdownMenu.isHidden = !dropdownMenu.isHidden
+
+        if dropdownMenu.isHidden {
+            dropdownMenu.removeFromSuperview()
+        } else {
+            if let superview = sender.superview, let navigationBar = navigationController?.navigationBar {
+                let origin = CGPoint(x: navigationBar.frame.origin.x + navigationBar.frame.size.width - dropdownMenu.frame.size.width, y: navigationBar.frame.origin.y + navigationBar.frame.size.height)
+                dropdownMenu.frame.origin = origin
+                dropdownMenu.frame.size = CGSize(width: 100, height: 120)
+                view.addSubview(dropdownMenu)
+            }
+        }
     }
+
+
     private func configureConstraints() {
         view.addSubview(collectionView)
         
@@ -74,6 +98,7 @@ class HomeViewController: UIViewController {
             collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,constant: 0),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,constant: 0)])
     }
+   
 }
 
 
@@ -130,7 +155,7 @@ extension HomeViewController: HomeCollectionCellDelegate {
         }
     }
     
-   
+    
     
     func didSelectSeeAll(itemType: HomePageItemType) {
         if itemType == .category {
@@ -146,7 +171,22 @@ extension HomeViewController: HomeCollectionCellDelegate {
         
     }
     
-    
+}
+extension HomeViewController: DropdownMenuDelegate {
+    func didSelectItem(item: String) {
+        // Update the title of the dropdownButton
+        if let customView = navigationItem.rightBarButtonItem?.customView as? UIButton {
+            customView.setTitle(item, for: .normal)
+        }
+
+        // Remove the dropdownMenu from its superview
+        dropdownMenu?.removeFromSuperview()
+
+        // Handle any other logic related to the selected item
+        print("Selected item: \(item)")
+    }
+}
+
 //
 //    func didSelectSeeAll(endpoint: MovieEndpoint) {
 //        let controller = SeeAllCoordinator(navigationController: navigationController ?? UINavigationController(), endpoint: endpoint)
@@ -158,5 +198,5 @@ extension HomeViewController: HomeCollectionCellDelegate {
 //        let controller = MovieDetailedCoordinator(navigationController: navigationController ?? UINavigationController(), movieID: movie)
 //        controller.start()
 //       }
-}
+
 

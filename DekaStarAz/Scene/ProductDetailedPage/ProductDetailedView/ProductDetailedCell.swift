@@ -143,7 +143,6 @@ class ProductDetailedCell: UICollectionViewCell {
         label.numberOfLines = 0
         label.setContentCompressionResistancePriority(.required, for: .vertical)
         label.setContentHuggingPriority(.required, for: .vertical)
-        label.text = "m2nfidbc/nfdfref/nfrefr/nfref/ngtr/ngtr/ngtr"
         return label
     }()
     
@@ -224,7 +223,7 @@ class ProductDetailedCell: UICollectionViewCell {
         discountedPriceLAbel.backgroundColor = .purple
 //        leftStack.backgroundColor = .yellow
 //        rightStack.backgroundColor = .gray
-        descriptionLabel.backgroundColor = .blue
+        descriptionLabel.backgroundColor = .lightGray
         
         NSLayoutConstraint.activate([
             
@@ -237,7 +236,7 @@ class ProductDetailedCell: UICollectionViewCell {
             originalPriceLabel.topAnchor.constraint(equalTo: modelNameLabel.bottomAnchor),
             originalPriceLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             originalPriceLabel.heightAnchor.constraint(equalToConstant: 60),
-            originalPriceLabel.widthAnchor.constraint(equalToConstant: 80),
+            originalPriceLabel.widthAnchor.constraint(equalToConstant: 120),
             
             discountedPriceLAbel.topAnchor.constraint(equalTo: modelNameLabel.bottomAnchor),
             discountedPriceLAbel.leadingAnchor.constraint(equalTo: originalPriceLabel.trailingAnchor),
@@ -253,13 +252,14 @@ class ProductDetailedCell: UICollectionViewCell {
             generalStack.topAnchor.constraint(equalTo: originalPriceLabel.bottomAnchor),
             generalStack.leadingAnchor.constraint(equalTo: leadingAnchor),
             generalStack.trailingAnchor.constraint(equalTo: trailingAnchor),
-            generalStack.heightAnchor.constraint(equalToConstant: 300),
+            generalStack.heightAnchor.constraint(equalToConstant: 240),
             
 
             descriptionLabel.topAnchor.constraint(equalTo: generalStack.bottomAnchor),
             descriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             descriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            descriptionLabel.heightAnchor.constraint(equalToConstant: 200),
+            //descriptionLabel.heightAnchor.constraint(equalToConstant: 200),
+            descriptionLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
 
             
             
@@ -270,12 +270,13 @@ class ProductDetailedCell: UICollectionViewCell {
  //   */
     func configure(item: ProductModel){
         modelNameLabel.text = item.name
-        originalPriceLabel.text = item.regularPrice
+        originalPriceLabel.text = "\(String(describing: item.regularPrice ?? "")) AZN"
         discountedPriceLAbel.text = item.discountPrice
         kodLabel.text = "\(String(describing: item.id))"
         kateqoriyaLabel.text = item.collection?.category?.categoryName
         kolleksiyaLabel.text = item.collection?.name
         movcudluqLabel.text = item.inStockDisplayValue
+        descriptionLabel.text = item.information
         
     }
 }

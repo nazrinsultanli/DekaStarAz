@@ -6,22 +6,35 @@
 //
 
 import UIKit
+protocol ProductDetailFooterDelagate: AnyObject {
+    func didTapBFavorite(state: Bool)
+}
 
 class ProductDetailedFooter: UICollectionReusableView {
     static let reuseID = "ProductDetailedFooter"
+    weak var delegate: ProductDetailFooterDelagate?
+    
+    private lazy var addToFavoriteButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Favorite Elave Et", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .systemBlue
+        button.layer.cornerRadius = 8.0
+        button.addTarget(self, action: #selector(favButtonTapped), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
     
     private lazy var addToBasketButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Baskete Elave Et", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .green
+        button.backgroundColor = .blue
         button.layer.cornerRadius = 8.0
-        button.addTarget(self, action: #selector(buttonTapped), for: .touchUpInside)
+        button.addTarget(self, action: #selector(basketButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureContraints()
@@ -41,13 +54,30 @@ class ProductDetailedFooter: UICollectionReusableView {
     
     private func configureContraints() {
         addSubview(addToBasketButton)
+        addSubview(addToFavoriteButton)
         
         NSLayoutConstraint.activate([
-            addToBasketButton.topAnchor.constraint(equalTo: topAnchor),
+            addToFavoriteButton.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            addToFavoriteButton.leadingAnchor.constraint(equalTo: leadingAnchor),
+            addToFavoriteButton.trailingAnchor.constraint(equalTo: trailingAnchor),
+            addToBasketButton.heightAnchor.constraint(equalToConstant: 40),
+            
+            addToBasketButton.topAnchor.constraint(equalTo: addToFavoriteButton.bottomAnchor, constant: 10),
             addToBasketButton.leadingAnchor.constraint(equalTo: leadingAnchor),
             addToBasketButton.trailingAnchor.constraint(equalTo: trailingAnchor),
-            addToBasketButton.bottomAnchor.constraint(equalTo: bottomAnchor )
+            addToBasketButton.bottomAnchor.constraint(equalTo: bottomAnchor ),
+            
+            
         ])
+        
+    }
+    
+    @objc func favButtonTapped () {
+        delegate?.didTapBFavorite(state: true)
+        print("clicked")
+    }
+    
+    @objc func basketButtonTapped () {
         
     }
     

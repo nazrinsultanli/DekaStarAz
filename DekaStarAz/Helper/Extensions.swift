@@ -29,4 +29,10 @@ extension String {
                    range:NSMakeRange(0,attributeString.length))
         return attributeString
     }
+    
+    var localized: String {
+        NSLocalizedString(self, comment: "")
+    }
 }
+
+

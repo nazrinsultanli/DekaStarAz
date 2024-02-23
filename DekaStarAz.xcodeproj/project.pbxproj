@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		1006606D2B7452A30020ACCF /* FilterDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1006606C2B7452A30020ACCF /* FilterDetailViewModel.swift */; };
 		100B78CC2B62CB5D004B1FCB /* HomeBannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100B78CB2B62CB5D004B1FCB /* HomeBannerCell.swift */; };
+		100C25D42B864AC900472B4D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 100C25D62B864AC900472B4D /* Localizable.strings */; };
+		100C25DA2B88AC1100472B4D /* DropdownMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100C25D92B88AC1100472B4D /* DropdownMenu.swift */; };
+		100C25DC2B88BE8C00472B4D /* FavoriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100C25DB2B88BE8C00472B4D /* FavoriteViewModel.swift */; };
+		100C25DE2B88C16A00472B4D /* FavoritePageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 100C25DD2B88C16A00472B4D /* FavoritePageCell.swift */; };
 		1037438D2B51714200BB7CA8 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1037438C2B51714200BB7CA8 /* TabBarController.swift */; };
 		103743942B51720400BB7CA8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103743932B51720400BB7CA8 /* HomeViewController.swift */; };
 		103743962B51721D00BB7CA8 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103743952B51721D00BB7CA8 /* CategoryViewController.swift */; };
@@ -68,6 +72,14 @@
 /* Begin PBXFileReference section */
 		1006606C2B7452A30020ACCF /* FilterDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterDetailViewModel.swift; sourceTree = "<group>"; };
 		100B78CB2B62CB5D004B1FCB /* HomeBannerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeBannerCell.swift; sourceTree = "<group>"; };
+		100C25D02B864A2600472B4D /* az-AZ */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "az-AZ"; path = "az-AZ.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		100C25D12B864A2F00472B4D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		100C25D52B864AC900472B4D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100C25D72B864ACA00472B4D /* az-AZ */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "az-AZ"; path = "az-AZ.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		100C25D82B864ACB00472B4D /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		100C25D92B88AC1100472B4D /* DropdownMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownMenu.swift; sourceTree = "<group>"; };
+		100C25DB2B88BE8C00472B4D /* FavoriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewModel.swift; sourceTree = "<group>"; };
+		100C25DD2B88C16A00472B4D /* FavoritePageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritePageCell.swift; sourceTree = "<group>"; };
 		1037438C2B51714200BB7CA8 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		103743932B51720400BB7CA8 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		103743952B51721D00BB7CA8 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
@@ -173,6 +185,7 @@
 			children = (
 				1037438C2B51714200BB7CA8 /* TabBarController.swift */,
 				10F1505E2B6120490049D670 /* Extensions.swift */,
+				100C25D92B88AC1100472B4D /* DropdownMenu.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -242,6 +255,8 @@
 		103743922B5171DC00BB7CA8 /* FavoritePage */ = {
 			isa = PBXGroup;
 			children = (
+				100C25DD2B88C16A00472B4D /* FavoritePageCell.swift */,
+				100C25DB2B88BE8C00472B4D /* FavoriteViewModel.swift */,
 				103743972B51722D00BB7CA8 /* FavoriteViewController.swift */,
 			);
 			path = FavoritePage;
@@ -277,6 +292,7 @@
 				106042B02B4F3BCB003BD0CC /* LaunchScreen.storyboard */,
 				106042B32B4F3BCB003BD0CC /* Info.plist */,
 				106042AB2B4F3BCA003BD0CC /* DekaStarAz.xcdatamodeld */,
+				100C25D62B864AC900472B4D /* Localizable.strings */,
 			);
 			path = DekaStarAz;
 			sourceTree = "<group>";
@@ -429,6 +445,8 @@
 			knownRegions = (
 				en,
 				Base,
+				"az-AZ",
+				ru,
 			);
 			mainGroup = 106042962B4F3BCA003BD0CC;
 			packageReferences = (
@@ -450,6 +468,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				106042B22B4F3BCB003BD0CC /* LaunchScreen.storyboard in Resources */,
+				100C25D42B864AC900472B4D /* Localizable.strings in Resources */,
 				106042AF2B4F3BCB003BD0CC /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -461,6 +480,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				100C25DC2B88BE8C00472B4D /* FavoriteViewModel.swift in Sources */,
 				10F1506A2B615C590049D670 /* CategoryEndpoint.swift in Sources */,
 				10A8D6102B6FB67C0036D63F /* ProductDetailedFooter.swift in Sources */,
 				1079FDE22B77772400D382BF /* FilterDetailListCell.swift in Sources */,
@@ -487,7 +507,9 @@
 				1037439C2B51728A00BB7CA8 /* SettingViewController.swift in Sources */,
 				105C986F2B6EF15D0011318A /* ProductDetailedHeaderCell.swift in Sources */,
 				107168B42B5BCBFC005D7F36 /* NetworkHelperLinker.swift in Sources */,
+				100C25DA2B88AC1100472B4D /* DropdownMenu.swift in Sources */,
 				10F1506C2B615F710049D670 /* HomeItemsEndpoint.swift in Sources */,
+				100C25DE2B88C16A00472B4D /* FavoritePageCell.swift in Sources */,
 				10A0290A2B7167F100AE8DBC /* FilterPagaCell.swift in Sources */,
 				108060D22B6E31CC005E6217 /* ProductModel.swift in Sources */,
 				10BE9FEA2B6D436A006F4D51 /* ProductsViewModel.swift in Sources */,
@@ -519,10 +541,22 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		100C25D62B864AC900472B4D /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				100C25D52B864AC900472B4D /* en */,
+				100C25D72B864ACA00472B4D /* az-AZ */,
+				100C25D82B864ACB00472B4D /* ru */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		106042B02B4F3BCB003BD0CC /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				106042B12B4F3BCB003BD0CC /* Base */,
+				100C25D02B864A2600472B4D /* az-AZ */,
+				100C25D12B864A2F00472B4D /* ru */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -535,6 +569,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -598,6 +633,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";

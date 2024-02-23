@@ -23,7 +23,7 @@ struct ProductModel: Codable {
     let inStockDisplayValue: String?
     let collection: ProductCollection?
     let images: [ProductImage]?
-    let information: ProductInformation?
+    let information: String?
     let imageFeatureURL: String?
     let createdAt, updatedAt: String?
 
@@ -34,7 +34,8 @@ struct ProductModel: Codable {
         case discountPrice = "discount_price"
         case inStock = "in_stock"
         case inStockDisplayValue = "in_stock_display_value"
-        case collection, images, information
+        case collection, images
+        case information = "information_text"
         case imageFeatureURL = "image_feature_url"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
@@ -86,7 +87,7 @@ struct ProductImage: Codable {
     }
 }
 
-// MARK: - Information
-struct ProductInformation: Codable {
-    let text: String?
-}
+//// MARK: - Information
+//struct ProductInformation: Codable {
+//    let text: String?
+//}
