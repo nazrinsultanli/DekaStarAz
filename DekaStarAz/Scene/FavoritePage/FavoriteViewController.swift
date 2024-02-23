@@ -8,7 +8,9 @@
 import UIKit
 
 class FavoriteViewController: UIViewController {
-   var viewModel = FavoriteViewModel()
+    
+    var viewModel: FavoriteViewModel?
+    
     lazy var table: UITableView = {
         let table = UITableView()
         table.dataSource = self
@@ -20,18 +22,18 @@ class FavoriteViewController: UIViewController {
         table.register(FavoritePageCell.self, forCellReuseIdentifier: FavoritePageCell.reuseID)
         return table
     }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
         view.backgroundColor = .white
         configureConstraint()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        viewModel = FavoriteViewModel()
+//        viewModel?.readFavoritesProductsFromFile()
     }
-    
+
     func configureConstraint() {
         view.addSubview(table)
         NSLayoutConstraint.activate([
@@ -41,19 +43,18 @@ class FavoriteViewController: UIViewController {
             table.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
         ])
     }
-    
-
-
 }
 
 extension FavoriteViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.favoriteItems.count
+        viewModel?.favItemsfromFile.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FavoritePageCell.reuseID) as! FavoritePageCell
-        cell.configure(data: viewModel.favoriteItems[indexPath.row])
+        if let item = viewModel?.favItemsfromFile[indexPath.row] {
+            cell.configure(data: item)
+        }
         return cell
     }
 

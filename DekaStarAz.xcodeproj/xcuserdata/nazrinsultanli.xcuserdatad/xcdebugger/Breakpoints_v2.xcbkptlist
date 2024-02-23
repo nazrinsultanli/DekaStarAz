@@ -7,32 +7,127 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "87C063D6-9DC8-44FC-8613-0D8927406538"
+            uuid = "1010DB08-C94B-47A4-8AA1-883F6C9AA3FC"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DekaStarAz/Scene/FavoritePage/FavoriteViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "init(favoriteItem:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "1010DB08-C94B-47A4-8AA1-883F6C9AA3FC - d231b272248f00f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DekaStarAz.FavoriteViewModel.init(favoriteItem: DekaStarAz.ProductModel) -&gt; DekaStarAz.FavoriteViewModel"
+                  moduleName = "DekaStarAz"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nazrinsultanli/Documents/NazrinIOSBabies/DekaStarAz/DekaStarAz/Scene/FavoritePage/FavoriteViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "1436">
+               </Location>
+               <Location
+                  uuid = "1010DB08-C94B-47A4-8AA1-883F6C9AA3FC - ce2f6f310b357ede"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DekaStarAz.FavoriteViewModel.init() -&gt; DekaStarAz.FavoriteViewModel"
+                  moduleName = "DekaStarAz"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nazrinsultanli/Documents/NazrinIOSBabies/DekaStarAz/DekaStarAz/Scene/FavoritePage/FavoriteViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "348">
+               </Location>
+               <Location
+                  uuid = "1010DB08-C94B-47A4-8AA1-883F6C9AA3FC - a9bb5c8adeb2d9d1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Array&lt;DekaStarAz.ProductModel&gt;) -&gt; () in DekaStarAz.FavoriteViewModel.init(favoriteItem: DekaStarAz.ProductModel) -&gt; DekaStarAz.FavoriteViewModel"
+                  moduleName = "DekaStarAz"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nazrinsultanli/Documents/NazrinIOSBabies/DekaStarAz/DekaStarAz/Scene/FavoritePage/FavoriteViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "48">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "38A18D6B-D9DA-49D9-B337-01532CC29C71"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DekaStarAz/Scene/FavoritePage/FavoriteViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "addFavoriteProduct()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "38A18D6B-D9DA-49D9-B337-01532CC29C71 - fa6a397b76401051"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DekaStarAz.FavoriteViewModel.addFavoriteProduct() -&gt; ()"
+                  moduleName = "DekaStarAz"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nazrinsultanli/Documents/NazrinIOSBabies/DekaStarAz/DekaStarAz/Scene/FavoritePage/FavoriteViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "124">
+               </Location>
+               <Location
+                  uuid = "38A18D6B-D9DA-49D9-B337-01532CC29C71 - fa6a397b76401051"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DekaStarAz.FavoriteViewModel.addFavoriteProduct() -&gt; ()"
+                  moduleName = "DekaStarAz"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/nazrinsultanli/Documents/NazrinIOSBabies/DekaStarAz/DekaStarAz/Scene/FavoritePage/FavoriteViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "224">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F2D48D64-5B48-4E9D-A455-F7AB9F9474B4"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DekaStarAz/Scene/FavoritePage/FavoriteViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
             landmarkName = "tableView(_:numberOfRowsInSection:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "71B2F66F-7587-4A4D-A8B8-AC5DFD123D59"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DekaStarAz/Scene/ProductDetailedPage/ProductDetailedViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "124"
-            endingLineNumber = "124"
-            landmarkName = "didTapBFavorite(state:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

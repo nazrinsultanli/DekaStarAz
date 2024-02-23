@@ -15,6 +15,7 @@ class TabBarController: UITabBarController {
 
     }
     func setUpTabs() {
+        
         let home = self.createNav(with: "Home", and: UIImage(systemName: "house")!, and: HomeViewController())
         let category = self.createNav(with: "Category", and: UIImage(systemName: "square.grid.2x2")!, and: CategoryViewController())
         let favorite = self.createNav(with: "Favorite", and: UIImage(systemName: "heart")!, and: FavoriteViewController())

@@ -102,6 +102,7 @@ extension  ProductDetailedViewController:  UICollectionViewDataSource, UICollect
             let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                                          withReuseIdentifier: "\(ProductDetailedFooter.self)",
                                                                          for: indexPath) as! ProductDetailedFooter
+            footerView.delegate = self
             return footerView
         }
     }
@@ -119,11 +120,13 @@ extension  ProductDetailedViewController:  UICollectionViewDataSource, UICollect
 extension ProductDetailedViewController: ProductDetailFooterDelagate {
     func didTapBFavorite(state: Bool) {
         if state {
-            let controller = FavoriteViewController()
             if let item = viewModel.singleProduct {
-                controller.viewModel.favoriteItems.append(item)
+                let controller = FavoriteViewController()
+                controller.viewModel = .init(favoriteItem: item)
+                controller.viewModel?.addFavoriteProduct()
             }
         }
+            
     }
     
     
