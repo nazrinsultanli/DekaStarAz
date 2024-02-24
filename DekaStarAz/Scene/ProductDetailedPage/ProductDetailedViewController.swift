@@ -10,6 +10,10 @@ import UIKit
 class ProductDetailedViewController: UIViewController{
     
     var viewModel = ProductDetailedViewModel()
+    
+    let filemManager = FileManagerHelper()
+    var dataFromFile = [ProductModel]()
+  
 
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -36,6 +40,11 @@ class ProductDetailedViewController: UIViewController{
         configureUI()
         configureConstraints()
         configureViewModel()
+        
+        filemManager.readDataFromFile { items in
+            dataFromFile = items
+            filemManager.writeDataToFile(products: [])
+        }
     }
     
  
@@ -120,14 +129,16 @@ extension  ProductDetailedViewController:  UICollectionViewDataSource, UICollect
 extension ProductDetailedViewController: ProductDetailFooterDelagate {
     func didTapBFavorite(state: Bool) {
         if state {
-            if let item = viewModel.singleProduct {
-                let controller = FavoriteViewController()
-                controller.viewModel = .init(favoriteItem: item)
-                controller.viewModel?.addFavoriteProduct()
+            if let itemToWrite = viewModel.singleProduct {
+                if dataFromFile.isEmpty {
+                    dataFromFile.append(itemToWrite)
+                } else {
+                    if !(dataFromFile.contains(where: { $0.slug == itemToWrite.slug })) {
+                        dataFromFile.append(itemToWrite)
+                    }
+                }
+                filemManager.writeDataToFile(products: dataFromFile)
             }
         }
-            
     }
-    
-    
 }

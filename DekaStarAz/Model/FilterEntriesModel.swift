@@ -21,7 +21,7 @@ struct FilterEntriesModel: Codable {
 
 
 
-struct OneEntryModel: Codable , HomePagesItemsProtocols {
+struct OneEntryModel: Codable, Hashable , HomePagesItemsProtocols {
     var originalId: Int {
         id ?? 0
     }

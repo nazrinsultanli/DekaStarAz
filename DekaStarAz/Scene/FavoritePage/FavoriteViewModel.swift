@@ -11,13 +11,12 @@ class FavoriteViewModel {
     var favoriteItem: ProductModel?
     var favItemsfromFile = [ProductModel]()
     
-    init(favoriteItem: ProductModel) {
-        self.favoriteItem = favoriteItem
-        
-        fileHelper.readDataFromFile { favProducts in
-            self.favItemsfromFile = favProducts
-        }
-    }
+    
+//    init() {
+//        fileHelper.readDataFromFile { favProducts in
+//            self.favItemsfromFile = favProducts
+//        }
+//    }
 //    var favoriteItems: [ProductModel] = []
     let fileHelper = FileManagerHelper()
 
@@ -28,10 +27,13 @@ class FavoriteViewModel {
             fileHelper.writeDataToFile(products: favItemsfromFile)
         }
     }
-//    func readFavoritesProductsFromFile () {
-//        fileHelper.readDataFromFile { favProducts in
-//            self.favItemsfromFile = favProducts
-//        }
-//    }
+    
+    
+    func readFavoritesProductsFromFile (completion: @escaping () -> Void) {
+        fileHelper.readDataFromFile { favProducts in
+            self.favItemsfromFile = favProducts
+            completion()
+        }
+    }
     
 }

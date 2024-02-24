@@ -9,7 +9,7 @@ import UIKit
 
 class FavoriteViewController: UIViewController {
     
-    var viewModel: FavoriteViewModel?
+    var viewModel = FavoriteViewModel()
     
     lazy var table: UITableView = {
         let table = UITableView()
@@ -27,11 +27,14 @@ class FavoriteViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         configureConstraint()
+        configureViewModel()
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-//        viewModel?.readFavoritesProductsFromFile()
+    func configureViewModel() {
+        viewModel.readFavoritesProductsFromFile { [weak self] in
+            self?.table.reloadData()
+        }
     }
 
     func configureConstraint() {
@@ -47,17 +50,34 @@ class FavoriteViewController: UIViewController {
 
 extension FavoriteViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel?.favItemsfromFile.count ?? 0
+        viewModel.favItemsfromFile.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FavoritePageCell.reuseID) as! FavoritePageCell
-        if let item = viewModel?.favItemsfromFile[indexPath.row] {
-            cell.configure(data: item)
-        }
+        cell.configure(data: viewModel.favItemsfromFile[indexPath.row])
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+            let deleteAction = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
+                self.deleteData(at: indexPath)
+            }
+            let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction])
+            return swipeActions
+        }
 
+        func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+            return true
+        }
+
+        func deleteData(at indexPath: IndexPath) {
+            viewModel.favItemsfromFile.remove(at: indexPath.item)            
+            let filemManager = FileManagerHelper()
+            filemManager.writeDataToFile(products: viewModel.favItemsfromFile)
+            configureViewModel()
+        }
+    
 }
 
 

@@ -276,7 +276,9 @@ class ProductDetailedCell: UICollectionViewCell {
         kateqoriyaLabel.text = item.collection?.category?.categoryName
         kolleksiyaLabel.text = item.collection?.name
         movcudluqLabel.text = item.inStockDisplayValue
-        descriptionLabel.text = item.information
+        descriptionLabel.attributedText = item.information?.htmlToAttributedString
+        
+
         
     }
 }
