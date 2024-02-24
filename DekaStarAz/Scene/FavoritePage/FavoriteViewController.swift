@@ -15,16 +15,25 @@ class FavoriteViewController: UIViewController {
         let table = UITableView()
         table.dataSource = self
         table.delegate = self
-        table.backgroundColor = .yellow
-//        table.separatorStyle = .none
-        table.rowHeight = 250
+        table.backgroundColor = .clear
+        table.rowHeight = 100
         table.translatesAutoresizingMaskIntoConstraints = false
         table.register(FavoritePageCell.self, forCellReuseIdentifier: FavoritePageCell.reuseID)
         return table
     }()
+    
+    lazy var noItems: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 1
+        label.textColor = .black
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 18, weight: .bold)
+        return label
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "Secilmishler"
         view.backgroundColor = .white
         configureConstraint()
         configureViewModel()
@@ -36,14 +45,40 @@ class FavoriteViewController: UIViewController {
             self?.table.reloadData()
         }
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        configureVisibility()
+    }
+    
+    func configureVisibility() {
+        if viewModel.favItemsfromFile.isEmpty {
+            noItems.isHidden = false
+            table.isHidden = true
+        } else {
+            noItems.isHidden = true
+            table.isHidden = false
+        }
+    }
 
     func configureConstraint() {
         view.addSubview(table)
+        view.addSubview(noItems)
+//         
+//        noItems.isHidden = viewModel.favItemsfromFile.isEmpty ? false :  true
+//        table.isHidden = viewModel.favItemsfromFile.isEmpty ? true :  false
         NSLayoutConstraint.activate([
             table.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             table.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             table.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             table.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            
+            noItems.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            noItems.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            noItems.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            noItems.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            
+            
         ])
     }
 }
@@ -59,6 +94,13 @@ extension FavoriteViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let controller = ProductDetailedViewController()
+        controller.viewModel.slug = viewModel.favItemsfromFile[indexPath.row].slug
+        navigationController?.show(controller, sender: nil)
+    }
+    
+    //MARK: Delete Process
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
             let deleteAction = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
                 self.deleteData(at: indexPath)

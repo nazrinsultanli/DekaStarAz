@@ -31,6 +31,7 @@ class ProductDetailedViewController: UIViewController{
         collection.register(ProductDetailedFooter.self,
                            forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
                             withReuseIdentifier: ProductDetailedFooter.reuseID)
+        collection.backgroundColor = .clear
         return collection
     }()
     
@@ -51,7 +52,7 @@ class ProductDetailedViewController: UIViewController{
     
     private func configureUI() {
         title = "Products"
-        view.backgroundColor = .systemGray4
+        view.backgroundColor = .white
         
     }
     private func configureViewModel() {

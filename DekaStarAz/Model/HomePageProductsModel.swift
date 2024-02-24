@@ -31,6 +31,14 @@ struct Links: Codable {
 
 // MARK: - Result
 struct HomeProductResult: Codable, HomePagesItemsProtocols {
+    var collectionName: String {
+        collection?.name ?? ""
+    }
+    
+    var discountId: Int {
+        discount ?? 0
+    }
+    
     var originalId: Int {
         id ?? 0
     }

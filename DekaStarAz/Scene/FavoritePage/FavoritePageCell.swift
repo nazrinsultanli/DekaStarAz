@@ -17,23 +17,39 @@ class FavoritePageCell: UITableViewCell {
         return imageView
     }()
     
-    lazy var titleLabel: UILabel = {
+    lazy var modelNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "titleLabel"
         label.numberOfLines = 1
+        label.textColor = .black
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 18, weight: .bold)
+        return label
+    }()
+    
+    lazy var collectionLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 14, weight: .medium)
         return label
     }()
     
-    lazy var bottomLabel: UILabel = {
+    lazy var originalPriceLabel: UILabel = {
         let label = UILabel()
-        label.text = "bottomLabel"
         label.numberOfLines = 0
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 14, weight: .medium)
+        label.font = .systemFont(ofSize: 12, weight: .medium)
+        return label
+    }()
+    
+    lazy var discountedPriceLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.textColor = .black
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 12, weight: .medium)
         return label
     }()
     
@@ -56,30 +72,59 @@ class FavoritePageCell: UITableViewCell {
 
     private func configureConstraint() {
         addSubview(photo)
-        addSubview(titleLabel)
-        addSubview(bottomLabel)
+        addSubview(modelNameLabel)
+        addSubview(collectionLabel)
+        addSubview(originalPriceLabel)
+        addSubview(discountedPriceLabel)
+   
+//        modelNameLabel.backgroundColor = .red
+//        collectionLabel.backgroundColor = .yellow
+//        originalPriceLabel.backgroundColor = .green
         
         NSLayoutConstraint.activate([
-            //hamisin secmek ucun => option + Shift + sican
-            titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8),
-            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            photo.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+            photo.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+            photo.widthAnchor.constraint(equalToConstant: 150),
+            photo.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
             
-            bottomLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
-            bottomLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            bottomLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            modelNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+            modelNameLabel.leadingAnchor.constraint(equalTo: photo.trailingAnchor, constant: 4),
+            modelNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 8),
+            modelNameLabel.heightAnchor.constraint(equalToConstant: 20),
             
-            photo.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 8),
-            photo.leadingAnchor.constraint(equalTo: leadingAnchor),
-            photo.trailingAnchor.constraint(equalTo: trailingAnchor),
-            photo.bottomAnchor.constraint(equalTo: bottomLabel.topAnchor, constant: -8),
-            photo.heightAnchor.constraint(equalToConstant: 200)
+            collectionLabel.topAnchor.constraint(equalTo: modelNameLabel.bottomAnchor),
+            collectionLabel.leadingAnchor.constraint(equalTo: photo.trailingAnchor, constant: 4),
+            collectionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 8),
+//            collectionLabel.heightAnchor.constraint(equalToConstant: 20),
+            
+            originalPriceLabel.topAnchor.constraint(equalTo: collectionLabel.bottomAnchor),
+            originalPriceLabel.leadingAnchor.constraint(equalTo: photo.trailingAnchor, constant: 4),
+            originalPriceLabel.widthAnchor.constraint(equalToConstant: 80),
+            //originalPriceLabel.heightAnchor.constraint(equalToConstant: 20),
+            originalPriceLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
+            
+            discountedPriceLabel.topAnchor.constraint(equalTo: collectionLabel.bottomAnchor),
+            discountedPriceLabel.leadingAnchor.constraint(equalTo: originalPriceLabel.trailingAnchor),
+            discountedPriceLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 8),
+           // discountedPriceLabel.heightAnchor.constraint(equalToConstant: 20),
+            discountedPriceLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
         ])
     }
     
     func configure(data: ProductModel) {
-        bottomLabel.text = data.name
-        titleLabel.text = data.regularPrice
+        photo.loadImage(url: data.imageFeatureURL  ?? "")
+        modelNameLabel.text = data.name
+        collectionLabel.text = data.collection?.name
+        
+        if data.discount == 0 {
+            originalPriceLabel.text = "\(String(describing: data.regularPrice ?? "")) AZN"
+            discountedPriceLabel.isHidden = true
+           
+        } else{
+            originalPriceLabel.attributedText = "\(String(describing: data.regularPrice ?? "")) AZN".strikeThrough()
+            discountedPriceLabel.text = "\(String(describing: data.discountPrice ?? "")) AZN"
+        }
+       
     }
 }
 

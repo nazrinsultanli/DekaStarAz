@@ -13,7 +13,8 @@ class ProductDetailedCell: UICollectionViewCell {
     private let modelNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 18)
+        //label.font = UIFont.boldSystemFont(ofSize: 18)
+        label.font = .systemFont(ofSize: 20, weight: .heavy)
         label.textAlignment = .left
         label.numberOfLines = 0
         return label
@@ -21,7 +22,7 @@ class ProductDetailedCell: UICollectionViewCell {
     private let originalPriceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.font = .systemFont(ofSize: 18, weight: .bold)
         label.textAlignment = .left
         label.numberOfLines = 0
         return label
@@ -29,7 +30,7 @@ class ProductDetailedCell: UICollectionViewCell {
     private let discountedPriceLAbel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = .systemFont(ofSize: 18, weight: .heavy)
         label.textAlignment = .left
         label.numberOfLines = 0
         return label
@@ -41,7 +42,6 @@ class ProductDetailedCell: UICollectionViewCell {
         label.textAlignment = .left
         label.numberOfLines = 0
         label.text = "Kod"
-        label.backgroundColor = .brown
         return label
     }()
     private let kodLabel: UILabel = {
@@ -59,7 +59,6 @@ class ProductDetailedCell: UICollectionViewCell {
         label.textAlignment = .left
         label.numberOfLines = 0
         label.text = "Kateqoriya"
-        label.backgroundColor = .red
         return label
     }()
     private let kateqoriyaLabel: UILabel = {
@@ -77,7 +76,6 @@ class ProductDetailedCell: UICollectionViewCell {
         label.textAlignment = .left
         label.numberOfLines = 0
         label.text = "Kolleksiya"
-        label.backgroundColor = .yellow
         return label
     }()
     private let kolleksiyaLabel: UILabel = {
@@ -95,7 +93,6 @@ class ProductDetailedCell: UICollectionViewCell {
         label.textAlignment = .left
         label.numberOfLines = 0
         label.text = "Movcudluq"
-        label.backgroundColor = .cyan
         return label
     }()
     private let movcudluqLabel: UILabel = {
@@ -118,7 +115,7 @@ class ProductDetailedCell: UICollectionViewCell {
     private let sayTextField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.placeholder = "Enter text here"
+        textField.placeholder = "Say"
         textField.font = UIFont.systemFont(ofSize: 14)
         textField.borderStyle = .roundedRect
         textField.textAlignment = .left
@@ -218,30 +215,30 @@ class ProductDetailedCell: UICollectionViewCell {
         contentView.addSubview(generalStack)
         contentView.addSubview(descriptionLabel)
         
-        //modelNameLabel.backgroundColor = .red
-        originalPriceLabel.backgroundColor = .green
-        discountedPriceLAbel.backgroundColor = .purple
-//        leftStack.backgroundColor = .yellow
-//        rightStack.backgroundColor = .gray
+//        modelNameLabel.backgroundColor = .red
+//        originalPriceLabel.backgroundColor = .green
+//        discountedPriceLAbel.backgroundColor = .purple
+////        leftStack.backgroundColor = .yellow
+////        rightStack.backgroundColor = .gray
         descriptionLabel.backgroundColor = .lightGray
-        
+//        
         NSLayoutConstraint.activate([
             
-            unitLabel.widthAnchor.constraint(equalToConstant: 60),
+            unitLabel.widthAnchor.constraint(equalToConstant: 100),
             modelNameLabel.topAnchor.constraint(equalTo: topAnchor),
             modelNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             modelNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            modelNameLabel.heightAnchor.constraint(equalToConstant: 80),
+            modelNameLabel.heightAnchor.constraint(equalToConstant: 40),
             
             originalPriceLabel.topAnchor.constraint(equalTo: modelNameLabel.bottomAnchor),
             originalPriceLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            originalPriceLabel.heightAnchor.constraint(equalToConstant: 60),
+            originalPriceLabel.heightAnchor.constraint(equalToConstant: 30),
             originalPriceLabel.widthAnchor.constraint(equalToConstant: 120),
             
             discountedPriceLAbel.topAnchor.constraint(equalTo: modelNameLabel.bottomAnchor),
             discountedPriceLAbel.leadingAnchor.constraint(equalTo: originalPriceLabel.trailingAnchor),
             discountedPriceLAbel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            discountedPriceLAbel.heightAnchor.constraint(equalToConstant: 60),
+            discountedPriceLAbel.heightAnchor.constraint(equalToConstant: 40),
             
             kodText.widthAnchor.constraint(equalToConstant: 120),
             kateqoriyaText.widthAnchor.constraint(equalToConstant: 120),
@@ -252,7 +249,7 @@ class ProductDetailedCell: UICollectionViewCell {
             generalStack.topAnchor.constraint(equalTo: originalPriceLabel.bottomAnchor),
             generalStack.leadingAnchor.constraint(equalTo: leadingAnchor),
             generalStack.trailingAnchor.constraint(equalTo: trailingAnchor),
-            generalStack.heightAnchor.constraint(equalToConstant: 240),
+            generalStack.heightAnchor.constraint(equalToConstant: 180),
             
 
             descriptionLabel.topAnchor.constraint(equalTo: generalStack.bottomAnchor),
@@ -267,18 +264,21 @@ class ProductDetailedCell: UICollectionViewCell {
             
         ])
     }
- //   */
+
     func configure(item: ProductModel){
         modelNameLabel.text = item.name
-        originalPriceLabel.text = "\(String(describing: item.regularPrice ?? "")) AZN"
-        discountedPriceLAbel.text = item.discountPrice
-        kodLabel.text = "\(String(describing: item.id))"
+        kodLabel.text = "\(String(describing: item.id ?? 0))"
         kateqoriyaLabel.text = item.collection?.category?.categoryName
         kolleksiyaLabel.text = item.collection?.name
         movcudluqLabel.text = item.inStockDisplayValue
         descriptionLabel.attributedText = item.information?.htmlToAttributedString
         
-
-        
+        if item.discount == 0 {
+            originalPriceLabel.text = "\(String(describing: item.regularPrice ?? "")) AZN"
+            discountedPriceLAbel.isHidden = true
+        } else{
+            originalPriceLabel.attributedText = "\(String(describing: item.regularPrice ?? "")) AZN".strikeThrough()
+            discountedPriceLAbel.text = "\(String(describing: item.discountPrice ?? "")) AZN"
+        }
     }
 }

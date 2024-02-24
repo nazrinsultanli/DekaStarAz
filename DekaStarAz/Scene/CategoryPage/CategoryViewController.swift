@@ -22,6 +22,7 @@ class CategoryViewController: UIViewController {
         collection.translatesAutoresizingMaskIntoConstraints = false
         collection.register(HomeKolleksiyaCell.self,
                             forCellWithReuseIdentifier: HomeKolleksiyaCell.reuseID)
+        collection.backgroundColor = .clear
        
         return collection
     }()
@@ -38,7 +39,7 @@ class CategoryViewController: UIViewController {
     
     private func configureUI() {
         title = "Kateqoriya"
-        view.backgroundColor = .systemGray4
+        view.backgroundColor = .white
         
     }
     private func configureViewModel() {

@@ -22,6 +22,14 @@ struct FilterEntriesModel: Codable {
 
 
 struct OneEntryModel: Codable, Hashable , HomePagesItemsProtocols {
+    var collectionName: String {
+        ""
+    }
+    
+    var discountId: Int {
+        0
+    }
+    
     var originalId: Int {
         id ?? 0
     }

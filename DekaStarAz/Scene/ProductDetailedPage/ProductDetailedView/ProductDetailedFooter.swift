@@ -58,27 +58,37 @@ class ProductDetailedFooter: UICollectionReusableView {
         
         NSLayoutConstraint.activate([
             addToFavoriteButton.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-            addToFavoriteButton.leadingAnchor.constraint(equalTo: leadingAnchor),
-            addToFavoriteButton.trailingAnchor.constraint(equalTo: trailingAnchor),
+            addToFavoriteButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
+            addToFavoriteButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
             addToBasketButton.heightAnchor.constraint(equalToConstant: 40),
             
             addToBasketButton.topAnchor.constraint(equalTo: addToFavoriteButton.bottomAnchor, constant: 10),
-            addToBasketButton.leadingAnchor.constraint(equalTo: leadingAnchor),
-            addToBasketButton.trailingAnchor.constraint(equalTo: trailingAnchor),
+            addToBasketButton.leadingAnchor.constraint(equalTo: addToFavoriteButton.leadingAnchor),
+            addToBasketButton.trailingAnchor.constraint(equalTo: addToFavoriteButton.trailingAnchor),
             addToBasketButton.bottomAnchor.constraint(equalTo: bottomAnchor ),
             
             
         ])
         
     }
-    
+     
     @objc func favButtonTapped () {
+        // Change the color to green
+        addToFavoriteButton.backgroundColor = .systemGreen
+    
+        UIView.animate(withDuration: 1.0, delay: 0, options: .curveEaseInOut, animations: {
+            self.addToFavoriteButton.backgroundColor = .systemBlue
+        }, completion: nil)
         delegate?.didTapBFavorite(state: true)
-        print("clicked")
     }
     
     @objc func basketButtonTapped () {
-        
+        addToBasketButton.backgroundColor = .green
+    
+        UIView.animate(withDuration: 1.0, delay: 0, options: .curveEaseInOut, animations: {
+            self.addToBasketButton.backgroundColor = .blue
+        }, completion: nil)
+
     }
     
 }

@@ -14,5 +14,7 @@ protocol HomePagesItemsProtocols {
     var saledPrice: String { get }
     var slugId: String { get }
     var originalId: Int { get }
+    var discountId: Int { get }
+    var collectionName: String { get }
     
 }

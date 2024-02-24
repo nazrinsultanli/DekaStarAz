@@ -10,14 +10,7 @@ import Foundation
 class FavoriteViewModel {
     var favoriteItem: ProductModel?
     var favItemsfromFile = [ProductModel]()
-    
-    
-//    init() {
-//        fileHelper.readDataFromFile { favProducts in
-//            self.favItemsfromFile = favProducts
-//        }
-//    }
-//    var favoriteItems: [ProductModel] = []
+
     let fileHelper = FileManagerHelper()
 
     
