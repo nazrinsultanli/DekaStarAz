@@ -22,6 +22,7 @@
 		1037439C2B51728A00BB7CA8 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1037439B2B51728A00BB7CA8 /* SettingViewController.swift */; };
 		104DF75B2B7516C800CAA897 /* FilterPageTitleTextfieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104DF75A2B7516C800CAA897 /* FilterPageTitleTextfieldCell.swift */; };
 		104DF75D2B75205D00CAA897 /* FilterPageTitleButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 104DF75C2B75205D00CAA897 /* FilterPageTitleButtonCell.swift */; };
+		1050BEF02B8A8A0F009AFFE8 /* ishlemeyenler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1050BEEF2B8A8A0F009AFFE8 /* ishlemeyenler.swift */; };
 		105A33872B56E47C00E8CBC2 /* HomeCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105A33862B56E47C00E8CBC2 /* HomeCollectionCell.swift */; };
 		105A338B2B56E8F000E8CBC2 /* TopImageButtomLabelS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105A338A2B56E8F000E8CBC2 /* TopImageButtomLabelS.swift */; };
 		105C986F2B6EF15D0011318A /* ProductDetailedHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 105C986E2B6EF15D0011318A /* ProductDetailedHeaderCell.swift */; };
@@ -90,6 +91,7 @@
 		1037439B2B51728A00BB7CA8 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		104DF75A2B7516C800CAA897 /* FilterPageTitleTextfieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterPageTitleTextfieldCell.swift; sourceTree = "<group>"; };
 		104DF75C2B75205D00CAA897 /* FilterPageTitleButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterPageTitleButtonCell.swift; sourceTree = "<group>"; };
+		1050BEEF2B8A8A0F009AFFE8 /* ishlemeyenler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ishlemeyenler.swift; sourceTree = "<group>"; };
 		105A33862B56E47C00E8CBC2 /* HomeCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionCell.swift; sourceTree = "<group>"; };
 		105A338A2B56E8F000E8CBC2 /* TopImageButtomLabelS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopImageButtomLabelS.swift; sourceTree = "<group>"; };
 		105C986E2B6EF15D0011318A /* ProductDetailedHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailedHeaderCell.swift; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 				1037438C2B51714200BB7CA8 /* TabBarController.swift */,
 				10F1505E2B6120490049D670 /* Extensions.swift */,
 				100C25D92B88AC1100472B4D /* DropdownMenu.swift */,
+				1050BEEF2B8A8A0F009AFFE8 /* ishlemeyenler.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -510,6 +513,7 @@
 				10A8D60D2B6FB5830036D63F /* ProductDetailedHeader.swift in Sources */,
 				108060D62B6E3732005E6217 /* ProductUseCase.swift in Sources */,
 				103743982B51722D00BB7CA8 /* FavoriteViewController.swift in Sources */,
+				1050BEF02B8A8A0F009AFFE8 /* ishlemeyenler.swift in Sources */,
 				10A029062B71596A00AE8DBC /* FilterPageController.swift in Sources */,
 				107168BF2B5BD158005D7F36 /* HomePageManager.swift in Sources */,
 				106042A32B4F3BCA003BD0CC /* AppDelegate.swift in Sources */,
