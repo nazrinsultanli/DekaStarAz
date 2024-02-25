@@ -267,7 +267,7 @@ class ProductDetailedCell: UICollectionViewCell {
 
     func configure(item: ProductModel){
         modelNameLabel.text = item.name
-        kodLabel.text = "\(String(describing: item.id ?? 0))"
+        kodLabel.text = item.code
         kateqoriyaLabel.text = item.collection?.category?.categoryName
         kolleksiyaLabel.text = item.collection?.name
         movcudluqLabel.text = item.inStockDisplayValue

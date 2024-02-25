@@ -20,7 +20,7 @@ class TabBarController: UITabBarController {
         let category = self.createNav(with: "Category", and: UIImage(systemName: "square.grid.2x2")!, and: CategoryViewController())
         let favorite = self.createNav(with: "Favorite", and: UIImage(systemName: "heart")!, and: FavoriteViewController())
         let basket = self.createNav(with: "Basket", and: UIImage(systemName: "basket")!, and: BasketViewController())
-        let setting = self.createNav(with: "Setting", and: UIImage(systemName: "gearshape")!, and: SettingViewController())
+        let setting = self.createNav(with: "More", and: UIImage(systemName: "ellipsis")!, and: SettingViewController())
         viewControllers = [home, category, favorite, basket, setting]
     }
 

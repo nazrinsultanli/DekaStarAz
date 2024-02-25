@@ -57,16 +57,8 @@ class FilterDetailViewModel {
                     self.success?()
                 }
             }
-
         default:
             break
         }
-        
-        
-        
-
-        
-        
-        
     }
 }

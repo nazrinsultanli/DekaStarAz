@@ -16,7 +16,7 @@ import Foundation
 // MARK: - Movie
 struct ProductModel: Codable {
     let id: Int?
-    let name, slug, regularPrice: String?
+    let name, slug, regularPrice, code: String?
     let discount: Int?
     let discountPrice: String?
     let inStock: Bool?
@@ -28,7 +28,7 @@ struct ProductModel: Codable {
     let createdAt, updatedAt: String?
 
     enum CodingKeys: String, CodingKey {
-        case id, name, slug
+        case id, name, slug, code
         case regularPrice = "regular_price"
         case discount
         case discountPrice = "discount_price"
