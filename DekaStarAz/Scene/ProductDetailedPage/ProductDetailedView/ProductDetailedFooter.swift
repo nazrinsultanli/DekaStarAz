@@ -8,6 +8,8 @@
 import UIKit
 protocol ProductDetailFooterDelagate: AnyObject {
     func didTapBFavorite(state: Bool)
+    func didTapBasket(state: Bool)
+    
 }
 
 class ProductDetailedFooter: UICollectionReusableView {
@@ -88,6 +90,7 @@ class ProductDetailedFooter: UICollectionReusableView {
         UIView.animate(withDuration: 1.0, delay: 0, options: .curveEaseInOut, animations: {
             self.addToBasketButton.backgroundColor = .blue
         }, completion: nil)
+        delegate?.didTapBasket(state: true)
 
     }
     

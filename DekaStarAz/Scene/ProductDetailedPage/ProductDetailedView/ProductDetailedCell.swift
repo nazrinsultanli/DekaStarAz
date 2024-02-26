@@ -7,9 +7,15 @@
 
 import UIKit
 
+protocol TextFieldProductDetailCellDelegate: AnyObject {
+    func textFieldDidEndEditing(_ text: String, indexPath: IndexPath)
+}
+
+
 class ProductDetailedCell: UICollectionViewCell {
     static let reuseID = "ProductDetailedCell"
-    
+    weak var delegate: TextFieldProductDetailCellDelegate?
+    var indexPath: IndexPath?
     private let modelNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -146,6 +152,7 @@ class ProductDetailedCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        sayTextField.delegate = self
         configureConstraints()
     }
     
@@ -259,9 +266,6 @@ class ProductDetailedCell: UICollectionViewCell {
             descriptionLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
 
             
-            
-            
-            
         ])
     }
 
@@ -282,3 +286,12 @@ class ProductDetailedCell: UICollectionViewCell {
         }
     }
 }
+
+extension ProductDetailedCell: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+            if let text = sayTextField.text, let indexPath = indexPath {
+                delegate?.textFieldDidEndEditing(text, indexPath: indexPath)
+            }
+        }
+}
+

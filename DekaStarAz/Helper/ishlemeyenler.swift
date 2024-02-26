@@ -6,11 +6,12 @@
 //
 
 import Foundation
-// favTabinda mal olmayanda mal ypxdu sozu gorunmur
+// favTabinda mal olmayanda mal yoxdu sozu gorunmur
 // elave eden kimi fav-a gorunmurdu
-//dil meselesi
-//filter-de uygun cateqoriyanin kolleksiyasi ve brendleri
-//cordinator yoxdu
-// initilize elemek
-//extension-lara cixarmaq meselen label-leri
+// dil meselesi
+// filter-de uygun cateqoriyanin kolleksiyasi ve brendleri
+// filter-de temizle buttonu
+// cordinator yoxdu
+// initilize elemek dependency
+// extension-lara cixarmaq meselen label-leri
 

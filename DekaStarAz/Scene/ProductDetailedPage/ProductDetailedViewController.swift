@@ -10,7 +10,7 @@ import UIKit
 class ProductDetailedViewController: UIViewController{
     
     var viewModel = ProductDetailedViewModel()
-    
+    var productQuantity: Int = 0
     let filemManager = FileManagerHelper()
     var dataFromFile = [ProductModel]()
   
@@ -90,6 +90,8 @@ extension  ProductDetailedViewController:  UICollectionViewDataSource, UICollect
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductDetailedCell.reuseID, for: indexPath) as! ProductDetailedCell
         if let item = viewModel.singleProduct {
             cell.configure(item: item)
+            cell.delegate = self
+            cell.indexPath = indexPath
         }
         return cell
     }
@@ -128,6 +130,19 @@ extension  ProductDetailedViewController:  UICollectionViewDataSource, UICollect
 }
 
 extension ProductDetailedViewController: ProductDetailFooterDelagate {
+    func didTapBasket(state: Bool) {
+        if state {
+            if let itemToWrite = viewModel.singleProduct {
+                let cartItem = CartModel(price: itemToWrite.discountPrice,
+                                         quantity: productQuantity,
+                                         productID: itemToWrite.id,
+                                         productQuantityType: ProductUnit.squareMeter.rawValue )
+                
+                CheckoutBuilder().cartItems?.append(cartItem)
+            }
+        }
+    }
+    
     func didTapBFavorite(state: Bool) {
         if state {
             if let itemToWrite = viewModel.singleProduct {
@@ -141,5 +156,14 @@ extension ProductDetailedViewController: ProductDetailFooterDelagate {
                 filemManager.writeDataToFile(products: dataFromFile)
             }
         }
+    }
+}
+
+
+extension ProductDetailedViewController: TextFieldProductDetailCellDelegate {
+    func textFieldDidEndEditing(_ text: String, indexPath: IndexPath) {
+        //viewModel.updateCartQuantity(Int(text) ?? 0)
+        productQuantity = Int(text) ?? 0
+        print("Entered text at indexPath \(indexPath): \(text)")
     }
 }

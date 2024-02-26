@@ -13,6 +13,7 @@ class ProductDetailedViewModel {
     var success: (() -> Void)?
     var error: ((String) -> Void)?
     var singleProduct: ProductModel?
+//    var productQuantity: Int = 0
     
     func getSingleProduct () {
         manager.getPrododuct(slug: slug ?? "", language: "az") { data, errorMessage in
@@ -24,5 +25,9 @@ class ProductDetailedViewModel {
             }
         }
     }
+
+//     func updateCartQuantity(_ productQuantity: Int) {
+//         self.productQuantity = productQuantity
+//     }
     
 }
