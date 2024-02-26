@@ -14,7 +14,13 @@ class SettingDetailedPageController: UIViewController {
         table.translatesAutoresizingMaskIntoConstraints = false
         table.separatorStyle = .none
         table.backgroundColor = .clear
-        // Set an estimated row height
+        
+        
+        //MARK: problem----------------------
+        table.estimatedRowHeight = 500
+        table.rowHeight = UITableView.automaticDimension
+        
+        
         table.register(TopImageButtomLabelTableCell.self, forCellReuseIdentifier: TopImageButtomLabelTableCell.reuseID)
         table.register(ContactDataCell.self, forCellReuseIdentifier: ContactDataCell.reuseID)
         return table
@@ -73,9 +79,10 @@ extension SettingDetailedPageController: UITableViewDataSource, UITableViewDeleg
             return cell
         }
     }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        250
-    }
+    //MARK: problem----------------------
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        400
+//    }
     //MARK: header view
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: tableView.frame.width*2/3))
