@@ -42,10 +42,23 @@ class ProductDetailedViewController: UIViewController{
         configureConstraints()
         configureViewModel()
         
-        filemManager.readDataFromFile { items in
-            dataFromFile = items
-            filemManager.writeDataToFile(products: [])
+//        filemManager.readDataFromFile { items in
+//            dataFromFile = items
+//            filemManager.writeDataToFile(products: [])
+//        }
+        
+      
+        filemManager.readDataFromFile(fileSelection: .favorite) { (items: [ProductModel]?) in
+            if let items = items {
+                self.dataFromFile = items
+                //filemManager.writeDataToFile(data: [], fileSelection: .favorite)
+            } else {
+                print("Failed to read products from file.")
+            }
+            var emptyItem: [ProductModel] = []
+            self.filemManager.writeDataToFile(data: emptyItem, fileSelection: .favorite)
         }
+        
     }
     
  
@@ -153,7 +166,8 @@ extension ProductDetailedViewController: ProductDetailFooterDelagate {
                         dataFromFile.append(itemToWrite)
                     }
                 }
-                filemManager.writeDataToFile(products: dataFromFile)
+                //filemManager.writeDataToFile(products: dataFromFile)
+                filemManager.writeDataToFile(data: dataFromFile, fileSelection: .favorite)
             }
         }
     }

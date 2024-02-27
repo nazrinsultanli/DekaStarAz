@@ -10,7 +10,7 @@ import UIKit
 class BasketViewController: UIViewController {
 
     var viewModel = BasketViewModel()
-    var builder = CheckoutBuilder()
+   // var builder = CheckoutBuilder()
     
     lazy var table: UITableView = {
         let table = UITableView()
@@ -42,7 +42,9 @@ class BasketViewController: UIViewController {
     }
     
     func configureViewModel() {
-        
+        viewModel.readBasketProductsFromFile { [weak self] in
+            self?.table.reloadData()
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -51,13 +53,13 @@ class BasketViewController: UIViewController {
     }
     
     func configureVisibility() {
-//        if viewModel.favItemsfromFile.isEmpty {
-//            noItems.isHidden = false
-//            table.isHidden = true
-//        } else {
-//            noItems.isHidden = true
-//            table.isHidden = false
-//        }
+        if viewModel.basketItemsfromFile.isEmpty {
+            noItems.isHidden = false
+            table.isHidden = true
+        } else {
+            noItems.isHidden = true
+            table.isHidden = false
+        }
     }
 
     func configureConstraint() {
@@ -84,43 +86,40 @@ class BasketViewController: UIViewController {
 
 extension BasketViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        builder.cartItems?.count ?? 0
+        viewModel.basketItemsfromFile.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: BasketCell.reuseID) as! BasketCell
-        if let item = builder.cartItems?[indexPath.row] {
-            cell.configure(data: item)
-        }
-       
+        cell.configure(data: viewModel.basketItemsfromFile[indexPath.row])
         return cell
     }
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let controller = ProductDetailedViewController()
-//        controller.viewModel.slug = viewModel.favItemsfromFile[indexPath.row].slug
-//        navigationController?.show(controller, sender: nil)
-//    }
-//    
-    //MARK: Delete Process
-//    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-//            let deleteAction = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
-//                self.deleteData(at: indexPath)
-//            }
-//            let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction])
-//            return swipeActions
-//        }
-//
-//        func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-//            return true
-//        }
-//
-//        func deleteData(at indexPath: IndexPath) {
-//            viewModel.favItemsfromFile.remove(at: indexPath.item)
-//            let filemManager = FileManagerHelper()
-//            filemManager.writeDataToFile(products: viewModel.favItemsfromFile)
-//            configureViewModel()
-//        }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let controller = ProductDetailedViewController()
+        controller.viewModel.slug = viewModel.basketItemsfromFile[indexPath.row].slug
+        navigationController?.show(controller, sender: nil)
+    }
+    
+   // MARK: Delete Process
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+            let deleteAction = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
+                self.deleteData(at: indexPath)
+            }
+            let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction])
+            return swipeActions
+        }
+
+        func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+            return true
+        }
+
+        func deleteData(at indexPath: IndexPath) {
+            viewModel.basketItemsfromFile.remove(at: indexPath.item)
+            let fileManager = FileManagerHelper()
+            fileManager.writeDataToFile(data: viewModel.basketItemsfromFile, fileSelection: .basket)
+            configureViewModel()
+        }
     
 }
 

@@ -115,8 +115,9 @@ extension FavoriteViewController: UITableViewDataSource, UITableViewDelegate {
 
         func deleteData(at indexPath: IndexPath) {
             viewModel.favItemsfromFile.remove(at: indexPath.item)            
-            let filemManager = FileManagerHelper()
-            filemManager.writeDataToFile(products: viewModel.favItemsfromFile)
+            let fileManager = FileManagerHelper()
+            fileManager.writeDataToFile(data: viewModel.favItemsfromFile, fileSelection: .favorite)
+            //filemManager.writeDataToFile(products: viewModel.favItemsfromFile)
             configureViewModel()
         }
     

@@ -23,11 +23,11 @@ class BasketCell: UITableViewCell {
         label.numberOfLines = 1
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 18, weight: .bold)
+        label.font = .systemFont(ofSize: 16, weight: .bold)
         return label
     }()
     
-    lazy var collectionLabel: UILabel = {
+    lazy var codeLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.textColor = .black
@@ -46,6 +46,44 @@ class BasketCell: UITableViewCell {
     }()
     
     lazy var discountedPriceLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.textColor = .black
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 12, weight: .medium)
+        return label
+    }()
+    
+    private let quantityTextField: UITextField = {
+        let textField = UITextField()
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.placeholder = "Say"
+        textField.font = UIFont.systemFont(ofSize: 14)
+        textField.borderStyle = .roundedRect
+        textField.textAlignment = .left
+        return textField
+    }()
+    
+    lazy var unitLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.textColor = .black
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 12, weight: .medium)
+        return label
+    }()
+    
+    lazy var totalText: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.textColor = .black
+        label.text = "Total:"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 12, weight: .medium)
+        return label
+    }()
+    
+    lazy var totalLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
         label.textColor = .black
@@ -74,58 +112,91 @@ class BasketCell: UITableViewCell {
     private func configureConstraint() {
         addSubview(photo)
         addSubview(modelNameLabel)
-        addSubview(collectionLabel)
+        addSubview(codeLabel)
         addSubview(originalPriceLabel)
         addSubview(discountedPriceLabel)
+        addSubview(unitLabel)
+        addSubview(quantityTextField)
    
-//        modelNameLabel.backgroundColor = .red
-//        collectionLabel.backgroundColor = .yellow
-//        originalPriceLabel.backgroundColor = .green
+        modelNameLabel.backgroundColor = .red
+        codeLabel.backgroundColor = .yellow
+        unitLabel.backgroundColor = .green
         
         NSLayoutConstraint.activate([
+            //MARK: photo
             photo.topAnchor.constraint(equalTo: topAnchor, constant: 8),
             photo.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
-            photo.widthAnchor.constraint(equalToConstant: 150),
+            photo.widthAnchor.constraint(equalToConstant: 100),
             photo.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
             
+            //MARK: Model
             modelNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8),
             modelNameLabel.leadingAnchor.constraint(equalTo: photo.trailingAnchor, constant: 4),
             modelNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 8),
-            modelNameLabel.heightAnchor.constraint(equalToConstant: 20),
+            modelNameLabel.heightAnchor.constraint(equalToConstant: 30),
             
-            collectionLabel.topAnchor.constraint(equalTo: modelNameLabel.bottomAnchor),
-            collectionLabel.leadingAnchor.constraint(equalTo: photo.trailingAnchor, constant: 4),
-            collectionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 8),
-//            collectionLabel.heightAnchor.constraint(equalToConstant: 20),
+            //MARK: code
+            codeLabel.topAnchor.constraint(equalTo: modelNameLabel.bottomAnchor),
+            codeLabel.leadingAnchor.constraint(equalTo: photo.trailingAnchor, constant: 4),
+            codeLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 8),
+            codeLabel.heightAnchor.constraint(equalToConstant: 20),
             
-            originalPriceLabel.topAnchor.constraint(equalTo: collectionLabel.bottomAnchor),
+            //MARK: quantity
+            quantityTextField.topAnchor.constraint(equalTo: codeLabel.bottomAnchor, constant: 8),
+            quantityTextField.leadingAnchor.constraint(equalTo: photo.trailingAnchor, constant: 4),
+            quantityTextField.widthAnchor.constraint(equalToConstant: 80),
+//            quantityTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 8),
+            quantityTextField.heightAnchor.constraint(equalToConstant: 20),
+            
+            unitLabel.topAnchor.constraint(equalTo: codeLabel.bottomAnchor),
+            unitLabel.leadingAnchor.constraint(equalTo: quantityTextField.trailingAnchor, constant: 4),
+            unitLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 8),
+            unitLabel.heightAnchor.constraint(equalToConstant: 20),
+            
+            //MARK: price
+            originalPriceLabel.topAnchor.constraint(equalTo: quantityTextField.bottomAnchor),
             originalPriceLabel.leadingAnchor.constraint(equalTo: photo.trailingAnchor, constant: 4),
             originalPriceLabel.widthAnchor.constraint(equalToConstant: 80),
-            //originalPriceLabel.heightAnchor.constraint(equalToConstant: 20),
-            originalPriceLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
+            originalPriceLabel.heightAnchor.constraint(equalToConstant: 20),
+//            originalPriceLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
             
-            discountedPriceLabel.topAnchor.constraint(equalTo: collectionLabel.bottomAnchor),
+            discountedPriceLabel.topAnchor.constraint(equalTo: quantityTextField.bottomAnchor),
             discountedPriceLabel.leadingAnchor.constraint(equalTo: originalPriceLabel.trailingAnchor),
             discountedPriceLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 8),
-           // discountedPriceLabel.heightAnchor.constraint(equalToConstant: 20),
-            discountedPriceLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
+            discountedPriceLabel.heightAnchor.constraint(equalToConstant: 20),
+//            discountedPriceLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
+            
+            //MARK: price
+            totalText.topAnchor.constraint(equalTo: originalPriceLabel.bottomAnchor),
+            totalText.leadingAnchor.constraint(equalTo: photo.trailingAnchor, constant: 4),
+            totalText.widthAnchor.constraint(equalToConstant: 80),
+//            originalPriceLabel.heightAnchor.constraint(equalToConstant: 20),
+            totalText.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
+            
+            totalLabel.topAnchor.constraint(equalTo: quantityTextField.bottomAnchor),
+            totalLabel.leadingAnchor.constraint(equalTo: totalText.trailingAnchor),
+            totalLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 8),
+//            totalLabel.heightAnchor.constraint(equalToConstant: 20),
+            totalLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
         ])
     }
     
-    func configure(data: CartModel) {
-//        photo.loadImage(url: data.imageFeatureURL  ?? "")
-        photo.backgroundColor = .red
-        modelNameLabel.text = data.price
-        collectionLabel.text = data.productQuantityType
+    
+    func configure(data: ProductModel) {
+        photo.loadImage(url: data.imageFeatureURL  ?? "")
+        modelNameLabel.text = data.name
+        codeLabel.text = data.code
+        unitLabel.text = data.quantityType
+        quantityTextField.placeholder = "\(String(describing: data.userQuantity ?? 0 ))"
         
-//        if data.discount == 0 {
-//            originalPriceLabel.text = "\(String(describing: data.regularPrice ?? "")) AZN"
-//            discountedPriceLabel.isHidden = true
-//           
-//        } else{
-//            originalPriceLabel.attributedText = "\(String(describing: data.regularPrice ?? "")) AZN".strikeThrough()
-//            discountedPriceLabel.text = "\(String(describing: data.discountPrice ?? "")) AZN"
-//        }
+        if data.discount == 0 {
+            originalPriceLabel.text = "\(String(describing: data.regularPrice ?? "")) AZN"
+            discountedPriceLabel.isHidden = true
+           
+        } else{
+            originalPriceLabel.attributedText = "\(String(describing: data.regularPrice ?? "")) AZN".strikeThrough()
+            discountedPriceLabel.text = "\(String(describing: data.discountPrice ?? "")) AZN"
+        }
        
     }
 }

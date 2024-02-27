@@ -16,5 +16,4 @@ protocol SettingsPageItemsProtocols {
     var languagee: String { get }
     var workingHour: String { get }
    
-    
 }

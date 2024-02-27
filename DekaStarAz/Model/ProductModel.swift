@@ -26,9 +26,12 @@ struct ProductModel: Codable {
     let information: String?
     let imageFeatureURL: String?
     let createdAt, updatedAt: String?
+    let userQuantity: Int?
+    let termsCondition: Bool?
+    let quantityType: String?
 
     enum CodingKeys: String, CodingKey {
-        case id, name, slug, code
+        case id, name, slug, code, userQuantity, termsCondition
         case regularPrice = "regular_price"
         case discount
         case discountPrice = "discount_price"
@@ -39,6 +42,7 @@ struct ProductModel: Codable {
         case imageFeatureURL = "image_feature_url"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
+        case quantityType = "quantity_type"
     }
 }
 
