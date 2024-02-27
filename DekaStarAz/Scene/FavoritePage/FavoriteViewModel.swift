@@ -18,20 +18,8 @@ class FavoriteViewModel {
         if let item = favoriteItem{
             favItemsfromFile.append(item)
             fileHelper.writeDataToFile(data: favItemsfromFile, fileSelection: .favorite)
-            
-            // fileHelper.writeDataToFile(products: favItemsfromFile)
         }
     }
-    
-    
-    //    func readFavoritesProductsFromFile (completion: @escaping () -> Void) {
-    //        fileHelper.readDataFromFile { favProducts in
-    //            self.favItemsfromFile = favProducts
-    //            completion()
-    //        }
-    //    }
-    //
-    
     
     func readFavoritesProductsFromFile (completion: @escaping () -> Void) {
         fileHelper.readDataFromFile(fileSelection: .favorite) { (favProducts: [ProductModel]?) in

@@ -115,12 +115,14 @@ class BasketCell: UITableViewCell {
         addSubview(codeLabel)
         addSubview(originalPriceLabel)
         addSubview(discountedPriceLabel)
-        addSubview(unitLabel)
         addSubview(quantityTextField)
+        addSubview(unitLabel)
+        addSubview(totalText)
+        addSubview(totalLabel)
    
-        modelNameLabel.backgroundColor = .red
-        codeLabel.backgroundColor = .yellow
-        unitLabel.backgroundColor = .green
+//        modelNameLabel.backgroundColor = .red
+//        codeLabel.backgroundColor = .yellow
+//        unitLabel.backgroundColor = .green
         
         NSLayoutConstraint.activate([
             //MARK: photo
@@ -131,52 +133,47 @@ class BasketCell: UITableViewCell {
             
             //MARK: Model
             modelNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8),
-            modelNameLabel.leadingAnchor.constraint(equalTo: photo.trailingAnchor, constant: 4),
-            modelNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 8),
+            modelNameLabel.leadingAnchor.constraint(equalTo: photo.trailingAnchor, constant: 10),
+            modelNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             modelNameLabel.heightAnchor.constraint(equalToConstant: 30),
             
             //MARK: code
             codeLabel.topAnchor.constraint(equalTo: modelNameLabel.bottomAnchor),
-            codeLabel.leadingAnchor.constraint(equalTo: photo.trailingAnchor, constant: 4),
-            codeLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 8),
+            codeLabel.leadingAnchor.constraint(equalTo: photo.trailingAnchor, constant: 10),
+            codeLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             codeLabel.heightAnchor.constraint(equalToConstant: 20),
             
             //MARK: quantity
-            quantityTextField.topAnchor.constraint(equalTo: codeLabel.bottomAnchor, constant: 8),
-            quantityTextField.leadingAnchor.constraint(equalTo: photo.trailingAnchor, constant: 4),
+            quantityTextField.topAnchor.constraint(equalTo: codeLabel.bottomAnchor),
+            quantityTextField.leadingAnchor.constraint(equalTo: photo.trailingAnchor, constant: 10),
             quantityTextField.widthAnchor.constraint(equalToConstant: 80),
-//            quantityTextField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 8),
             quantityTextField.heightAnchor.constraint(equalToConstant: 20),
             
             unitLabel.topAnchor.constraint(equalTo: codeLabel.bottomAnchor),
-            unitLabel.leadingAnchor.constraint(equalTo: quantityTextField.trailingAnchor, constant: 4),
-            unitLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 8),
+            unitLabel.leadingAnchor.constraint(equalTo: quantityTextField.trailingAnchor, constant: 10),
+            unitLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             unitLabel.heightAnchor.constraint(equalToConstant: 20),
             
             //MARK: price
             originalPriceLabel.topAnchor.constraint(equalTo: quantityTextField.bottomAnchor),
-            originalPriceLabel.leadingAnchor.constraint(equalTo: photo.trailingAnchor, constant: 4),
+            originalPriceLabel.leadingAnchor.constraint(equalTo: photo.trailingAnchor, constant: 10),
             originalPriceLabel.widthAnchor.constraint(equalToConstant: 80),
             originalPriceLabel.heightAnchor.constraint(equalToConstant: 20),
-//            originalPriceLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
             
             discountedPriceLabel.topAnchor.constraint(equalTo: quantityTextField.bottomAnchor),
-            discountedPriceLabel.leadingAnchor.constraint(equalTo: originalPriceLabel.trailingAnchor),
+            discountedPriceLabel.leadingAnchor.constraint(equalTo: originalPriceLabel.trailingAnchor, constant: 10),
             discountedPriceLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 8),
             discountedPriceLabel.heightAnchor.constraint(equalToConstant: 20),
-//            discountedPriceLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
             
             //MARK: price
             totalText.topAnchor.constraint(equalTo: originalPriceLabel.bottomAnchor),
-            totalText.leadingAnchor.constraint(equalTo: photo.trailingAnchor, constant: 4),
+            totalText.leadingAnchor.constraint(equalTo: photo.trailingAnchor, constant: 10),
             totalText.widthAnchor.constraint(equalToConstant: 80),
-//            originalPriceLabel.heightAnchor.constraint(equalToConstant: 20),
             totalText.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
             
-            totalLabel.topAnchor.constraint(equalTo: quantityTextField.bottomAnchor),
+            totalLabel.topAnchor.constraint(equalTo: originalPriceLabel.bottomAnchor),
             totalLabel.leadingAnchor.constraint(equalTo: totalText.trailingAnchor),
-            totalLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 8),
-//            totalLabel.heightAnchor.constraint(equalToConstant: 20),
+            totalLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             totalLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
         ])
     }

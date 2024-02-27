@@ -10,14 +10,13 @@ import UIKit
 class BasketViewController: UIViewController {
 
     var viewModel = BasketViewModel()
-   // var builder = CheckoutBuilder()
     
     lazy var table: UITableView = {
         let table = UITableView()
         table.dataSource = self
         table.delegate = self
         table.backgroundColor = .clear
-        table.rowHeight = 100
+        //table.rowHeight = 100
         table.translatesAutoresizingMaskIntoConstraints = false
         table.register(BasketCell.self, forCellReuseIdentifier: BasketCell.reuseID)
         return table

@@ -36,10 +36,13 @@ class FavoriteViewController: UIViewController {
         navigationItem.title = "Secilmishler"
         view.backgroundColor = .white
         configureConstraint()
-        configureViewModel()
+        
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        configureViewModel()
+    }
     func configureViewModel() {
         viewModel.readFavoritesProductsFromFile { [weak self] in
             self?.table.reloadData()

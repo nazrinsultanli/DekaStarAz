@@ -12,7 +12,8 @@ class ProductDetailedViewController: UIViewController{
     var viewModel = ProductDetailedViewModel()
     var productQuantity: Int = 0
     let filemManager = FileManagerHelper()
-    var dataFromFile = [ProductModel]()
+    var favoriteDataFromFile = [ProductModel]()
+    var basketDataFromFile = [ProductModel]()
   
 
     private lazy var collectionView: UICollectionView = {
@@ -41,16 +42,10 @@ class ProductDetailedViewController: UIViewController{
         configureUI()
         configureConstraints()
         configureViewModel()
-        
-//        filemManager.readDataFromFile { items in
-//            dataFromFile = items
-//            filemManager.writeDataToFile(products: [])
-//        }
-        
-      
+
         filemManager.readDataFromFile(fileSelection: .favorite) { (items: [ProductModel]?) in
             if let items = items {
-                self.dataFromFile = items
+                self.favoriteDataFromFile = items
                 //filemManager.writeDataToFile(data: [], fileSelection: .favorite)
             } else {
                 print("Failed to read products from file.")
@@ -59,6 +54,15 @@ class ProductDetailedViewController: UIViewController{
             self.filemManager.writeDataToFile(data: emptyItem, fileSelection: .favorite)
         }
         
+        filemManager.readDataFromFile(fileSelection: .basket) { (items: [ProductModel]?) in
+            if let items = items {
+                self.basketDataFromFile = items
+            } else {
+                print("Failed to read products from file.")
+            }
+            var emptyItem: [ProductModel] = []
+            self.filemManager.writeDataToFile(data: emptyItem, fileSelection: .basket)
+        }
     }
     
  
@@ -146,12 +150,15 @@ extension ProductDetailedViewController: ProductDetailFooterDelagate {
     func didTapBasket(state: Bool) {
         if state {
             if let itemToWrite = viewModel.singleProduct {
-                let cartItem = CartModel(price: itemToWrite.discountPrice,
-                                         quantity: productQuantity,
-                                         productID: itemToWrite.id,
-                                         productQuantityType: ProductUnit.squareMeter.rawValue )
-                
-                CheckoutBuilder().cartItems?.append(cartItem)
+//                itemToWrite.userQuantity = productQuantity
+                if basketDataFromFile.isEmpty {
+                    basketDataFromFile.append(itemToWrite)
+                } else {
+                    if !(basketDataFromFile.contains(where: { $0.slug == itemToWrite.slug })) {
+                        basketDataFromFile.append(itemToWrite)
+                    }
+                }
+                filemManager.writeDataToFile(data: basketDataFromFile, fileSelection: .basket)
             }
         }
     }
@@ -159,15 +166,14 @@ extension ProductDetailedViewController: ProductDetailFooterDelagate {
     func didTapBFavorite(state: Bool) {
         if state {
             if let itemToWrite = viewModel.singleProduct {
-                if dataFromFile.isEmpty {
-                    dataFromFile.append(itemToWrite)
+                if favoriteDataFromFile.isEmpty {
+                    favoriteDataFromFile.append(itemToWrite)
                 } else {
-                    if !(dataFromFile.contains(where: { $0.slug == itemToWrite.slug })) {
-                        dataFromFile.append(itemToWrite)
+                    if !(favoriteDataFromFile.contains(where: { $0.slug == itemToWrite.slug })) {
+                        favoriteDataFromFile.append(itemToWrite)
                     }
                 }
-                //filemManager.writeDataToFile(products: dataFromFile)
-                filemManager.writeDataToFile(data: dataFromFile, fileSelection: .favorite)
+                filemManager.writeDataToFile(data: favoriteDataFromFile, fileSelection: .favorite)
             }
         }
     }
