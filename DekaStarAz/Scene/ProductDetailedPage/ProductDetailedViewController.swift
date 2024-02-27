@@ -12,8 +12,8 @@ class ProductDetailedViewController: UIViewController{
     var viewModel = ProductDetailedViewModel()
     var productQuantity: Int = 0
     let filemManager = FileManagerHelper()
-    var favoriteDataFromFile = [ProductModel]()
-    var basketDataFromFile = [ProductModel]()
+    var favoriteDataFromFile: [ProductModel] = []
+    var basketDataFromFile: [ProductModel] = []
   
 
     private lazy var collectionView: UICollectionView = {
@@ -50,7 +50,7 @@ class ProductDetailedViewController: UIViewController{
             } else {
                 print("Failed to read products from file.")
             }
-            var emptyItem: [ProductModel] = []
+            let emptyItem: [ProductModel] = []
             self.filemManager.writeDataToFile(data: emptyItem, fileSelection: .favorite)
         }
         
@@ -60,7 +60,7 @@ class ProductDetailedViewController: UIViewController{
             } else {
                 print("Failed to read products from file.")
             }
-            var emptyItem: [ProductModel] = []
+            let emptyItem: [ProductModel] = []
             self.filemManager.writeDataToFile(data: emptyItem, fileSelection: .basket)
         }
     }
@@ -150,12 +150,19 @@ extension ProductDetailedViewController: ProductDetailFooterDelagate {
     func didTapBasket(state: Bool) {
         if state {
             if let itemToWrite = viewModel.singleProduct {
-//                itemToWrite.userQuantity = productQuantity
+                var item = itemToWrite
+                item.userQuantity = productQuantity
                 if basketDataFromFile.isEmpty {
-                    basketDataFromFile.append(itemToWrite)
+                    basketDataFromFile.append(item)
                 } else {
-                    if !(basketDataFromFile.contains(where: { $0.slug == itemToWrite.slug })) {
-                        basketDataFromFile.append(itemToWrite)
+//                    if !(basketDataFromFile.contains(where: { $0.slug == item.slug })) {
+//                        basketDataFromFile.append(item)
+//                    }
+                    
+                    if let index = basketDataFromFile.firstIndex(where: { $0.slug == item.slug }) {
+                        basketDataFromFile[index] = item
+                    } else {
+                        basketDataFromFile.append(item)
                     }
                 }
                 filemManager.writeDataToFile(data: basketDataFromFile, fileSelection: .basket)
@@ -181,9 +188,13 @@ extension ProductDetailedViewController: ProductDetailFooterDelagate {
 
 
 extension ProductDetailedViewController: TextFieldProductDetailCellDelegate {
-    func textFieldDidEndEditing(_ text: String, indexPath: IndexPath) {
-        //viewModel.updateCartQuantity(Int(text) ?? 0)
+    func textFieldDidEndEditing(_ text: String) {
         productQuantity = Int(text) ?? 0
-        print("Entered text at indexPath \(indexPath): \(text)")
+        print("Entered text at indexPath : \(text)")
     }
+    
+  
+  
+    
+
 }

@@ -26,9 +26,10 @@ struct ProductModel: Codable {
     let information: String?
     let imageFeatureURL: String?
     let createdAt, updatedAt: String?
-    let userQuantity: Int?
-    let termsCondition: Bool?
     let quantityType: String?
+    var userQuantity: Int?
+    var termsCondition: Bool?
+    
 
     enum CodingKeys: String, CodingKey {
         case id, name, slug, code, userQuantity, termsCondition

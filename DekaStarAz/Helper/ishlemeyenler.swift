@@ -8,6 +8,7 @@
 import Foundation
 // favTabinda mal olmayanda mal yoxdu sozu gorunmur
 // elave eden kimi fav-a gorunmurdu
+// silende index problemi
 // dil meselesi
 // filter-de uygun cateqoriyanin kolleksiyasi ve brendleri
 // filter-de temizle buttonu

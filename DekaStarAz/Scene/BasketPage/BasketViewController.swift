@@ -16,7 +16,7 @@ class BasketViewController: UIViewController {
         table.dataSource = self
         table.delegate = self
         table.backgroundColor = .clear
-        //table.rowHeight = 100
+        table.rowHeight = 130
         table.translatesAutoresizingMaskIntoConstraints = false
         table.register(BasketCell.self, forCellReuseIdentifier: BasketCell.reuseID)
         return table
@@ -30,7 +30,26 @@ class BasketViewController: UIViewController {
         label.font = .systemFont(ofSize: 18, weight: .bold)
         return label
     }()
+    
+    private lazy var checkOutButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Check Out Et", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .systemBlue
+        button.layer.cornerRadius = 8.0
+        button.addTarget(self, action: #selector(checkOutButtonTapped), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
 
+   @objc func checkOutButtonTapped() {
+       let controller = CheckOutViewController()
+       controller.builder = viewModel.builder
+       controller.totalCheckOutPrice = viewModel.totalCheckOutPrice
+       viewModel.writeToBuilder()
+       navigationController?.show(controller, sender: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Secilmishler"
@@ -64,14 +83,21 @@ class BasketViewController: UIViewController {
     func configureConstraint() {
         view.addSubview(table)
         view.addSubview(noItems)
+        view.addSubview(checkOutButton)
 //
 //        noItems.isHidden = viewModel.favItemsfromFile.isEmpty ? false :  true
 //        table.isHidden = viewModel.favItemsfromFile.isEmpty ? true :  false
         NSLayoutConstraint.activate([
             table.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            table.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+//            table.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             table.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             table.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            
+            checkOutButton.topAnchor.constraint(equalTo: table.bottomAnchor, constant: 10),
+            checkOutButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            checkOutButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            checkOutButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            
             
             noItems.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             noItems.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),

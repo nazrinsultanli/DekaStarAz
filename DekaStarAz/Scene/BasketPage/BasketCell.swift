@@ -54,14 +54,13 @@ class BasketCell: UITableViewCell {
         return label
     }()
     
-    private let quantityTextField: UITextField = {
-        let textField = UITextField()
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.placeholder = "Say"
-        textField.font = UIFont.systemFont(ofSize: 14)
-        textField.borderStyle = .roundedRect
-        textField.textAlignment = .left
-        return textField
+    lazy var quantityLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 0
+        label.textColor = .black
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 12, weight: .medium)
+        return label
     }()
     
     lazy var unitLabel: UILabel = {
@@ -115,7 +114,7 @@ class BasketCell: UITableViewCell {
         addSubview(codeLabel)
         addSubview(originalPriceLabel)
         addSubview(discountedPriceLabel)
-        addSubview(quantityTextField)
+        addSubview(quantityLabel)
         addSubview(unitLabel)
         addSubview(totalText)
         addSubview(totalLabel)
@@ -127,7 +126,7 @@ class BasketCell: UITableViewCell {
         NSLayoutConstraint.activate([
             //MARK: photo
             photo.topAnchor.constraint(equalTo: topAnchor, constant: 8),
-            photo.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 8),
+            photo.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
             photo.widthAnchor.constraint(equalToConstant: 100),
             photo.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
             
@@ -144,23 +143,23 @@ class BasketCell: UITableViewCell {
             codeLabel.heightAnchor.constraint(equalToConstant: 20),
             
             //MARK: quantity
-            quantityTextField.topAnchor.constraint(equalTo: codeLabel.bottomAnchor),
-            quantityTextField.leadingAnchor.constraint(equalTo: photo.trailingAnchor, constant: 10),
-            quantityTextField.widthAnchor.constraint(equalToConstant: 80),
-            quantityTextField.heightAnchor.constraint(equalToConstant: 20),
+            quantityLabel.topAnchor.constraint(equalTo: codeLabel.bottomAnchor),
+            quantityLabel.leadingAnchor.constraint(equalTo: photo.trailingAnchor, constant: 10),
+            quantityLabel.widthAnchor.constraint(equalToConstant: 80),
+            quantityLabel.heightAnchor.constraint(equalToConstant: 20),
             
             unitLabel.topAnchor.constraint(equalTo: codeLabel.bottomAnchor),
-            unitLabel.leadingAnchor.constraint(equalTo: quantityTextField.trailingAnchor, constant: 10),
+            unitLabel.leadingAnchor.constraint(equalTo: quantityLabel.trailingAnchor, constant: 10),
             unitLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             unitLabel.heightAnchor.constraint(equalToConstant: 20),
             
             //MARK: price
-            originalPriceLabel.topAnchor.constraint(equalTo: quantityTextField.bottomAnchor),
+            originalPriceLabel.topAnchor.constraint(equalTo: quantityLabel.bottomAnchor),
             originalPriceLabel.leadingAnchor.constraint(equalTo: photo.trailingAnchor, constant: 10),
             originalPriceLabel.widthAnchor.constraint(equalToConstant: 80),
             originalPriceLabel.heightAnchor.constraint(equalToConstant: 20),
             
-            discountedPriceLabel.topAnchor.constraint(equalTo: quantityTextField.bottomAnchor),
+            discountedPriceLabel.topAnchor.constraint(equalTo: quantityLabel.bottomAnchor),
             discountedPriceLabel.leadingAnchor.constraint(equalTo: originalPriceLabel.trailingAnchor, constant: 10),
             discountedPriceLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 8),
             discountedPriceLabel.heightAnchor.constraint(equalToConstant: 20),
@@ -170,11 +169,13 @@ class BasketCell: UITableViewCell {
             totalText.leadingAnchor.constraint(equalTo: photo.trailingAnchor, constant: 10),
             totalText.widthAnchor.constraint(equalToConstant: 80),
             totalText.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
+//            totalText.heightAnchor.constraint(equalToConstant: 20),
             
             totalLabel.topAnchor.constraint(equalTo: originalPriceLabel.bottomAnchor),
             totalLabel.leadingAnchor.constraint(equalTo: totalText.trailingAnchor),
             totalLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             totalLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
+//            totalLabel.heightAnchor.constraint(equalToConstant: 20),
         ])
     }
     
@@ -184,7 +185,14 @@ class BasketCell: UITableViewCell {
         modelNameLabel.text = data.name
         codeLabel.text = data.code
         unitLabel.text = data.quantityType
-        quantityTextField.placeholder = "\(String(describing: data.userQuantity ?? 0 ))"
+        quantityLabel.text = "\(String(describing: data.userQuantity ?? 0 ))"
+        
+        var total: Double = 0.0
+        if let price =  Double(data.discountPrice ?? "0.0") {
+            let quantity = Double(data.userQuantity ?? 0)
+            total = quantity * price
+            }
+        totalText.text = "\(total) AZN"
         
         if data.discount == 0 {
             originalPriceLabel.text = "\(String(describing: data.regularPrice ?? "")) AZN"

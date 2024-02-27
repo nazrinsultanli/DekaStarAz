@@ -8,7 +8,7 @@
 import UIKit
 
 protocol TextFieldProductDetailCellDelegate: AnyObject {
-    func textFieldDidEndEditing(_ text: String, indexPath: IndexPath)
+    func textFieldDidEndEditing(_ text: String)
 }
 
 
@@ -288,10 +288,16 @@ class ProductDetailedCell: UICollectionViewCell {
 }
 
 extension ProductDetailedCell: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField) {
-            if let text = sayTextField.text, let indexPath = indexPath {
-                delegate?.textFieldDidEndEditing(text, indexPath: indexPath)
-            }
+  
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        if let text = sayTextField.text {
+            delegate?.textFieldDidEndEditing(text )
         }
+    }
+//    func textFieldDidEndEditing(_ textField: UITextField) {
+//            if let text = sayTextField.text, let indexPath = indexPath {
+//                delegate?.textFieldDidEndEditing(text, indexPath: indexPath)
+//            }
+//        }
 }
 
