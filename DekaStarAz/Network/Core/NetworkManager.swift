@@ -36,31 +36,6 @@ class NetworkManager {
     
     
     
-    
-    static func postRequest<T: Codable>(model: T.Type,
-                                    url: String,
-                                    method: HTTPMethod = .get,
-                                    parameters: Parameters? = nil,
-                                    encoding: ParameterEncoding = URLEncoding.default,
-                                   // header: HTTPHeaders? = nil,
-                                    completion: @escaping ((T?, String?)-> Void))  {
-        
-        AF.request(NetworkHelperLinker.baseUrl + url,
-                   method: method,
-                   parameters: parameters,
-                   encoding: encoding,
-                   headers: NetworkHelperLinker.header).responseDecodable(of: T.self) { response in
-            print("-----\(NetworkHelperLinker.baseUrl + url)")
-            switch response.result {
-            case .success(let data):
-                completion(data, nil)
-            case .failure(let error):
-                completion(nil, error.localizedDescription)
-            }
-        }
-    }
-    
-    
 //    func createNewItemWithDictionary(postModel: [String:Any]) {
 //        NetworkManager.request(model: CheckoutModel.self,
 //                               url: CheckOutEndpoint.checkOutEndpoint.rawValue,
