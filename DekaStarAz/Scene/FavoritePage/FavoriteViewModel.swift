@@ -21,14 +21,14 @@ class FavoriteViewModel {
         }
     }
     
-    func readFavoritesProductsFromFile (completion: @escaping () -> Void) {
+    func readFavoritesProductsFromFile(completion: @escaping () -> Void) {
         fileHelper.readDataFromFile(fileSelection: .favorite) { (favProducts: [ProductModel]?) in
             if let favProducts = favProducts {
                 self.favItemsfromFile = favProducts
+                completion()
             } else {
                 print("Failed to read favortie products from file.")
             }
         }
-        
     }
 }

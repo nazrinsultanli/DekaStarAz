@@ -147,7 +147,3 @@ extension BasketViewController: UITableViewDataSource, UITableViewDelegate {
         }
     
 }
-
-
-
-

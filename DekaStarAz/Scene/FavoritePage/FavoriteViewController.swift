@@ -26,6 +26,8 @@ class FavoriteViewController: UIViewController {
         let label = UILabel()
         label.numberOfLines = 1
         label.textColor = .black
+        label.text = "Atam qerdesim bura MAL yoxdu"
+        label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 18, weight: .bold)
         return label
@@ -35,23 +37,19 @@ class FavoriteViewController: UIViewController {
         super.viewDidLoad()
         navigationItem.title = "Secilmishler"
         view.backgroundColor = .white
+        
         configureConstraint()
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         configureViewModel()
     }
+    
     func configureViewModel() {
         viewModel.readFavoritesProductsFromFile { [weak self] in
             self?.table.reloadData()
+            self?.configureVisibility()
         }
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        configureVisibility()
     }
     
     func configureVisibility() {

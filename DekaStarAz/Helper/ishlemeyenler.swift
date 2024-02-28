@@ -6,8 +6,8 @@
 //
 
 import Foundation
-// favTabinda mal olmayanda mal yoxdu sozu gorunmur
-// elave eden kimi fav-a gorunmurdu
+// favTabinda mal olmayanda mal yoxdu sozu gorunmur +
+// elave eden kimi fav-a gorunmurdu --- emptyhi sil
 // silende index problemi
 // dil meselesi
 // filter-de uygun cateqoriyanin kolleksiyasi ve brendleri
@@ -16,3 +16,4 @@ import Foundation
 // initilize elemek dependency
 // extension-lara cixarmaq meselen label-leri
 
+// tableview autodimension collection view-

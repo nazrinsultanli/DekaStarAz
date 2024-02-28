@@ -23,20 +23,25 @@ class FileManagerHelper {
 
         var path: URL
 
-        switch fileSelection {
-        case .favorite:
-            path = documentDirectory.appendingPathComponent(FileManagerName.favorite.rawValue)
-            if !FileManager.default.fileExists(atPath: path.path) {
-                // File doesn't exist, create it
-                FileManager.default.createFile(atPath: path.path, contents: nil, attributes: nil)
-            }
-        case .basket:
-            path = documentDirectory.appendingPathComponent(FileManagerName.basket.rawValue)
-            if !FileManager.default.fileExists(atPath: path.path) {
-                // File doesn't exist, create it
-                FileManager.default.createFile(atPath: path.path, contents: nil, attributes: nil)
-            }
+        path = documentDirectory.appendingPathComponent(fileSelection.rawValue)
+        if !FileManager.default.fileExists(atPath: path.path) {
+            // File doesn't exist, create it
+            FileManager.default.createFile(atPath: path.path, contents: nil, attributes: nil)
         }
+//        switch fileSelection {
+//        case .favorite:
+//            path = documentDirectory.appendingPathComponent(FileManagerName.favorite.rawValue)
+//            if !FileManager.default.fileExists(atPath: path.path) {
+//                // File doesn't exist, create it
+//                FileManager.default.createFile(atPath: path.path, contents: nil, attributes: nil)
+//            }
+//        case .basket:
+//            path = documentDirectory.appendingPathComponent(FileManagerName.basket.rawValue)
+//            if !FileManager.default.fileExists(atPath: path.path) {
+//                // File doesn't exist, create it
+//                FileManager.default.createFile(atPath: path.path, contents: nil, attributes: nil)
+//            }
+//        }
         print(path)
         return path
     }
