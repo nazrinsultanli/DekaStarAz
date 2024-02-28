@@ -76,19 +76,30 @@ class CheckOutViewController: UIViewController {
         button.backgroundColor = .clear
         button.setBackgroundImage(UIImage(systemName: "circle"), for: .normal)
         button.addTarget(self, action: #selector(didChecked), for: .touchUpInside)
-        
         button.contentMode = .scaleAspectFit
         return button
     }()
 
+    private lazy var finishButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Tamamla", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.backgroundColor = .systemBlue
+        button.layer.cornerRadius = 8.0
+        button.addTarget(self, action: #selector(tamamlaButtonTapped), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+    
     private lazy var shertleriButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .clear
-        button.setTitle("şərtləri", for: .normal)
-        button.setBackgroundImage(UIImage(systemName: "circle"), for: .normal)
-        button.addTarget(self, action: #selector(didChecked), for: .touchUpInside)
-        button.contentMode = .scaleAspectFit
+        button.setTitle("shertleri", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+
+        button.setTitleColor(.blue, for: .normal)
+        //button.addTarget(self, action: #selector(didChecked), for: .touchUpInside)
         return button
     }()
     private let readAndAcceptLabel: UILabel = {
@@ -97,7 +108,7 @@ class CheckOutViewController: UIViewController {
         label.font = .systemFont(ofSize: 14, weight: .medium)
         label.textAlignment = .left
         label.numberOfLines = 0
-        label.text = "şərtləri oxudum və qəbul etdim"
+        label.text = "oxudum və qəbul etdim"
         return label
     }()
 
@@ -107,9 +118,18 @@ class CheckOutViewController: UIViewController {
             stateCheck = false
         } else {
             checkButton.setBackgroundImage(UIImage(systemName: "circle"), for: .normal)
-            stateCheck = false
+            stateCheck = true
         }
         
+    }
+    
+    @objc func tamamlaButtonTapped() {
+        builder?.name = fullNameTextField.text
+        builder?.address = adressTextField.text
+        builder?.phone = phoneNameTextField.text
+        builder?.termsAgreed = stateCheck
+        let controller = CheckOutSuccessPageViewController()
+        navigationController?.show(controller, sender: nil)
     }
     
     override func viewDidLoad() {
@@ -134,10 +154,11 @@ class CheckOutViewController: UIViewController {
         view.addSubview(checkButton)
         view.addSubview(shertleriButton)
         view.addSubview(readAndAcceptLabel)
+        view.addSubview(finishButton)
         
         NSLayoutConstraint.activate([
             fullNameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-            fullNameLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
+            fullNameLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             fullNameLabel.heightAnchor.constraint(equalToConstant: 50),
             fullNameLabel.widthAnchor.constraint(equalToConstant: 80),
             
@@ -147,7 +168,7 @@ class CheckOutViewController: UIViewController {
             fullNameTextField.heightAnchor.constraint(equalToConstant: 50),
             
             phoneLabel.topAnchor.constraint(equalTo: fullNameLabel.bottomAnchor, constant: 10),
-            phoneLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
+            phoneLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             phoneLabel.heightAnchor.constraint(equalToConstant: 50),
             phoneLabel.widthAnchor.constraint(equalToConstant: 80),
             
@@ -157,7 +178,7 @@ class CheckOutViewController: UIViewController {
             phoneNameTextField.heightAnchor.constraint(equalToConstant: 50),
             
             adressLabel.topAnchor.constraint(equalTo: phoneLabel.bottomAnchor, constant: 10),
-            adressLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
+            adressLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             adressLabel.heightAnchor.constraint(equalToConstant: 50),
             adressLabel.widthAnchor.constraint(equalToConstant: 80),
             
@@ -166,10 +187,26 @@ class CheckOutViewController: UIViewController {
             adressTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
             adressTextField.heightAnchor.constraint(equalToConstant: 50),
             
-            checkButton.topAnchor.constraint(equalTo: adressTextField.bottomAnchor, constant: 100),
-            checkButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
-            checkButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
-            checkButton.heightAnchor.constraint(equalToConstant: 50),
+            //MARK: terms and condition
+            checkButton.topAnchor.constraint(equalTo: adressLabel.bottomAnchor, constant: 25),
+            checkButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 50),
+            checkButton.heightAnchor.constraint(equalToConstant: 20),
+            checkButton.widthAnchor.constraint(equalToConstant: 20),
+            
+            
+            shertleriButton.topAnchor.constraint(equalTo: adressTextField.bottomAnchor, constant: 10),
+            shertleriButton.leadingAnchor.constraint(equalTo: checkButton.trailingAnchor, constant: 20),
+            shertleriButton.heightAnchor.constraint(equalToConstant: 50),
+
+            readAndAcceptLabel.centerYAnchor.constraint(equalTo: shertleriButton.centerYAnchor),
+            readAndAcceptLabel.leadingAnchor.constraint(equalTo: shertleriButton.trailingAnchor, constant: 10),
+            readAndAcceptLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            readAndAcceptLabel.heightAnchor.constraint(equalToConstant: 50),
+            
+            finishButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            finishButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            finishButton.heightAnchor.constraint(equalToConstant: 40),
+            finishButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
             
             
             

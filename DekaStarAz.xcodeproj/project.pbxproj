@@ -35,6 +35,10 @@
 		106042AD2B4F3BCA003BD0CC /* DekaStarAz.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 106042AB2B4F3BCA003BD0CC /* DekaStarAz.xcdatamodeld */; };
 		106042AF2B4F3BCB003BD0CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 106042AE2B4F3BCB003BD0CC /* Assets.xcassets */; };
 		106042B22B4F3BCB003BD0CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 106042B02B4F3BCB003BD0CC /* LaunchScreen.storyboard */; };
+		1060EB192B8FCE6400FE8912 /* CheckOutSuccessPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1060EB182B8FCE6400FE8912 /* CheckOutSuccessPageViewController.swift */; };
+		1060EB1B2B8FCEDA00FE8912 /* CheckOutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1060EB1A2B8FCEDA00FE8912 /* CheckOutViewModel.swift */; };
+		1060EB1D2B8FCF1300FE8912 /* CheckOutManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1060EB1C2B8FCF1300FE8912 /* CheckOutManager.swift */; };
+		1060EB1F2B8FCF2F00FE8912 /* CheckOutUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1060EB1E2B8FCF2F00FE8912 /* CheckOutUseCase.swift */; };
 		107168AF2B5BCA4C005D7F36 /* BannerEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107168AE2B5BCA4C005D7F36 /* BannerEndpoint.swift */; };
 		107168B12B5BCAE1005D7F36 /* BannerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107168B02B5BCAE1005D7F36 /* BannerModel.swift */; };
 		107168B42B5BCBFC005D7F36 /* NetworkHelperLinker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 107168B32B5BCBFC005D7F36 /* NetworkHelperLinker.swift */; };
@@ -123,6 +127,10 @@
 		106042AE2B4F3BCB003BD0CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		106042B12B4F3BCB003BD0CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		106042B32B4F3BCB003BD0CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1060EB182B8FCE6400FE8912 /* CheckOutSuccessPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckOutSuccessPageViewController.swift; sourceTree = "<group>"; };
+		1060EB1A2B8FCEDA00FE8912 /* CheckOutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckOutViewModel.swift; sourceTree = "<group>"; };
+		1060EB1C2B8FCF1300FE8912 /* CheckOutManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckOutManager.swift; sourceTree = "<group>"; };
+		1060EB1E2B8FCF2F00FE8912 /* CheckOutUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckOutUseCase.swift; sourceTree = "<group>"; };
 		107168AE2B5BCA4C005D7F36 /* BannerEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerEndpoint.swift; sourceTree = "<group>"; };
 		107168B02B5BCAE1005D7F36 /* BannerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerModel.swift; sourceTree = "<group>"; };
 		107168B32B5BCBFC005D7F36 /* NetworkHelperLinker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelperLinker.swift; sourceTree = "<group>"; };
@@ -211,6 +219,8 @@
 			children = (
 				103264F62B8D35B200C2BB1E /* CheckoutBuilder.swift */,
 				10E26A462B8E233C00062547 /* CheckOutViewController.swift */,
+				1060EB182B8FCE6400FE8912 /* CheckOutSuccessPageViewController.swift */,
+				1060EB1A2B8FCEDA00FE8912 /* CheckOutViewModel.swift */,
 			);
 			path = CheckoutPage;
 			sourceTree = "<group>";
@@ -395,6 +405,7 @@
 				108060D52B6E3732005E6217 /* ProductUseCase.swift */,
 				10A8D6112B6FDBA00036D63F /* FilterUseCase.swift */,
 				10A515312B8B7C5B00A22C12 /* SettingUseCase.swift */,
+				1060EB1E2B8FCF2F00FE8912 /* CheckOutUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -405,6 +416,7 @@
 				107168BE2B5BD158005D7F36 /* HomePageManager.swift */,
 				108060D32B6E3715005E6217 /* ProductManager.swift */,
 				10A5153F2B8BA12F00A22C12 /* SettingManager.swift */,
+				1060EB1C2B8FCF1300FE8912 /* CheckOutManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -579,6 +591,7 @@
 				105A33872B56E47C00E8CBC2 /* HomeCollectionCell.swift in Sources */,
 				107168B12B5BCAE1005D7F36 /* BannerModel.swift in Sources */,
 				103743942B51720400BB7CA8 /* HomeViewController.swift in Sources */,
+				1060EB1D2B8FCF1300FE8912 /* CheckOutManager.swift in Sources */,
 				106042AD2B4F3BCA003BD0CC /* DekaStarAz.xcdatamodeld in Sources */,
 				10F150662B6158490049D670 /* FilterEntriesModel.swift in Sources */,
 				1037438D2B51714200BB7CA8 /* TabBarController.swift in Sources */,
@@ -587,6 +600,7 @@
 				10BE9FED2B6D4FA5006F4D51 /* ProductDetailedViewController.swift in Sources */,
 				10F150702B61779C0049D670 /* HomeBannerView.swift in Sources */,
 				10A515422B8BA2A200A22C12 /* SettingDetailViewModel.swift in Sources */,
+				1060EB1F2B8FCF2F00FE8912 /* CheckOutUseCase.swift in Sources */,
 				10A8D60D2B6FB5830036D63F /* ProductDetailedHeader.swift in Sources */,
 				10A5153D2B8B979300A22C12 /* SettingDetailedPageController.swift in Sources */,
 				108060D62B6E3732005E6217 /* ProductUseCase.swift in Sources */,
@@ -614,6 +628,7 @@
 				108060D22B6E31CC005E6217 /* ProductModel.swift in Sources */,
 				10BE9FEA2B6D436A006F4D51 /* ProductsViewModel.swift in Sources */,
 				10A515322B8B7C5B00A22C12 /* SettingUseCase.swift in Sources */,
+				1060EB192B8FCE6400FE8912 /* CheckOutSuccessPageViewController.swift in Sources */,
 				10A8D60B2B6FB4C30036D63F /* ProductDetailedCell.swift in Sources */,
 				104DF75B2B7516C800CAA897 /* FilterPageTitleTextfieldCell.swift in Sources */,
 				103743962B51721D00BB7CA8 /* CategoryViewController.swift in Sources */,
@@ -636,6 +651,7 @@
 				108060D82B6E37DE005E6217 /* ProductEndpoint.swift in Sources */,
 				1079FDE02B7773C800D382BF /* FilterBuilder.swift in Sources */,
 				10F1506E2B6162900049D670 /* HomeItemUseCase.swift in Sources */,
+				1060EB1B2B8FCEDA00FE8912 /* CheckOutViewModel.swift in Sources */,
 				107168BD2B5BD00A005D7F36 /* BannerListUseCase.swift in Sources */,
 				107168AF2B5BCA4C005D7F36 /* BannerEndpoint.swift in Sources */,
 				103264F72B8D35B200C2BB1E /* CheckoutBuilder.swift in Sources */,

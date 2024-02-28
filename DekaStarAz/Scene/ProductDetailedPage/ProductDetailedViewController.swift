@@ -50,8 +50,8 @@ class ProductDetailedViewController: UIViewController{
             } else {
                 print("Failed to read products from file.")
             }
-            let emptyItem: [ProductModel] = []
-            self.filemManager.writeDataToFile(data: emptyItem, fileSelection: .favorite)
+//            let emptyItem: [ProductModel] = []
+//            self.filemManager.writeDataToFile(data: emptyItem, fileSelection: .favorite)
         }
         
         filemManager.readDataFromFile(fileSelection: .basket) { (items: [ProductModel]?) in
@@ -60,8 +60,8 @@ class ProductDetailedViewController: UIViewController{
             } else {
                 print("Failed to read products from file.")
             }
-            let emptyItem: [ProductModel] = []
-            self.filemManager.writeDataToFile(data: emptyItem, fileSelection: .basket)
+//            let emptyItem: [ProductModel] = []
+//            self.filemManager.writeDataToFile(data: emptyItem, fileSelection: .basket)
         }
     }
     

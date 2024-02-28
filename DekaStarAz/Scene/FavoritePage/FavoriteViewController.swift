@@ -65,9 +65,7 @@ class FavoriteViewController: UIViewController {
     func configureConstraint() {
         view.addSubview(table)
         view.addSubview(noItems)
-//         
-//        noItems.isHidden = viewModel.favItemsfromFile.isEmpty ? false :  true
-//        table.isHidden = viewModel.favItemsfromFile.isEmpty ? true :  false
+        
         NSLayoutConstraint.activate([
             table.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             table.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
@@ -118,7 +116,6 @@ extension FavoriteViewController: UITableViewDataSource, UITableViewDelegate {
             viewModel.favItemsfromFile.remove(at: indexPath.item)            
             let fileManager = FileManagerHelper()
             fileManager.writeDataToFile(data: viewModel.favItemsfromFile, fileSelection: .favorite)
-            //filemManager.writeDataToFile(products: viewModel.favItemsfromFile)
             configureViewModel()
         }
     

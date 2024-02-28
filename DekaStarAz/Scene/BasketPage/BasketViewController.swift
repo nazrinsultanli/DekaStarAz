@@ -26,11 +26,33 @@ class BasketViewController: UIViewController {
         let label = UILabel()
         label.numberOfLines = 1
         label.textColor = .black
+        label.text = "Atam qerdesim bura MAL yoxdu"
+        label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 18, weight: .bold)
         return label
     }()
     
+    lazy var totalPriceText: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 1
+        label.textColor = .black
+        label.text = "Total:"
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 18, weight: .bold)
+        return label
+    }()
+    
+    lazy var totalPriceLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 1
+        label.textColor = .black
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 18, weight: .medium)
+        return label
+    }()
     private lazy var checkOutButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Check Out Et", for: .normal)
@@ -45,7 +67,7 @@ class BasketViewController: UIViewController {
    @objc func checkOutButtonTapped() {
        let controller = CheckOutViewController()
        controller.builder = viewModel.builder
-       controller.totalCheckOutPrice = viewModel.totalCheckOutPrice
+       controller.totalCheckOutPrice = viewModel.calculateTotalPrice()
        viewModel.writeToBuilder()
        navigationController?.show(controller, sender: nil)
     }
@@ -55,48 +77,64 @@ class BasketViewController: UIViewController {
         navigationItem.title = "Secilmishler"
         view.backgroundColor = .white
         configureConstraint()
+    }
+    override func viewWillAppear(_ animated: Bool) {
         configureViewModel()
-        
     }
     
     func configureViewModel() {
         viewModel.readBasketProductsFromFile { [weak self] in
             self?.table.reloadData()
+            self?.configureVisibility()
+            self?.totalPriceLabel.text = "\(String(describing: self?.viewModel.calculateTotalPrice() ?? 0.0)) AZN"
         }
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        configureVisibility()
     }
     
     func configureVisibility() {
         if viewModel.basketItemsfromFile.isEmpty {
             noItems.isHidden = false
             table.isHidden = true
+            totalPriceText.isHidden = true
+            totalPriceLabel.isHidden = true
         } else {
             noItems.isHidden = true
             table.isHidden = false
+            totalPriceText.isHidden = false
+            totalPriceLabel.isHidden = false
         }
     }
 
+    
     func configureConstraint() {
         view.addSubview(table)
         view.addSubview(noItems)
         view.addSubview(checkOutButton)
-//
-//        noItems.isHidden = viewModel.favItemsfromFile.isEmpty ? false :  true
-//        table.isHidden = viewModel.favItemsfromFile.isEmpty ? true :  false
+        view.addSubview(totalPriceText)
+        view.addSubview(totalPriceLabel)
+
         NSLayoutConstraint.activate([
             table.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
 //            table.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             table.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             table.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             
-            checkOutButton.topAnchor.constraint(equalTo: table.bottomAnchor, constant: 10),
+            totalPriceText.topAnchor.constraint(equalTo: table.bottomAnchor, constant: 10),
+            totalPriceText.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+            totalPriceText.heightAnchor.constraint(equalToConstant: 20),
+            
+            totalPriceLabel.topAnchor.constraint(equalTo: table.bottomAnchor, constant: 10),
+            totalPriceLabel.leadingAnchor.constraint(equalTo: totalPriceText.trailingAnchor, constant: 20),
+            totalPriceLabel.heightAnchor.constraint(equalToConstant: 20),
+          //  totalPriceText.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            //totalPriceText.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            
+            checkOutButton.topAnchor.constraint(equalTo: totalPriceText.bottomAnchor, constant: 10),
             checkOutButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             checkOutButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
-            checkOutButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            checkOutButton.heightAnchor.constraint(equalToConstant: 40),
+            checkOutButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
+            
+            
             
             
             noItems.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),

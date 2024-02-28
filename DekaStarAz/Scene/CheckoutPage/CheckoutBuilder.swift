@@ -35,3 +35,19 @@ class CheckoutBuilder {
 //        ]
 //    }
 }
+
+//
+//class PurchaseBuilder {
+//    var car: Car?
+//    var address: String?
+//    var cardNumber: String?
+//    
+//    func build() -> [String: Any] {
+//        guard let car = car else { return [:] }
+//        return ["item": car, "address": address ?? "", "cardNumber": cardNumber ?? ""]
+//    }
+//    
+//    func buildPurchaseModel() -> PurchaseModel {
+//        .init(car: car, address: address, cardNumber: cardNumber)
+//    }
+//}
