@@ -8,10 +8,9 @@
 import UIKit
 
 class HomeViewController: UIViewController {
-    //let dataSource = ["Az", "En", "Ru"]
+    private var dropdownMenu: DropdownMenu? // MARK: dropdown
     
     var viewModel = HomeViewModel()
-    private var dropdownMenu: DropdownMenu?
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -51,28 +50,43 @@ class HomeViewController: UIViewController {
             configureViewModel()
         }
 
-        private func configureUI() {
-            navigationItem.title = "listTitle".localized
-            view.backgroundColor = .white
+    private func configureUI() {
+        navigationItem.title = "listTitle".localized
+        view.backgroundColor = .white
+        // configureDrowDownMenu()
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            image: UIImage(systemName: "magnifyingglass"),
+            style: .done,
+            target: self,
+            action:  #selector(searchButton)
+        )
+    }
+    
+    @objc func searchButton() {
+        let cv = ProductsViewController()
+        navigationController?.show(cv, sender: nil)
+    }
+    
+    func configureDrowDownMenu() {  // MARK: dropdown
+        let dropdownButton = UIButton(type: .custom)
+        dropdownButton.setTitle("Language", for: .normal)
+        dropdownButton.setTitleColor(.black, for: .normal)
+        dropdownButton.addTarget(self, action: #selector(dropdownButtonTapped(sender:)), for: .touchUpInside)
 
-            let dropdownButton = UIButton(type: .custom)
-            dropdownButton.setTitle("Language", for: .normal)
-            dropdownButton.setTitleColor(.black, for: .normal)
-            dropdownButton.addTarget(self, action: #selector(dropdownButtonTapped(sender:)), for: .touchUpInside)
+        let dropdownMenu = DropdownMenu(items: ["az", "en", "ru"])
+        dropdownMenu.delegate = self
+        dropdownMenu.isHidden = true
+        view.addSubview(dropdownMenu)
+        self.dropdownMenu = dropdownMenu
 
-            let dropdownMenu = DropdownMenu(items: ["az", "en", "ru"])
-            dropdownMenu.delegate = self
-            dropdownMenu.isHidden = true
-            view.addSubview(dropdownMenu)
-            self.dropdownMenu = dropdownMenu
-
-            let dropdownBarButtonItem = UIBarButtonItem(customView: dropdownButton)
-            navigationItem.rightBarButtonItem = dropdownBarButtonItem
-        }
+        let dropdownBarButtonItem = UIBarButtonItem(customView: dropdownButton)
+        navigationItem.rightBarButtonItem = dropdownBarButtonItem
+    }
 
 
     
-    @objc func dropdownButtonTapped(sender: UIButton) {
+    @objc func dropdownButtonTapped(sender: UIButton) {  // MARK: dropdown
         guard let dropdownMenu = dropdownMenu else { return }
         dropdownMenu.isHidden = !dropdownMenu.isHidden
 
@@ -172,7 +186,7 @@ extension HomeViewController: HomeCollectionCellDelegate {
     }
     
 }
-extension HomeViewController: DropdownMenuDelegate {
+extension HomeViewController: DropdownMenuDelegate {  // MARK: dropdown
     func didSelectItem(item: String) {
         // Update the title of the dropdownButton
         if let customView = navigationItem.rightBarButtonItem?.customView as? UIButton {
@@ -198,5 +212,9 @@ extension HomeViewController: DropdownMenuDelegate {
 //        let controller = MovieDetailedCoordinator(navigationController: navigationController ?? UINavigationController(), movieID: movie)
 //        controller.start()
 //       }
+
+
+
+
 
 

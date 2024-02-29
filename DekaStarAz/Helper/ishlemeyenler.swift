@@ -11,10 +11,9 @@ import Foundation
 // silende index problemi +
 // filter-de uygun cateqoriyanin kolleksiyasi ve brendleri +
 
-
+//search - https://www.youtube.com/watch?v=m56ff75tZyI
 // checkout
 // tableview autodimension collection view-
-// filter-de temizle buttonu
 // cordinator yoxdu
 // initilize elemek dependency
 
