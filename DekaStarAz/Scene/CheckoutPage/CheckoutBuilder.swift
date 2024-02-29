@@ -8,7 +8,7 @@
 import Foundation
 class CheckoutBuilder {
     var chekoutItems:  CheckoutModel?
-    var cartItems: [CartModel]?
+    var cartItems = [CartModel]()
     
 
     var name: String?
@@ -20,8 +20,8 @@ class CheckoutBuilder {
         [ "name": name ?? "",
           "phone": phone ?? "",
           "address": address ?? "",
-          "terms_agreed": termsAgreed ?? "",
-          "cart": cartItems ?? []
+          "terms_agreed": termsAgreed ?? false,
+          "cart": cartItems
         ]
     }
     

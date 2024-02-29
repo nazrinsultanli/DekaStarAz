@@ -28,8 +28,13 @@ class CheckOutViewController: UIViewController {
         textField.font = UIFont.systemFont(ofSize: 14)
         textField.borderStyle = .roundedRect
         textField.textAlignment = .left
+        textField.autocorrectionType = .no
+        textField.keyboardType = .default
+        textField.returnKeyType = .next
+        textField.clearButtonMode = .whileEditing
         return textField
     }()
+
     
     private let phoneLabel: UILabel = {
         let label = UILabel()
@@ -47,6 +52,10 @@ class CheckOutViewController: UIViewController {
         textField.font = UIFont.systemFont(ofSize: 14)
         textField.borderStyle = .roundedRect
         textField.textAlignment = .left
+        textField.autocorrectionType = .no
+        textField.keyboardType = .numberPad
+        textField.returnKeyType = .next
+        textField.clearButtonMode = .whileEditing
         return textField
     }()
     
@@ -66,6 +75,10 @@ class CheckOutViewController: UIViewController {
         textField.font = UIFont.systemFont(ofSize: 14)
         textField.borderStyle = .roundedRect
         textField.textAlignment = .left
+        textField.autocorrectionType = .no
+        textField.keyboardType = .default
+        textField.returnKeyType = .done
+        textField.clearButtonMode = .whileEditing
         return textField
     }()
     
@@ -90,6 +103,7 @@ class CheckOutViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
+    
     
     private lazy var shertleriButton: UIButton = {
         let button = UIButton()
@@ -127,8 +141,9 @@ class CheckOutViewController: UIViewController {
         builder?.name = fullNameTextField.text
         builder?.address = adressTextField.text
         builder?.phone = phoneNameTextField.text
-        builder?.termsAgreed = stateCheck
+        builder?.termsAgreed = !stateCheck
         let controller = CheckOutSuccessPageViewController()
+        controller.viewModel.builder = builder
         navigationController?.show(controller, sender: nil)
     }
     

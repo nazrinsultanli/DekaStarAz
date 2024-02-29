@@ -12,13 +12,7 @@ class BasketViewModel {
     var basketItemsfromFile = [ProductModel]()
     let fileHelper = FileManagerHelper()
     var builder = CheckoutBuilder()    
-    
-    func addBasketProduct() {
-        if let item = basketItem {
-            basketItemsfromFile.append(item)
-            fileHelper.writeDataToFile(data: basketItemsfromFile, fileSelection: .basket)
-        }
-    }
+
     
     func readBasketProductsFromFile (completion: @escaping () -> Void) {
         fileHelper.readDataFromFile(fileSelection: .basket) { (basketProducts: [ProductModel]?) in
@@ -36,7 +30,7 @@ class BasketViewModel {
                                      quantity: basketItem.userQuantity,
                                      productID: basketItem.id, 
                                      productQuantityType: basketItem.quantityType)
-            builder.cartItems?.append(eachItem)
+            builder.cartItems.append(eachItem)
         }
     }
     

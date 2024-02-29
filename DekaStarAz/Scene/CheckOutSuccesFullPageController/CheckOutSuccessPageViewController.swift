@@ -26,6 +26,7 @@ class CheckOutSuccessPageViewController: UIViewController {
         navigationItem.title = "page"
         view.backgroundColor = .white
         configureConstraint()
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         configureViewModel()
@@ -38,7 +39,14 @@ class CheckOutSuccessPageViewController: UIViewController {
         }
         viewModel.success =  {
             self.totalPriceLabel.text = "successfully Done!"
+            self.dismissBackPage()
         }
+    }
+    func dismissBackPage() {
+        self.navigationItem.leftBarButtonItem = nil;
+        self.navigationItem.hidesBackButton = true;
+        self.navigationController?.navigationItem.backBarButtonItem?.isEnabled = false;
+        self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false;
     }
     
     func configureConstraint() {

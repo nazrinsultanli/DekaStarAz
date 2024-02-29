@@ -86,7 +86,7 @@ class FilterPageController: UIViewController {
     private func configureConstraints() {
         view.addSubview(collectionView)
         view.addSubview(tamamlaButton)
-        view.addSubview(temizleButton)
+        //view.addSubview(temizleButton)
         
         NSLayoutConstraint.activate([
             
@@ -99,15 +99,17 @@ class FilterPageController: UIViewController {
             tamamlaButton.topAnchor.constraint(equalTo: collectionView.bottomAnchor),
             tamamlaButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,constant: 0),
             tamamlaButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,constant: 0),
-            tamamlaButton.bottomAnchor.constraint(equalTo: temizleButton.topAnchor,constant: -10),
+//            tamamlaButton.bottomAnchor.constraint(equalTo: temizleButton.topAnchor,constant: -10),
+            tamamlaButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,constant: -10),
+
 //            tamamlaButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,constant: 0),
             tamamlaButton.heightAnchor.constraint(equalToConstant: 80),
             
 //            temizleButton.topAnchor.constraint(equalTo: tamamlaButton.bottomAnchor, constant: 10),
-            temizleButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,constant: 0),
-            temizleButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,constant: 0),
-            temizleButton.heightAnchor.constraint(equalToConstant: 80),
-            temizleButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,constant: 0),
+//            temizleButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,constant: 0),
+//            temizleButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,constant: 0),
+//            temizleButton.heightAnchor.constraint(equalToConstant: 80),
+//            temizleButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,constant: 0),
         
         ])
     }

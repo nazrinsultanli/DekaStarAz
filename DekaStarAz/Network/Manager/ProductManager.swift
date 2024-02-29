@@ -10,7 +10,7 @@ import Foundation
 class ProductManager: ProductUseCase, FilterUseCase {
     func getFilterSpecificEntries(categoryKey: String, completion: @escaping ((FilterEntriesModel?, String?) -> Void)) {
         NetworkManager.request(model: FilterEntriesModel.self,
-                               url: ProductEndpoint.filterEntriesEndoint.rawValue + categoryKey,
+                               url: ProductEndpoint.filterSomeEntries.rawValue + categoryKey,
                                completion: completion)
     }
     

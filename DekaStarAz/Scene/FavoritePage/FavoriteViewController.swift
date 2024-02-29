@@ -26,7 +26,7 @@ class FavoriteViewController: UIViewController {
         let label = UILabel()
         label.numberOfLines = 1
         label.textColor = .black
-        label.text = "Atam qerdesim bura MAL yoxdu"
+        label.text = "Sevilenler qutusu Boshdur"
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 18, weight: .bold)

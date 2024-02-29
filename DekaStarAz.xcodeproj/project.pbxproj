@@ -219,8 +219,6 @@
 			children = (
 				103264F62B8D35B200C2BB1E /* CheckoutBuilder.swift */,
 				10E26A462B8E233C00062547 /* CheckOutViewController.swift */,
-				1060EB182B8FCE6400FE8912 /* CheckOutSuccessPageViewController.swift */,
-				1060EB1A2B8FCEDA00FE8912 /* CheckOutViewModel.swift */,
 			);
 			path = CheckoutPage;
 			sourceTree = "<group>";
@@ -284,6 +282,7 @@
 				103743922B5171DC00BB7CA8 /* FavoritePage */,
 				103743912B5171D400BB7CA8 /* BasketPage */,
 				103264F52B8D2F3100C2BB1E /* CheckoutPage */,
+				1074D70D2B90FDFD00BA2F45 /* CheckOutSuccesFullPageController */,
 				103743902B5171C600BB7CA8 /* SettingPage */,
 				10A5153B2B8B972100A22C12 /* SettingDetailedPage */,
 			);
@@ -419,6 +418,15 @@
 				1060EB1C2B8FCF1300FE8912 /* CheckOutManager.swift */,
 			);
 			path = Manager;
+			sourceTree = "<group>";
+		};
+		1074D70D2B90FDFD00BA2F45 /* CheckOutSuccesFullPageController */ = {
+			isa = PBXGroup;
+			children = (
+				1060EB182B8FCE6400FE8912 /* CheckOutSuccessPageViewController.swift */,
+				1060EB1A2B8FCEDA00FE8912 /* CheckOutViewModel.swift */,
+			);
+			path = CheckOutSuccesFullPageController;
 			sourceTree = "<group>";
 		};
 		1079FDE32B77782D00D382BF /* FilterView */ = {

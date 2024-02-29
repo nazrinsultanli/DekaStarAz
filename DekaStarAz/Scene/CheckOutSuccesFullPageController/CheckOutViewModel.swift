@@ -13,10 +13,10 @@ class CheckOutViewModel {
     var error: ((String) -> Void)?
     
     func postData() {
-        manager.getPrododuct(postData: builder?.chekoutBuild() ?? [:]) { data, errorMessage in
+        manager.postBasketProducts(postData: builder?.chekoutBuild() ?? [:]) { data, errorMessage in
             if let errorMessage {
                 self.error?(errorMessage)
-            } else if let data {
+            } else if data != nil {
                 self.success?()
             }
         }

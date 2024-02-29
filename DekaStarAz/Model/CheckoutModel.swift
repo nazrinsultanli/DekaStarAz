@@ -9,7 +9,7 @@ import Foundation
 
 
 // MARK: - checkout
-struct CheckoutModel: Codable {
+struct CheckoutModel: Codable , Equatable{
     let name, phone, address: String?
     let termsAgreed: Bool?
     let cart: [CartModel]?
@@ -22,7 +22,7 @@ struct CheckoutModel: Codable {
 }
 
 // MARK: - Cart
-struct CartModel: Codable {
+struct CartModel: Codable, Equatable {
     let price: String?
     let quantity, productID: Int?
     let productQuantityType: String?

@@ -100,7 +100,7 @@ extension ProductsViewController: UICollectionViewDataSource, UICollectionViewDe
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        .init(width: collectionView.frame.width/2-20, height: 260)
+        .init(width: collectionView.frame.width/2-20, height: 180)
     }
     
     

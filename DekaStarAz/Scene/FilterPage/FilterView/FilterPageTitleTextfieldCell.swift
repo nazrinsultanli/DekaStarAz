@@ -26,6 +26,10 @@ class FilterPageTitleTextfieldCell: UICollectionViewCell {
         textField.font = UIFont.systemFont(ofSize: 14)
         textField.borderStyle = .roundedRect
         textField.textAlignment = .left
+        textField.autocorrectionType = .no
+        textField.keyboardType = .numberPad
+        textField.returnKeyType = .done
+        textField.clearButtonMode = .whileEditing
         return textField
     }()
     

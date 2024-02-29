@@ -42,7 +42,7 @@ class ProductsViewModel {
     func getItems(type: HomePageItemType) {
         switch type {
         case .discounted:
-            manager.getHomeItems(endPoint: HomeItemsEndpoint.recentEndpoint){ data, errorMessage in
+            manager.getHomeItems(endPoint: HomeItemsEndpoint.discountedEndpoint){ data, errorMessage in
                 if let errorMessage {
                     self.error?(errorMessage)
                 } else if let data {
@@ -52,7 +52,7 @@ class ProductsViewModel {
                 }
             }
         case .recent:
-            manager.getHomeItems(endPoint: HomeItemsEndpoint.discountedEndpoint){ data, errorMessage in
+            manager.getHomeItems(endPoint: HomeItemsEndpoint.recentEndpoint){ data, errorMessage in
                 if let errorMessage {
                     self.error?(errorMessage)
                 } else if let data {

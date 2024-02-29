@@ -36,7 +36,7 @@ class FilterDetailController: UIViewController {
     
     private func configureUI() {
         title = viewModel?.filterType?.rawValue
-        view.backgroundColor = .systemGray4
+        view.backgroundColor = .white
         
     }
     

@@ -6,14 +6,16 @@
 //
 
 import Foundation
+import Alamofire
 class CheckOutManager: CheckOutUseCase {
-    func getPrododuct(postData:[String: Any],
+    func postBasketProducts(postData:[String: Any],
                       completion: @escaping ((CheckoutModel?, String?) -> Void)) {
         
         NetworkManager.request(model: CheckoutModel.self,
                                url: CheckOutEndpoint.checkOutEndpoint.rawValue,
                                method: .post,
                                parameters: postData,
+                               encoding: JSONEncoding.default,
                                completion: completion)
     }
 }

@@ -9,10 +9,11 @@ import Foundation
 // favTabinda mal olmayanda mal yoxdu sozu gorunmur +
 // elave eden kimi fav-a gorunmurdu +
 // silende index problemi +
+// filter-de uygun cateqoriyanin kolleksiyasi ve brendleri +
+
 
 // checkout
 // tableview autodimension collection view-
-// filter-de uygun cateqoriyanin kolleksiyasi ve brendleri
 // filter-de temizle buttonu
 // cordinator yoxdu
 // initilize elemek dependency

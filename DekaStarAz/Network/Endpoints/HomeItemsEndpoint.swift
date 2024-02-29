@@ -8,6 +8,6 @@
 import Foundation
 
 enum HomeItemsEndpoint: String {
-    case recentEndpoint = "store/products?type=new&lang=az"
+    case recentEndpoint = "store/products?type=new"
     case discountedEndpoint = "store/products?type=discounted&lang=az"
 }

@@ -7,5 +7,5 @@
 
 import Foundation
 protocol CheckOutUseCase {
-    func getPrododuct(postData:[String: Any], completion: @escaping ((CheckoutModel?, String?) -> Void))
+    func postBasketProducts(postData:[String: Any], completion: @escaping ((CheckoutModel?, String?) -> Void))
 }
