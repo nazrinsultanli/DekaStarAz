@@ -50,6 +50,3 @@ class ProductManager: ProductUseCase, FilterUseCase {
     }
 }
 
-
-//https://dekastar.az/api/store/products?collection={collection.slug}&in_stock=1&min_price=10&max_price=417&category=laminat&lang=az
-//https://www.dekastar.az/store/categories/kateqoriya-1?brand=brand-1&collection=kolleksiya-1&min_price=480&max_price=1049

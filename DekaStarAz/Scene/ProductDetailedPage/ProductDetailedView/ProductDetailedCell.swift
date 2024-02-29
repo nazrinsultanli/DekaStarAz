@@ -298,10 +298,5 @@ extension ProductDetailedCell: UITextFieldDelegate {
             delegate?.textFieldDidEndEditing(text )
         }
     }
-//    func textFieldDidEndEditing(_ textField: UITextField) {
-//            if let text = sayTextField.text, let indexPath = indexPath {
-//                delegate?.textFieldDidEndEditing(text, indexPath: indexPath)
-//            }
-//        }
 }
 

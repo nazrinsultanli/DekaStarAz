@@ -7,9 +7,9 @@
 
 import UIKit
 
-class FilterPageTitleTextfieldCell: UICollectionViewCell {
+class FilterPageTitleTextfieldCell1: UICollectionViewCell {
     var filterType: FilterItemsNames?
-    static let reuseID = "FilterPageTitleTextfieldCell"
+    static let reuseID = "FilterPageTitleTextfieldCell1"
     var filterBuilder: FilterBuilder?
     private let filterNameLabel: UILabel = {
         let label = UILabel()

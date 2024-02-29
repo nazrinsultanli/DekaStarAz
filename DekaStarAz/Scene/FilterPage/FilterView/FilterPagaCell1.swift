@@ -7,8 +7,8 @@
 
 import UIKit
 
-class FilterPagaCell: UICollectionViewCell {
-    static let reuseID = "FilterPagaCell"
+class FilterPagaCell1: UICollectionViewCell {
+    static let reuseID = "FilterPagaCell1"
     
     private let filterNameLabel: UILabel = {
         let label = UILabel()

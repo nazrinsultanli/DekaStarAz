@@ -8,9 +8,9 @@
 
 import UIKit
 
-class FilterPageTitleButtonCell: UICollectionViewCell {
+class FilterPageTitleButtonCell1: UICollectionViewCell {
 
-    static let reuseID = "FilterPageTitleButtonCell"
+    static let reuseID = "FilterPageTitleButtonCell1"
     var filterBuilder: FilterBuilder?
     var stateButton = false
     private let filterNameLabel: UILabel = {
