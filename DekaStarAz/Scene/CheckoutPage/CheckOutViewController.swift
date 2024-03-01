@@ -97,7 +97,7 @@ class CheckOutViewController: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle("Tamamla", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .systemBlue
+        button.backgroundColor = .systemIndigo
         button.layer.cornerRadius = 8.0
         button.addTarget(self, action: #selector(tamamlaButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -112,7 +112,7 @@ class CheckOutViewController: UIViewController {
         button.setTitle("shertleri", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
 
-        button.setTitleColor(.blue, for: .normal)
+        button.setTitleColor(.systemIndigo, for: .normal)
         //button.addTarget(self, action: #selector(didChecked), for: .touchUpInside)
         return button
     }()

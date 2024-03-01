@@ -12,7 +12,9 @@ struct SpecificProductModel {
 }
 
 class ProductsViewModel {
+    
     private let manager = HomePageManager()
+    private let searchManager = SearchManager()
     var success: (() -> Void)?
     var error: ((String) -> Void)?
     var categorySlugId: String?
@@ -21,24 +23,41 @@ class ProductsViewModel {
     var homeItemsType: HomePageItemType?
     var filterManager = ProductManager()
     var filterItemsInfo: FilterItemsStructModel?
-    var searchText = ""
+    var searchText: String?
+   
     
     var specificProductSlugs = [SpecificProductModel]()
     
     func getAllItems(){
-        if filterItemsInfo == nil && ((searchText?.isEmpty) ){
+        print("searchj viewM: \(searchText)")
+        if searchText  != nil {
             productsItems.removeAll()
-            if let homeItemsType = homeItemsType {
-                getItems(type: homeItemsType)
+            getSearchItems(searchedText: searchText ?? "")
+        } else {
+            if filterItemsInfo == nil  {
+                productsItems.removeAll()
+                if let homeItemsType = homeItemsType {
+                    getItems(type: homeItemsType)
+                }
+            }
+            else{
+                productsItems.removeAll()
+                if let item = filterItemsInfo {
+                    getFilteredItems(items: item)
+                }
             }
         }
-        else if {
-            
-        }
-        else{
-            productsItems.removeAll()
-            if let item = filterItemsInfo {
-                getFilteredItems(items: item)
+
+    }
+    
+    func getSearchItems(searchedText: String) {
+        searchManager.getSearchItems(searchText: searchedText){ data, errorMessage in
+            if let errorMessage {
+                self.error?(errorMessage)
+            } else if let data {
+                self.product = data
+                self.productsItems.append(contentsOf:data.results ?? [])
+                self.success?()
             }
         }
     }

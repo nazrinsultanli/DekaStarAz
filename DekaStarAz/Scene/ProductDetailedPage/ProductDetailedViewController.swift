@@ -46,12 +46,9 @@ class ProductDetailedViewController: UIViewController{
         filemManager.readDataFromFile(fileSelection: .favorite) { (items: [ProductModel]?) in
             if let items = items {
                 self.favoriteDataFromFile = items
-                //filemManager.writeDataToFile(data: [], fileSelection: .favorite)
             } else {
                 print("Failed to read products from file.")
             }
-//            let emptyItem: [ProductModel] = []
-//            self.filemManager.writeDataToFile(data: emptyItem, fileSelection: .favorite)
         }
         
         filemManager.readDataFromFile(fileSelection: .basket) { (items: [ProductModel]?) in
@@ -60,8 +57,6 @@ class ProductDetailedViewController: UIViewController{
             } else {
                 print("Failed to read products from file.")
             }
-//            let emptyItem: [ProductModel] = []
-//            self.filemManager.writeDataToFile(data: emptyItem, fileSelection: .basket)
         }
     }
     

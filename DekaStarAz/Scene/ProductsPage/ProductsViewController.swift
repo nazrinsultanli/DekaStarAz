@@ -25,6 +25,17 @@ class ProductsViewController: UIViewController {
         return collection
     }()
 
+    lazy var noItems: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 1
+        label.textColor = .black
+        label.text = "Mehsul Tapilmadi"
+        label.textAlignment = .center
+        label.isHidden = true
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = .systemFont(ofSize: 18, weight: .bold)
+        return label
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -66,20 +77,39 @@ class ProductsViewController: UIViewController {
             print("Error:\(errorMessage)")
         }
         viewModel.success =  {
+            self.configureVisibility()
             self.collectionView.delegate = self
             self.collectionView.dataSource = self
             self.collectionView.reloadData()
+           
         }
     }
 
+    func configureVisibility() {
+        if viewModel.productsItems.isEmpty {
+            noItems.isHidden = false
+            collectionView.isHidden = true
+        } else {
+            noItems.isHidden = true
+            collectionView.isHidden = false
+        }
+    }
     private func configureConstraints() {
         view.addSubview(collectionView)
+        view.addSubview(noItems)
         
         NSLayoutConstraint.activate([
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
             collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,constant: 0),
             collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,constant: 0),
-            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,constant: 0)])
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,constant: 0),
+        
+            noItems.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            noItems.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            noItems.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            noItems.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+        
+        ])
     }
 
 }

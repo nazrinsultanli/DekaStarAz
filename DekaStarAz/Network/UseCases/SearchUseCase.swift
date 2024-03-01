@@ -7,6 +7,6 @@
 
 import Foundation
 protocol SearchUseCase {
-    func getHomeItems(endPoint: SearchEndpoint, completion: @escaping((HomePageProductsModel?,String?) ->Void))
+    func getSearchItems(searchText: String, completion: @escaping((HomePageProductsModel?,String?) ->Void))
     
 }

@@ -9,6 +9,7 @@ import UIKit
 import UIKit
 
 class SettingViewController: UIViewController {
+    private var dropdownMenu: DropdownMenu? // MARK: dropdown
     var viewModel = SettingViewModel()
     private lazy var tableView: UITableView = {
         let table = UITableView()
@@ -30,11 +31,46 @@ class SettingViewController: UIViewController {
     private func configureUI() {
         title = "Daha cox"
         view.backgroundColor = .white
+        configureDrowDownMenu()
     }
 
     private func configureViewModel() {
         tableView.reloadData()
     }
+    func configureDrowDownMenu() {  // MARK: dropdown
+        let dropdownButton = UIButton(type: .custom)
+        dropdownButton.setTitle("Language", for: .normal)
+        dropdownButton.setTitleColor(.black, for: .normal)
+        dropdownButton.addTarget(self, action: #selector(dropdownButtonTapped(sender:)), for: .touchUpInside)
+
+        let dropdownMenu = DropdownMenu(items: ["az", "en", "ru"])
+        dropdownMenu.delegate = self
+        dropdownMenu.isHidden = true
+        view.addSubview(dropdownMenu)
+        self.dropdownMenu = dropdownMenu
+
+        let dropdownBarButtonItem = UIBarButtonItem(customView: dropdownButton)
+        navigationItem.rightBarButtonItem = dropdownBarButtonItem
+    }
+
+
+    
+    @objc func dropdownButtonTapped(sender: UIButton) {  // MARK: dropdown
+        guard let dropdownMenu = dropdownMenu else { return }
+        dropdownMenu.isHidden = !dropdownMenu.isHidden
+
+        if dropdownMenu.isHidden {
+            dropdownMenu.removeFromSuperview()
+        } else {
+            if let superview = sender.superview, let navigationBar = navigationController?.navigationBar {
+                let origin = CGPoint(x: navigationBar.frame.origin.x + navigationBar.frame.size.width - dropdownMenu.frame.size.width, y: navigationBar.frame.origin.y + navigationBar.frame.size.height)
+                dropdownMenu.frame.origin = origin
+                dropdownMenu.frame.size = CGSize(width: 100, height: 120)
+                view.addSubview(dropdownMenu)
+            }
+        }
+    }
+
 
     private func configureConstraints() {
         view.addSubview(tableView)
@@ -71,3 +107,18 @@ extension SettingViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
+
+extension SettingViewController: DropdownMenuDelegate {  // MARK: dropdown
+    func didSelectItem(item: String) {
+        // Update the title of the dropdownButton
+        if let customView = navigationItem.rightBarButtonItem?.customView as? UIButton {
+            customView.setTitle(item, for: .normal)
+        }
+
+        // Remove the dropdownMenu from its superview
+        dropdownMenu?.removeFromSuperview()
+
+        // Handle any other logic related to the selected item
+        print("Selected item: \(item)")
+    }
+}

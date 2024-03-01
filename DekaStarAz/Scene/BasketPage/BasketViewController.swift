@@ -57,7 +57,7 @@ class BasketViewController: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle("Check Out Et", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .systemBlue
+        button.backgroundColor = .systemIndigo
         button.layer.cornerRadius = 8.0
         button.addTarget(self, action: #selector(checkOutButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false

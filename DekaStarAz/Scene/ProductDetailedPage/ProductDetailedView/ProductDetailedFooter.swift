@@ -20,7 +20,7 @@ class ProductDetailedFooter: UICollectionReusableView {
         let button = UIButton(type: .system)
         button.setTitle("Favorite Elave Et", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .systemBlue
+        button.backgroundColor = .systemPurple
         button.layer.cornerRadius = 8.0
         button.addTarget(self, action: #selector(favButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -31,7 +31,7 @@ class ProductDetailedFooter: UICollectionReusableView {
         let button = UIButton(type: .system)
         button.setTitle("Baskete Elave Et", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .blue
+        button.backgroundColor = .systemIndigo
         button.layer.cornerRadius = 8.0
         button.addTarget(self, action: #selector(basketButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -79,7 +79,7 @@ class ProductDetailedFooter: UICollectionReusableView {
         addToFavoriteButton.backgroundColor = .systemGreen
     
         UIView.animate(withDuration: 1.0, delay: 0, options: .curveEaseInOut, animations: {
-            self.addToFavoriteButton.backgroundColor = .systemBlue
+            self.addToFavoriteButton.backgroundColor = .systemPurple
         }, completion: nil)
         delegate?.didTapBFavorite(state: true)
     }
@@ -88,7 +88,7 @@ class ProductDetailedFooter: UICollectionReusableView {
         addToBasketButton.backgroundColor = .green
     
         UIView.animate(withDuration: 1.0, delay: 0, options: .curveEaseInOut, animations: {
-            self.addToBasketButton.backgroundColor = .blue
+            self.addToBasketButton.backgroundColor = .systemIndigo
         }, completion: nil)
         delegate?.didTapBasket(state: true)
 

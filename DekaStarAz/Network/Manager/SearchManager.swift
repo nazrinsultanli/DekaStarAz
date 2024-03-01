@@ -6,12 +6,13 @@
 //
 
 import Foundation
-class SearchManager:SearchUseCase {
-    func getHomeItems(endPoint: SearchEndpoint, completion: @escaping ((HomePageProductsModel?, String?) -> Void)) {
+class SearchManager: SearchUseCase {
+    func getSearchItems(searchText: String, completion: @escaping ((HomePageProductsModel?, String?) -> Void)) {
         NetworkManager.request(model: HomePageProductsModel.self,
-                               url: endPoint.rawValue,
+                               url: SearchEndpoint.searchEndpoint.rawValue + searchText ,
                                completion: completion)
     }
     
+   
     
 }

@@ -36,9 +36,9 @@ class HomeCollectionCell: UICollectionViewCell {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .clear
-        button.setTitle("see all", for: .normal)
+        button.setTitle("hamisina bax", for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 12, weight: .bold)
-        button.setTitleColor(.blue, for: .normal)
+        button.setTitleColor(.systemIndigo, for: .normal)
         return button
     }()
     

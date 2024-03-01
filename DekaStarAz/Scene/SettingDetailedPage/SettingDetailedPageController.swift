@@ -8,6 +8,7 @@
 import UIKit
 
 class SettingDetailedPageController: UIViewController {
+    
     var viewModel: SettingDetailViewModel?
     private lazy var tableView: UITableView = {
         let table = UITableView()
@@ -31,6 +32,7 @@ class SettingDetailedPageController: UIViewController {
     private func configureUI() {
         title = viewModel?.settingType?.rawValue
         view.backgroundColor = .white
+        
     }
 
     private func configureViewModel() {
@@ -44,6 +46,7 @@ class SettingDetailedPageController: UIViewController {
             self.tableView.reloadData()
         }
     }
+    
 
     private func configureConstraints() {
         view.addSubview(tableView)
@@ -94,3 +97,4 @@ extension SettingDetailedPageController: UITableViewDataSource, UITableViewDeleg
         tableView.frame.width*2/3
     }
 }
+

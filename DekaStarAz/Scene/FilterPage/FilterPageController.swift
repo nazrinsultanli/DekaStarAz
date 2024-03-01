@@ -27,7 +27,7 @@ class FilterPageController: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle("Tamamla", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .blue
+        button.backgroundColor = .systemIndigo
         button.layer.cornerRadius = 8.0
         button.addTarget(self, action: #selector(tamamlaButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false

@@ -11,12 +11,28 @@ import Foundation
 // silende index problemi +
 // filter-de uygun cateqoriyanin kolleksiyasi ve brendleri +
 // checkout +
+//search +
 
-//search - https://www.youtube.com/watch?v=m56ff75tZyI
 
+// sf controller
 // tableview autodimension collection view-
 // cordinator yoxdu
 // initilize elemek dependency
 
 // dil meselesi
 
+
+
+
+
+//
+//    func didSelectSeeAll(endpoint: MovieEndpoint) {
+//        let controller = SeeAllCoordinator(navigationController: navigationController ?? UINavigationController(), endpoint: endpoint)
+//        controller.start()
+//    }
+//
+//    func didSelectMovie(_ movie: Int) {
+//        print(movie)
+//        let controller = MovieDetailedCoordinator(navigationController: navigationController ?? UINavigationController(), movieID: movie)
+//        controller.start()
+//       }

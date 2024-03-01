@@ -217,22 +217,15 @@ class ProductDetailedCell: UICollectionViewCell {
         generalStack.addArrangedSubview(sayStack)
         generalStack.distribution = .fillEqually
         generalStack.translatesAutoresizingMaskIntoConstraints = false
-      //  generalStack.alignment = .fill
-
         
         contentView.addSubview(modelNameLabel)
         contentView.addSubview(originalPriceLabel)
         contentView.addSubview(discountedPriceLAbel)
         contentView.addSubview(generalStack)
         contentView.addSubview(descriptionLabel)
-        
-//        modelNameLabel.backgroundColor = .red
-//        originalPriceLabel.backgroundColor = .green
-//        discountedPriceLAbel.backgroundColor = .purple
-////        leftStack.backgroundColor = .yellow
-////        rightStack.backgroundColor = .gray
+
         descriptionLabel.backgroundColor = .lightGray
-//        
+     
         NSLayoutConstraint.activate([
             
             unitLabel.widthAnchor.constraint(equalToConstant: 100),
@@ -266,7 +259,7 @@ class ProductDetailedCell: UICollectionViewCell {
             descriptionLabel.topAnchor.constraint(equalTo: generalStack.bottomAnchor),
             descriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             descriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            //descriptionLabel.heightAnchor.constraint(equalToConstant: 200),
+//            descriptionLabel.heightAnchor.constraint(equalToConstant: 200),
             descriptionLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
 
             
