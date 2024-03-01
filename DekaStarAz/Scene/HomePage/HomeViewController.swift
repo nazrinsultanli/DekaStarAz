@@ -10,6 +10,8 @@ import UIKit
 class HomeViewController: UIViewController {
     private var dropdownMenu: DropdownMenu? // MARK: dropdown
     
+    let searchBar = UISearchBar()
+    
     var viewModel = HomeViewModel()
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -51,21 +53,56 @@ class HomeViewController: UIViewController {
         }
 
     private func configureUI() {
-        navigationItem.title = "listTitle".localized
+//        navigationItem.title = "listTitle".localized
         view.backgroundColor = .white
         // configureDrowDownMenu()
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(
-            image: UIImage(systemName: "magnifyingglass"),
-            style: .done,
-            target: self,
-            action:  #selector(searchButton)
-        )
+        searchBar.sizeToFit()
+        searchBar.delegate = self
+        searchBar.tintColor = .white
+        searchBar.barTintColor = .white
+        searchBar.backgroundColor = .white
+        
+//
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.title = "listTitle".localized
+        navigationController?.navigationBar.barTintColor = UIColor(red: 55/255, green: 120/255, blue: 250/255, alpha: 1)
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.barStyle = .black
+        navigationController?.navigationBar.tintColor = .white
+        showSearchBarButton(shouldShow: true)
+        
+        
+        
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(
+//            image: UIImage(systemName: "magnifyingglass"),
+//            style: .done,
+//            target: self,
+//            action:  #selector(searchButton)
+//        )
+    }
+    
+    func showSearchBarButton(shouldShow: Bool) {
+        if shouldShow {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search,
+                                                                target: self,
+                                                                action: #selector(searchButton))
+        } else {
+            navigationItem.rightBarButtonItem = nil
+
+        }
+    }
+    func search(shouldShow: Bool) {
+        showSearchBarButton(shouldShow: !shouldShow)
+        searchBar.showsCancelButton = shouldShow
+        navigationItem.titleView = shouldShow ? searchBar : nil
     }
     
     @objc func searchButton() {
-        let cv = ProductsViewController()
-        navigationController?.show(cv, sender: nil)
+//        let cv = ProductsViewController()
+//        navigationController?.show(cv, sender: nil)
+        search(shouldShow: true)
+        searchBar.becomeFirstResponder()
     }
     
     func configureDrowDownMenu() {  // MARK: dropdown
@@ -218,3 +255,24 @@ extension HomeViewController: DropdownMenuDelegate {  // MARK: dropdown
 
 
 
+
+
+extension HomeViewController: UISearchBarDelegate {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        search(shouldShow: false)
+    }
+
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        // Dismiss the keyboard
+        searchBar.resignFirstResponder()
+
+        // Show the results in another controller
+        let searchResultsController = ProductsViewController()
+        searchResultsController.viewModel.searchText = searchBar.text ?? ""
+        navigationController?.pushViewController(searchResultsController, animated: true)
+    }
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        print("dsd\(searchText)")
+    }
+}

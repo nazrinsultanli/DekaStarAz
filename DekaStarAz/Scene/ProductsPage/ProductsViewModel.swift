@@ -21,15 +21,19 @@ class ProductsViewModel {
     var homeItemsType: HomePageItemType?
     var filterManager = ProductManager()
     var filterItemsInfo: FilterItemsStructModel?
+    var searchText = ""
     
     var specificProductSlugs = [SpecificProductModel]()
     
     func getAllItems(){
-        if filterItemsInfo == nil {
+        if filterItemsInfo == nil && ((searchText?.isEmpty) ){
             productsItems.removeAll()
             if let homeItemsType = homeItemsType {
                 getItems(type: homeItemsType)
             }
+        }
+        else if {
+            
         }
         else{
             productsItems.removeAll()

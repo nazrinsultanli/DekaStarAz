@@ -10,14 +10,13 @@ import Foundation
 // elave eden kimi fav-a gorunmurdu +
 // silende index problemi +
 // filter-de uygun cateqoriyanin kolleksiyasi ve brendleri +
+// checkout +
 
 //search - https://www.youtube.com/watch?v=m56ff75tZyI
-// checkout
+
 // tableview autodimension collection view-
 // cordinator yoxdu
 // initilize elemek dependency
-
-
 
 // dil meselesi
 
