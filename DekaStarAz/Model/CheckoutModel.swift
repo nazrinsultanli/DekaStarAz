@@ -32,6 +32,12 @@ struct CartModel: Codable, Equatable {
         case productID = "product_id"
         case productQuantityType = "product_quantity_type"
     }
+    func toDictionary() -> [String: Any] {
+        return ["price": price ?? "",
+                "quantity": quantity ?? 0,
+                "product_id": productID ?? 0,
+                "product_quantity_type":productQuantityType ?? ""]
+    }
 }
 
 enum ProductUnit: String, Codable {

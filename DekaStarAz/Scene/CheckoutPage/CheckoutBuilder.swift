@@ -7,7 +7,7 @@
 
 import Foundation
 class CheckoutBuilder {
-    var chekoutItems:  CheckoutModel?
+    //var chekoutItems:  CheckoutModel?
     var cartItems = [CartModel]()
     
 
@@ -21,10 +21,11 @@ class CheckoutBuilder {
           "phone": phone ?? "",
           "address": address ?? "",
           "terms_agreed": termsAgreed ?? false,
-          "cart": cartItems
+          "cart": cartItems.map{ $0.toDictionary()}
         ]
     }
     
+
     
 //    func chekoutBuild() -> [String: Any]{
 //        [ "name": chekoutItems?.name ?? "",

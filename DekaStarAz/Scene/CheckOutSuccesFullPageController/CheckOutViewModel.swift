@@ -14,6 +14,8 @@ class CheckOutViewModel {
     
     func postData() {
         manager.postBasketProducts(postData: builder?.chekoutBuild() ?? [:]) { data, errorMessage in
+            print("dsadasdasdas")
+            print(data)
             if let errorMessage {
                 self.error?(errorMessage)
             } else if data != nil {
