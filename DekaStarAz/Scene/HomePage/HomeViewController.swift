@@ -52,28 +52,22 @@ class HomeViewController: UIViewController {
             configureViewModel()
         }
 
-
     private func configureUI() {
         view.backgroundColor = .white
 
         searchBar.sizeToFit()
         searchBar.delegate = self
-        searchBar.tintColor = .white
-        searchBar.barTintColor = .white
+        searchBar.tintColor = .black
+        searchBar.barTintColor = .black
 
-        // Update the navigation bar appearance
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "listTitle".localized
-        navigationController?.navigationBar.barTintColor = .systemIndigo
-        navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.barStyle = .black
-        navigationController?.navigationBar.tintColor = .white
+        navigationController?.navigationBar.tintColor = .systemIndigo
 
-        // Update the search bar appearance
         if let searchTextField = searchBar.value(forKey: "searchField") as? UITextField {
-            searchTextField.textColor = .white
+            searchTextField.textColor = .black
             if let placeholderLabel = searchTextField.value(forKey: "placeholderLabel") as? UILabel {
-                placeholderLabel.textColor = .white
+                placeholderLabel.textColor = .black
             }
         }
 
@@ -88,7 +82,6 @@ class HomeViewController: UIViewController {
                                                                 action: #selector(searchButton))
         } else {
             navigationItem.rightBarButtonItem = nil
-
         }
     }
     func search(shouldShow: Bool) {
@@ -102,8 +95,6 @@ class HomeViewController: UIViewController {
         searchBar.becomeFirstResponder()
     }
     
-   
-
     private func configureConstraints() {
         view.addSubview(collectionView)
         
@@ -170,8 +161,6 @@ extension HomeViewController: HomeCollectionCellDelegate {
         }
     }
     
-    
-    
     func didSelectSeeAll(itemType: HomePageItemType) {
         if itemType == .category {
             let controller = CategoryViewController()
@@ -193,10 +182,7 @@ extension HomeViewController: UISearchBarDelegate {
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        // Dismiss the keyboard
         searchBar.resignFirstResponder()
-
-        // Show the results in another controller
         let controller = ProductsViewController()
         controller.viewModel.searchText = searchBar.text ?? ""
         print("searc:")
