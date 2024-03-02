@@ -81,8 +81,9 @@ extension CategoryViewController:UICollectionViewDataSource, UICollectionViewDel
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let controller = ProductsViewController()
-        controller.viewModel.categorySlugId = viewModel.categoryItems[indexPath.item].slugId
-        controller.viewModel.homeItemsType = .category
+        controller.viewModel = .init(categorySlugId: viewModel.categoryItems[indexPath.item].slugId, homeItemsType: .category, searchText: nil)
+//        controller.viewModel.categorySlugId = viewModel.categoryItems[indexPath.item].slugId
+//        controller.viewModel.homeItemsType = .category
         navigationController?.show(controller, sender: nil)
     }
 }

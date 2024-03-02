@@ -119,7 +119,6 @@ extension FilterPageController: UITableViewDataSource, UITableViewDelegate {
             cell.backgroundColor = .clear
             return cell
         }
-        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

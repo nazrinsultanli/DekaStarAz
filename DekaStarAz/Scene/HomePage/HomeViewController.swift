@@ -151,10 +151,16 @@ extension HomeViewController:UICollectionViewDataSource, UICollectionViewDelegat
 extension HomeViewController: HomeCollectionCellDelegate {
     func didSelectProductId(item: String, itemType: HomePageItemType) {
         if itemType == .category {
-            let controller = ProductsViewController()
-            controller.viewModel.categorySlugId = item
-            controller.viewModel.homeItemsType = itemType
-            navigationController?.show(controller, sender: nil)
+            
+            let controller = ProductsViewCoordinator(categorySlugId: item,
+                                                     homeItemsType: itemType,
+                                                     searchText: nil,
+                                                     navigationController: UINavigationController())
+            controller.start()
+//            let controller = ProductsViewController()
+//            controller.viewModel = .init(categorySlugId: item, homeItemsType: itemType, searchText:  nil)
+            
+//            navigationController?.show(controller, sender: nil)
         }
         else {
             let controller = ProductDetailedViewController()
@@ -170,9 +176,15 @@ extension HomeViewController: HomeCollectionCellDelegate {
             tabBarController?.selectedIndex = 1
         }
         else {
-            let controller = ProductsViewController()
-            controller.viewModel.homeItemsType  = itemType
-            navigationController?.show(controller, sender: nil)
+            let controller = ProductsViewCoordinator(categorySlugId: "",
+                                                     homeItemsType: itemType,
+                                                     searchText: nil,
+                                                     navigationController: UINavigationController())
+            controller.start()
+//            
+//            let controller = ProductsViewController()
+//            controller.viewModel = .init(categorySlugId: "", homeItemsType: itemType, searchText: nil)
+//            navigationController?.show(controller, sender: nil)
         }
     }
 }
@@ -185,10 +197,17 @@ extension HomeViewController: UISearchBarDelegate {
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-        let controller = ProductsViewController()
-        controller.viewModel.searchText = searchBar.text ?? ""
+        
+        let controller = ProductsViewCoordinator(categorySlugId: "",
+                                                 homeItemsType: nil,
+                                                 searchText: searchBar.text ?? "",
+                                                 navigationController: UINavigationController())
+        controller.pushStart()
+        
+//        let controller = ProductsViewController()
+//        controller.viewModel = .init(categorySlugId: "", homeItemsType: nil, searchText: searchBar.text ?? "")
         print("searc:")
         print(searchBar.text ?? "" )
-        navigationController?.pushViewController(controller, animated: true)
+//        navigationController?.pushViewController(controller, animated: true)
     }
 }

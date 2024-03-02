@@ -25,8 +25,13 @@ class ProductsViewModel {
     var searchText: String?
     var specificProductSlugs = [SpecificProductModel]()
     
+    init(categorySlugId: String, homeItemsType: HomePageItemType?, searchText: String?) {
+        self.categorySlugId = categorySlugId
+        self.homeItemsType = homeItemsType
+        self.searchText = searchText
+    }
+    
     func getAllItems(){
-        print("searchj viewM: \(searchText)")
         if searchText  != nil {
             productsItems.removeAll()
             getSearchItems(searchedText: searchText ?? "")

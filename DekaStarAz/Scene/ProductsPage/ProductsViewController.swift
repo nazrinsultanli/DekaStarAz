@@ -8,9 +8,7 @@
 import UIKit
 
 class ProductsViewController: UIViewController {
-    
-    
-    var viewModel = ProductsViewModel()
+    var viewModel: ProductsViewModel?
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -39,7 +37,6 @@ class ProductsViewController: UIViewController {
     }()
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configureUI()
         configureConstraints()
         configureViewModel()
@@ -65,34 +62,32 @@ class ProductsViewController: UIViewController {
     @objc func filterButton() {
         let filterController = FilterPageController()
         filterController.filterCompleted = { [weak self] filterItemsModel in
-            self?.viewModel.filterItemsInfo = filterItemsModel
-            self?.viewModel.getAllItems()
+            self?.viewModel?.filterItemsInfo = filterItemsModel
+            self?.viewModel?.getAllItems()
         }
         navigationController?.pushViewController(filterController, animated: true)
     }
 
-    
     private func configureViewModel() {
-        viewModel.getAllItems()
-        viewModel.error = { errorMessage in
+        viewModel?.getAllItems()
+        viewModel?.error = { errorMessage in
             print("Error:\(errorMessage)")
         }
-        viewModel.success =  {
+        viewModel?.success =  {
             self.configureVisibility()
             self.collectionView.delegate = self
             self.collectionView.dataSource = self
             self.collectionView.reloadData()
-           
         }
     }
 
     func configureVisibility() {
-        if viewModel.productsItems.isEmpty {
-            noItems.isHidden = false
-            collectionView.isHidden = true
-        } else {
+        if ((viewModel?.productsItems.isEmpty) != nil) {
             noItems.isHidden = true
             collectionView.isHidden = false
+        } else {
+            noItems.isHidden = false
+            collectionView.isHidden = true
         }
     }
     private func configureConstraints() {
@@ -109,38 +104,36 @@ class ProductsViewController: UIViewController {
             noItems.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             noItems.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             noItems.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-        
         ])
     }
-
 }
 
 extension ProductsViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     //MARK: Collection view for rest Items
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
        // viewModel.categoryItems.count
-        viewModel.productsItems.count
+        viewModel?.productsItems.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
      
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopImageButtomLabelS.reuseID, for: indexPath) as! TopImageButtomLabelS
-        cell.configure(item: viewModel.productsItems[indexPath.item])
+        if let item = viewModel?.productsItems[indexPath.item] {
+            cell.configure(item: item)
+        }
         return cell
-    
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         .init(width: collectionView.frame.width/2-20, height: 180)
     }
     
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt  section: Int) -> UIEdgeInsets {
         .init(top: 10, left: 10, bottom: 0, right: 10)
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let controller = ProductDetailedViewController()
-        controller.viewModel.slug = viewModel.productsItems[indexPath.item].slug
+        controller.viewModel.slug = viewModel?.productsItems[indexPath.item].slug
         navigationController?.show(controller, sender: nil)
     }
 }
