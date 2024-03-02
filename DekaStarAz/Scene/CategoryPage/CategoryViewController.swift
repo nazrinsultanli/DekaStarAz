@@ -15,21 +15,16 @@ class CategoryViewController: UIViewController {
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        
-        let collection = UICollectionView(frame: .zero,
-                                          collectionViewLayout: layout)
+        let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.showsHorizontalScrollIndicator = false
         collection.translatesAutoresizingMaskIntoConstraints = false
-        collection.register(HomeKolleksiyaCell.self,
-                            forCellWithReuseIdentifier: HomeKolleksiyaCell.reuseID)
+        collection.register(HomeKolleksiyaCell.self, forCellWithReuseIdentifier: HomeKolleksiyaCell.reuseID)
         collection.backgroundColor = .clear
-       
         return collection
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configureUI()
         configureConstraints()
         configureViewModel()
@@ -63,7 +58,6 @@ class CategoryViewController: UIViewController {
             collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,constant: 0),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,constant: 0)])
     }
-
 }
 
 extension CategoryViewController:UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
@@ -73,17 +67,14 @@ extension CategoryViewController:UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-     
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeKolleksiyaCell.reuseID, for: indexPath) as! HomeKolleksiyaCell
         cell.configure(item: viewModel.categoryItems[indexPath.item])
         return cell
-    
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         .init(width: collectionView.frame.width-20, height: 260)
     }
-    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt  section: Int) -> UIEdgeInsets {
         .init(top: 10, left: 20, bottom: 0, right: 20)

@@ -11,7 +11,6 @@ import UIKit
 class FilterDetailController: UIViewController {
 
     var viewModel: FilterDetailViewModel?
-    
     var didSelectCategory: ((String) -> Void)?
     
     private lazy var tableView: UITableView = {
@@ -31,16 +30,11 @@ class FilterDetailController: UIViewController {
         configureConstraints()
         configureViewModel()
     }
-    
- 
-    
     private func configureUI() {
         title = viewModel?.filterType?.rawValue
         view.backgroundColor = UIColor(named: "backgroundColor")
-        
     }
     
-
     private func configureViewModel() {
         viewModel?.getfilterItems()
         viewModel?.error = { errorMessage in
@@ -60,7 +54,6 @@ class FilterDetailController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)])
     }
-
 }
 
 extension FilterDetailController: UITableViewDataSource, UITableViewDelegate {
@@ -80,7 +73,6 @@ extension FilterDetailController: UITableViewDataSource, UITableViewDelegate {
         switch viewModel?.filterType {
         case .category:
             viewModel?.filterBuilder?.category = viewModel?.filterItems[indexPath.row].slugId ?? ""
-//            viewModel.selectedCategory = viewModel.filterItems[indexPath.row].slugId
             didSelectCategory?(viewModel?.filterItems[indexPath.row].slugId ?? "")
         case .collection:
             viewModel?.filterBuilder?.collection = viewModel?.filterItems[indexPath.row].slugId ?? ""
@@ -90,7 +82,6 @@ extension FilterDetailController: UITableViewDataSource, UITableViewDelegate {
             break
         }
         navigationController?.popViewController(animated: true)
-        
     }
 }
 

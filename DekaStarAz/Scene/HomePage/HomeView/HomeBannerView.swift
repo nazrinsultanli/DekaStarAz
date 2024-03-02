@@ -51,16 +51,13 @@ class HomeBannerView: UICollectionReusableView {
             collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: bottomAnchor )
         ])
-        
     }
-    
 }
  
 extension HomeBannerView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         bannerItemsReusableView.count
     }
-    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeBannerCell.reuseID, for: indexPath) as! HomeBannerCell
         cell.configure(item: bannerItemsReusableView[indexPath.item])
@@ -69,6 +66,4 @@ extension HomeBannerView: UICollectionViewDelegate, UICollectionViewDataSource, 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         .init(width: collectionView.frame.width, height: collectionView.frame.height)
     }
-    
-    
 }

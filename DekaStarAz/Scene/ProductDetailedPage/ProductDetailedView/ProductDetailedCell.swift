@@ -154,7 +154,6 @@ class ProductDetailedCell: UICollectionViewCell {
         return label
     }()
     
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         sayTextField.delegate = self
@@ -168,7 +167,6 @@ class ProductDetailedCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
     }
-
 
     private func configureConstraints() {
         let kodStack = UIStackView()
@@ -195,7 +193,6 @@ class ProductDetailedCell: UICollectionViewCell {
         movcudluqStack.translatesAutoresizingMaskIntoConstraints = false
         movcudluqStack.axis = .horizontal
         
-        
         let sayUnit = UIStackView()
         sayUnit.addArrangedSubview(sayTextField)
         sayUnit.addArrangedSubview(unitLabel)
@@ -203,13 +200,11 @@ class ProductDetailedCell: UICollectionViewCell {
         sayUnit.translatesAutoresizingMaskIntoConstraints = false
         sayUnit.spacing = 10
         
-        
         let sayStack = UIStackView()
         sayStack.addArrangedSubview(sayText)
         sayStack.addArrangedSubview(sayUnit)
         sayStack.translatesAutoresizingMaskIntoConstraints = false
         sayStack.axis = .horizontal
-        
         
         let generalStack = UIStackView()
         generalStack.axis = .vertical
@@ -230,7 +225,6 @@ class ProductDetailedCell: UICollectionViewCell {
         descriptionLabel.backgroundColor = .lightGray
      
         NSLayoutConstraint.activate([
-            
             unitLabel.widthAnchor.constraint(equalToConstant: 100),
             modelNameLabel.topAnchor.constraint(equalTo: topAnchor),
             modelNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -254,20 +248,16 @@ class ProductDetailedCell: UICollectionViewCell {
             sayText.widthAnchor.constraint(equalToConstant: 120),
             sayTextField.widthAnchor.constraint(equalToConstant: 80),
            
-           
             generalStack.topAnchor.constraint(equalTo: originalPriceLabel.bottomAnchor),
             generalStack.leadingAnchor.constraint(equalTo: leadingAnchor),
             generalStack.trailingAnchor.constraint(equalTo: trailingAnchor),
             generalStack.heightAnchor.constraint(equalToConstant: 180),
             
-
             descriptionLabel.topAnchor.constraint(equalTo: generalStack.bottomAnchor),
             descriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             descriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
 //            descriptionLabel.heightAnchor.constraint(equalToConstant: 200),
             descriptionLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
-
-            
         ])
     }
 
@@ -291,10 +281,9 @@ class ProductDetailedCell: UICollectionViewCell {
 }
 
 extension ProductDetailedCell: UITextFieldDelegate {
-  
     func textFieldDidChangeSelection(_ textField: UITextField) {
         if let text = sayTextField.text {
-            delegate?.textFieldDidEndEditing(text )
+            delegate?.textFieldDidEndEditing(text)
         }
     }
 }

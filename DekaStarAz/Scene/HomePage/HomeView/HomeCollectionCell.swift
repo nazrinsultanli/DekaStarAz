@@ -13,7 +13,6 @@ protocol HomeCollectionCellDelegate: AnyObject {
     func didSelectProductId(item: String, itemType: HomePageItemType )
 }
 
-
 class HomeCollectionCell: UICollectionViewCell {
     //2
     weak var delegate: HomeCollectionCellDelegate?
@@ -30,7 +29,6 @@ class HomeCollectionCell: UICollectionViewCell {
         label.numberOfLines = 0
         return label
     }()
-
     
     private let seeAllButton: UIButton = {
         let button = UIButton()
@@ -83,7 +81,6 @@ class HomeCollectionCell: UICollectionViewCell {
         stack.addArrangedSubview(titleLabel)
         stack.addArrangedSubview(seeAllButton)
         stack.axis = .horizontal
-       // stack.spacing = 4
         stack.translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(stack)
@@ -94,16 +91,13 @@ class HomeCollectionCell: UICollectionViewCell {
             stack.leadingAnchor.constraint(equalTo: leadingAnchor,constant: 20),
             stack.trailingAnchor.constraint(equalTo: trailingAnchor,constant: -20),
             seeAllButton.trailingAnchor.constraint(equalTo: stack.trailingAnchor),
-
+            
             collectionView.topAnchor.constraint(equalTo: stack.bottomAnchor, constant: 16),
             collectionView.leadingAnchor.constraint(equalTo: leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16)
         ])
-        
     }
-    
-   
 }
 
 extension HomeCollectionCell:  UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -143,7 +137,6 @@ extension HomeCollectionCell:  UICollectionViewDelegate, UICollectionViewDataSou
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt  section: Int) -> UIEdgeInsets {
-        
         return UIEdgeInsets.init(top: 0, left: 20, bottom: 0, right: 0)
         
     }
@@ -163,8 +156,6 @@ extension HomeCollectionCell:  UICollectionViewDelegate, UICollectionViewDataSou
             delegate?.didSelectProductId(item: homeItems[indexPath.item].slugId, itemType: .category ) // elebele
         default:
             delegate?.didSelectProductId(item: homeItems[indexPath.item].slugId, itemType: .discounted )
-           
         }
-
-        }
+    }
 }

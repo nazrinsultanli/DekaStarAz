@@ -12,10 +12,8 @@ class CategoryViewModel {
     var success: (() -> Void)?
     var error: ((String) -> Void)?
     var categoryItems = [HomePagesItemsProtocols]()
-   
   
     func getCategoryItem() {
-        
         manager.getCategoryList { data, errorMessage in
             if let errorMessage {
                 self.error?(errorMessage)
@@ -25,6 +23,4 @@ class CategoryViewModel {
             }
         }
     }
-
-
 }

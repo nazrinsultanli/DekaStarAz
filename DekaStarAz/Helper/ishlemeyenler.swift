@@ -11,15 +11,16 @@ import Foundation
 // silende index problemi +
 // filter-de uygun cateqoriyanin kolleksiyasi ve brendleri +
 // checkout +
-//search +
+// search +
+// sf controller+
 
 // - filterden detailed filtere kecende telefonda donur
-// sf controller
+
 // tableview autodimension collection view-
 // cordinator yoxdu -- 100 faiz qoy
 // initilize elemek dependency -- 100 qoy
 // pagination -- 100 faiz qoy
-// dil meselesi
+// dil meselesi ?? 
 
 
 

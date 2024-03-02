@@ -16,16 +16,13 @@ class ProductDetailedHeader: UICollectionReusableView {
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0
-        
-        let collection = UICollectionView(frame: .zero,
-                                          collectionViewLayout: layout)
+        let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.showsHorizontalScrollIndicator = false
         collection.translatesAutoresizingMaskIntoConstraints = false
         collection.delegate = self
         collection.dataSource = self
         collection.isPagingEnabled = true
-        collection.register(ProductDetailedHeaderCell.self,
-                            forCellWithReuseIdentifier: ProductDetailedHeaderCell.reuseID)
+        collection.register(ProductDetailedHeaderCell.self, forCellWithReuseIdentifier: ProductDetailedHeaderCell.reuseID)
         collection.backgroundColor = .clear
         return collection
     }()
@@ -51,34 +48,10 @@ class ProductDetailedHeader: UICollectionReusableView {
             collectionView.trailingAnchor.constraint(equalTo: trailingAnchor),
             collectionView.bottomAnchor.constraint(equalTo: bottomAnchor )
         ])
-        
     }
-    
 }
-// 
-//extension ProductDetailedHeader: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        singleProduct?.images?.count ?? 0
-//    }
-//    
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductDetailedHeaderCell.reuseID, for: indexPath) as! ProductDetailedHeaderCell
-//        if let image = singleProduct?.images?[indexPath.row] {
-//            cell.configure(item: image)
-//        }
-//        
-//        return cell
-//    }
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        .init(width: collectionView.frame.width, height: collectionView.frame.height)
-//    }
-//    
-//    
-//}
 
 extension ProductDetailedHeader: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
            singleProduct?.images?.count ?? 0
        }
@@ -88,7 +61,6 @@ extension ProductDetailedHeader: UICollectionViewDelegate, UICollectionViewDataS
            if let image = singleProduct?.images?[indexPath.row] {
                cell.configure(item: image)
            }
-   
            return cell
        }
        func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

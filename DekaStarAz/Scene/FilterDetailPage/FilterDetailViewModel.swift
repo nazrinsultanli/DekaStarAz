@@ -12,16 +12,13 @@ class FilterDetailViewModel {
     var filterBuilder: FilterBuilder?
     var filterType: FilterItemsNames?
     var filterItems = [HomePagesItemsProtocols]()
-    
     var selectedCategory: String?
-    
     var success: (() -> Void)?
     var error: ((String) -> Void)?
     
     init(filterBuilder: FilterBuilder, filterType: FilterItemsNames) {
         self.filterBuilder = filterBuilder
         self.filterType = filterType
-        
         selectedCategory = filterBuilder.selectedCategory
     }
     
@@ -48,7 +45,6 @@ class FilterDetailViewModel {
             }
             
         case .brand:
-            
             manager.getFilterSpecificEntries(categoryKey: selectedCategory ?? "")  { data, errorMessage in
                 if let errorMessage {
                     self.error?(errorMessage)

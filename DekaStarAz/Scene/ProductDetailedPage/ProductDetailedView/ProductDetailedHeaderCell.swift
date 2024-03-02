@@ -31,7 +31,6 @@ class ProductDetailedHeaderCell: UICollectionViewCell {
         super.layoutSubviews()
     }
 
-    
     func configure(item: ProductImage) {
         imageView.loadImage(url: item.image ?? "" )
     }
@@ -43,8 +42,6 @@ class ProductDetailedHeaderCell: UICollectionViewCell {
             imageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             imageView.trailingAnchor.constraint(equalTo: trailingAnchor),
             imageView.bottomAnchor.constraint(equalTo: bottomAnchor ),
-
         ])
-        
     }
 }

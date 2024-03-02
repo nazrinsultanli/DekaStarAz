@@ -23,19 +23,16 @@ class HomeBannerCell: UICollectionViewCell {
         super.init(frame: frame)
         configureContraints()
     }
-    
     required init?(coder: NSCoder) {
         fatalError()
     }
     override func layoutSubviews() {
         super.layoutSubviews()
     }
-
-    
     func configure(item: BannerModel) {
         imageView.loadImage(url: item.image ?? "")
     }
-    
+
     private func configureContraints() {
         addSubview(imageView)
         NSLayoutConstraint.activate([
@@ -43,8 +40,6 @@ class HomeBannerCell: UICollectionViewCell {
             imageView.leadingAnchor.constraint(equalTo: leadingAnchor),
             imageView.trailingAnchor.constraint(equalTo: trailingAnchor),
             imageView.bottomAnchor.constraint(equalTo: bottomAnchor ),
-
         ])
-        
     }
 }

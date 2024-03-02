@@ -9,5 +9,4 @@ import Foundation
 
 class FilterViewModel {
     var filterItems: [FilterItemsNames] = FilterItemsNames.allCases
-        
 }

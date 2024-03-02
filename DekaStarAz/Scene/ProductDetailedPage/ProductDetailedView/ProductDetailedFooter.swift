@@ -27,7 +27,6 @@ class ProductDetailedFooter: UICollectionReusableView {
         button.titleLabel?.font = UIFont.systemFont(ofSize: 20)
         return button
     }()
-    
     private lazy var addToBasketButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Baskete Elave Et", for: .normal)
@@ -71,14 +70,10 @@ class ProductDetailedFooter: UICollectionReusableView {
             addToBasketButton.trailingAnchor.constraint(equalTo: addToFavoriteButton.trailingAnchor),
             addToBasketButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20 ),
             addToBasketButton.heightAnchor.constraint(equalToConstant: 60),
-            
-            
         ])
-        
     }
      
     @objc func favButtonTapped () {
-        // Change the color to green
         addToFavoriteButton.backgroundColor = .systemGreen
     
         UIView.animate(withDuration: 1.0, delay: 0, options: .curveEaseInOut, animations: {
@@ -94,7 +89,5 @@ class ProductDetailedFooter: UICollectionReusableView {
             self.addToBasketButton.backgroundColor = UIColor(named: "UniversalColor")
         }, completion: nil)
         delegate?.didTapBasket(state: true)
-
     }
-    
 }

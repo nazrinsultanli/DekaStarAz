@@ -9,7 +9,6 @@ import UIKit
 
 
 class FilterDetailListCell: UITableViewCell {
-
     static let reuseID = "FilterDetailListCell"
     
     private let filterNameLabel: UILabel = {
@@ -21,7 +20,6 @@ class FilterDetailListCell: UITableViewCell {
         return label
     }()
 
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureConstraints()

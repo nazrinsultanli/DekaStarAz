@@ -12,7 +12,6 @@ struct SpecificProductModel {
 }
 
 class ProductsViewModel {
-    
     private let manager = HomePageManager()
     private let searchManager = SearchManager()
     var success: (() -> Void)?
@@ -24,8 +23,6 @@ class ProductsViewModel {
     var filterManager = ProductManager()
     var filterItemsInfo: FilterItemsStructModel?
     var searchText: String?
-   
-    
     var specificProductSlugs = [SpecificProductModel]()
     
     func getAllItems(){
@@ -47,7 +44,6 @@ class ProductsViewModel {
                 }
             }
         }
-
     }
     
     func getSearchItems(searchedText: String) {

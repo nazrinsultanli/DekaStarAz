@@ -32,7 +32,6 @@ class FilterBuilder {
     var inStock: Bool?
     var minPrice: String?
     var maxPrice: String?
-    
     var selectedCategory: String?
     
     func build() -> FilterItemsStructModel {

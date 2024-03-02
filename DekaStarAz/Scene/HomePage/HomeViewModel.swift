@@ -27,7 +27,6 @@ class HomeViewModel {
     
     func getBanners() {
         manager.getBannerList(){ data, errorMessage in
-
             if let errorMessage {
                 self.error?(errorMessage)
             } else if let data {
@@ -36,13 +35,7 @@ class HomeViewModel {
             }
         }
     }
-    
-//    func getAllHomeItems() {
-//        getCategoryItem(endPoint: CategoryEndpoint.categoryEndpoint, title: "Categories", type: .category)
-//        getEachItems(endPoint: HomeItemsEndpoint.recentEndpoint, title: "Recent Products", type: .recent)
-//        getEachItems(endPoint: HomeItemsEndpoint.discountedEndpoint, title: "Discounted Products", type: .discounted)
-//    }
-    
+
     func getAllHomeItems() {
         getCategoryItem(endPoint: CategoryEndpoint.categoryEndpoint, title: "Categories", type: .category) {
             self.getEachItems(endPoint: HomeItemsEndpoint.recentEndpoint, title: "Recent Products", type: .recent) {
@@ -53,16 +46,12 @@ class HomeViewModel {
         }
     }
     
-    
     func getCategoryItem(endPoint: CategoryEndpoint, title: String, type: HomePageItemType, completion: @escaping () -> Void) {
-        
         manager.getCategoryList { data, errorMessage in
-            
             if let errorMessage {
                 self.error?(errorMessage)
             } else if let data {
                 self.homeItems.append(.init(title: title,  type: type, resultData: data ))
-                //self.success?()
                 completion()
             }
         }
@@ -74,7 +63,6 @@ class HomeViewModel {
                 self.error?(errorMessage)
             } else if let data {
                 self.homeItems.append(.init(title: title, type: type, resultData: data.results ?? []))
-                //self.success?()
                 completion()
             }
         }

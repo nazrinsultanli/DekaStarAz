@@ -11,7 +11,6 @@ protocol TextFieldFilterPageCellDelegate: AnyObject {
 
 import UIKit
 
-
 class FilterPageTitleTextfieldCell: UITableViewCell {
     var filterType: FilterItemsNames?
     static let reuseID = "FilterPageTitleTextfieldCell"
@@ -39,7 +38,6 @@ class FilterPageTitleTextfieldCell: UITableViewCell {
         textField.backgroundColor = .clear
         return textField
     }()
-    
     private let priceUnit: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -49,7 +47,6 @@ class FilterPageTitleTextfieldCell: UITableViewCell {
         label.numberOfLines = 0
         return label
     }()
-  
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -57,7 +54,6 @@ class FilterPageTitleTextfieldCell: UITableViewCell {
         contentView.backgroundColor = .clear
         priceField.delegate = self
         self.hideKeyboardWhenTappedAround()
-       
     }
     
     required init?(coder: NSCoder) {
@@ -67,20 +63,16 @@ class FilterPageTitleTextfieldCell: UITableViewCell {
         super.layoutSubviews()
     }
 
-
     private func configureConstraints() {
         contentView.addSubview(filterNameLabel)
         contentView.addSubview(priceField)
         contentView.addSubview(priceUnit)
-       // filterNameLabel.backgroundColor = .red
-        
         
         NSLayoutConstraint.activate([
             filterNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8),
             filterNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             //filterNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             filterNameLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
-            
             
             priceField.topAnchor.constraint(equalTo: topAnchor, constant: 8),
             priceField.leadingAnchor.constraint(equalTo: filterNameLabel.trailingAnchor, constant: 16),
@@ -93,10 +85,7 @@ class FilterPageTitleTextfieldCell: UITableViewCell {
 //            disclosureIndicator.trailingAnchor.constraint(equalTo: trailingAnchor),
             priceUnit.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
             priceUnit.widthAnchor.constraint(equalToConstant: 40),
-            priceUnit.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)
-            
-            
-            
+            priceUnit.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16) 
         ])
     }
     func configure(item: String, itemType: FilterItemsNames ){

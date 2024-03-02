@@ -14,18 +14,15 @@ class ProductDetailedViewController: UIViewController{
     let filemManager = FileManagerHelper()
     var favoriteDataFromFile: [ProductModel] = []
     var basketDataFromFile: [ProductModel] = []
-  
 
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         
-        let collection = UICollectionView(frame: .zero,
-                                          collectionViewLayout: layout)
+        let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.showsHorizontalScrollIndicator = false
         collection.translatesAutoresizingMaskIntoConstraints = false
-        collection.register(ProductDetailedCell.self,
-                            forCellWithReuseIdentifier: ProductDetailedCell.reuseID)
+        collection.register(ProductDetailedCell.self, forCellWithReuseIdentifier: ProductDetailedCell.reuseID)
         collection.register(ProductDetailedHeader.self,
                             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                             withReuseIdentifier: ProductDetailedHeader.reuseID)
@@ -38,7 +35,6 @@ class ProductDetailedViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configureUI()
         configureConstraints()
         configureViewModel()
@@ -66,7 +62,6 @@ class ProductDetailedViewController: UIViewController{
     private func configureUI() {
         title = "Products"
         view.backgroundColor = UIColor(named: "backgroundColor")
-        
     }
     private func configureViewModel() {
         viewModel.getSingleProduct()
@@ -89,8 +84,6 @@ class ProductDetailedViewController: UIViewController{
             collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,constant: 0),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,constant: 0)])
     }
-
-
 }
 
 
@@ -184,9 +177,4 @@ extension ProductDetailedViewController: TextFieldProductDetailCellDelegate {
         productQuantity = Int(text) ?? 0
         print("Entered text at indexPath : \(text)")
     }
-    
-  
-  
-    
-
 }
