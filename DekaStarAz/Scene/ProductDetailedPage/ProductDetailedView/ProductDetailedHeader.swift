@@ -26,7 +26,7 @@ class ProductDetailedHeader: UICollectionReusableView {
         collection.isPagingEnabled = true
         collection.register(ProductDetailedHeaderCell.self,
                             forCellWithReuseIdentifier: ProductDetailedHeaderCell.reuseID)
-        
+        collection.backgroundColor = .clear
         return collection
     }()
     

@@ -14,30 +14,31 @@ enum SettingItemsNames: String, CaseIterable {
     case contactData = "Elaqe"
     case privacyPolicy = "Mexfilik Siyaseti"
     case deliveryPolicy = "Catdirilma siyaseti"
-   
+    
 }
-enum SettingItemsLinks: String {
-    case aboutData = "https://dekastar.az/api/about"
-    case contactData = "https://dekastar.az/api/contact"
-    case privacyPolicy = "https://dekastar.az/api/privacy-policy"
-    case deliveryPolicy = "https://dekastar.az/api/delivery-policy"
-}
+
 struct SettingItemsStructModel {
     var aboutData: String
     var contactData: String
     var privacyPolicy: String
     var deliveryPolicy: String
-
 }
 
 class SettingViewModel {
     var settingItems: [SettingItemsNames] = SettingItemsNames.allCases
-    
-    
-    func settingItemSafari(link: SettingItemsLinks) {
-        if let url = URL(string: link.rawValue ) {
-                let safariViewController = SFSafariViewController(url: url)
-                UIApplication.shared.windows.first?.rootViewController?.present(safariViewController, animated: true, completion: nil)
-            }
+    func settingItemSafari(type: SettingItemsNames) {
+        var url: String?
+        switch type {
+        case .aboutData:
+            url = SafariLinks.aboutData.rawValue
+        case .contactData:
+            url = SafariLinks.contactData.rawValue
+        case .privacyPolicy:
+            url = SafariLinks.privacyPolicy.rawValue
+        case .deliveryPolicy:
+            url = SafariLinks.deliveryPolicy.rawValue
         }
+        
+        UIApplication.shared.presentSafariViewController(urlLink: url ?? "")
+    }
 }

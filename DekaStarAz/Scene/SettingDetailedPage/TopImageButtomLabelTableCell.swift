@@ -13,7 +13,7 @@ class TopImageButtomLabelTableCell: UITableViewCell {
     lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.textColor = .black
+        label.textColor = UIColor(named: "BlackWhite") // black
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 18, weight: .bold)
         label.textAlignment = .justified // Justify the text

@@ -8,6 +8,7 @@
 
 import Kingfisher
 import UIKit
+import SafariServices
 
 extension UIImageView {
     
@@ -47,3 +48,44 @@ extension String {
     }
 }
 
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+    
+
+}
+
+
+extension UIView {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        self.addGestureRecognizer(tap)
+    }
+
+    @objc func dismissKeyboard() {
+        self.endEditing(true)
+    }
+}
+
+
+extension UIApplication {
+    func presentSafariViewController(urlLink: String) {
+        guard let url = URL(string: urlLink) else {
+            return
+        }
+        
+        if let windowScene = self.connectedScenes.first as? UIWindowScene,
+           let sceneDelegate = windowScene.delegate as? SceneDelegate {
+            let safariViewController = SFSafariViewController(url: url)
+            sceneDelegate.window?.rootViewController?.present(safariViewController, animated: true, completion: nil)
+        }
+    }
+}

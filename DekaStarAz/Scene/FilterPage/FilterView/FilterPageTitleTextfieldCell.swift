@@ -1,20 +1,26 @@
 //
-//  FilterPageTitleTextfield.swift
+//  FilterPageTitleTextfieldCell.swift
 //  DekaStarAz
 //
-//  Created by Nazrin Sultanlı on 08.02.24.
+//  Created by Nazrin Sultanlı on 29.02.24.
 //
+
+protocol TextFieldFilterPageCellDelegate: AnyObject {
+    func textFieldDidEndEditing(_ text: String)
+}
 
 import UIKit
 
-class FilterPageTitleTextfieldCell1: UICollectionViewCell {
+
+class FilterPageTitleTextfieldCell: UITableViewCell {
     var filterType: FilterItemsNames?
-    static let reuseID = "FilterPageTitleTextfieldCell1"
+    static let reuseID = "FilterPageTitleTextfieldCell"
+    weak var delegate: TextFieldFilterPageCellDelegate?
     var filterBuilder: FilterBuilder?
     private let filterNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.font = UIFont.boldSystemFont(ofSize: 18)
         label.textAlignment = .left
         label.numberOfLines = 0
         return label
@@ -23,20 +29,21 @@ class FilterPageTitleTextfieldCell1: UICollectionViewCell {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "qiymet"
-        textField.font = UIFont.systemFont(ofSize: 14)
+        textField.font = UIFont.systemFont(ofSize: 16)
         textField.borderStyle = .roundedRect
         textField.textAlignment = .left
         textField.autocorrectionType = .no
         textField.keyboardType = .numberPad
         textField.returnKeyType = .done
         textField.clearButtonMode = .whileEditing
+        textField.backgroundColor = .clear
         return textField
     }()
     
     private let priceUnit: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont.boldSystemFont(ofSize: 16)
         label.textAlignment = .left
         label.text = "AZN"
         label.numberOfLines = 0
@@ -44,18 +51,13 @@ class FilterPageTitleTextfieldCell1: UICollectionViewCell {
     }()
   
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureConstraints()
-        
-        switch filterType {
-        case .minPrice:
-            filterBuilder?.minPrice = priceField.text
-        case .maxPrice:
-            filterBuilder?.maxPrice = priceField.text
-        default:
-            break
-        }
+        contentView.backgroundColor = .clear
+        priceField.delegate = self
+        self.hideKeyboardWhenTappedAround()
+       
     }
     
     required init?(coder: NSCoder) {
@@ -74,24 +76,24 @@ class FilterPageTitleTextfieldCell1: UICollectionViewCell {
         
         
         NSLayoutConstraint.activate([
-            filterNameLabel.topAnchor.constraint(equalTo: topAnchor),
-            filterNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            filterNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+            filterNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             //filterNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            filterNameLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
+            filterNameLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
             
             
-            priceField.topAnchor.constraint(equalTo: topAnchor),
-            priceField.leadingAnchor.constraint(equalTo: filterNameLabel.trailingAnchor),
+            priceField.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+            priceField.leadingAnchor.constraint(equalTo: filterNameLabel.trailingAnchor, constant: 16),
 //            disclosureIndicator.trailingAnchor.constraint(equalTo: trailingAnchor),
-            priceField.bottomAnchor.constraint(equalTo: bottomAnchor),
+            priceField.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
             priceField.widthAnchor.constraint(equalToConstant: 100),
             
-            priceUnit.topAnchor.constraint(equalTo: topAnchor),
+            priceUnit.topAnchor.constraint(equalTo: topAnchor, constant: 8),
             priceUnit.leadingAnchor.constraint(equalTo: priceField.trailingAnchor, constant: 20),
 //            disclosureIndicator.trailingAnchor.constraint(equalTo: trailingAnchor),
-            priceUnit.bottomAnchor.constraint(equalTo: bottomAnchor),
+            priceUnit.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
             priceUnit.widthAnchor.constraint(equalToConstant: 40),
-            priceUnit.trailingAnchor.constraint(equalTo: trailingAnchor)
+            priceUnit.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16)
             
             
             
@@ -100,5 +102,19 @@ class FilterPageTitleTextfieldCell1: UICollectionViewCell {
     func configure(item: String, itemType: FilterItemsNames ){
         filterNameLabel.text = item
         filterType = itemType
+    }
+}
+
+
+extension FilterPageTitleTextfieldCell: UITextFieldDelegate {
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        switch filterType {
+        case .minPrice:
+            filterBuilder?.minPrice = priceField.text
+        case .maxPrice:
+            filterBuilder?.maxPrice = priceField.text
+        default:
+            break
+        }
     }
 }

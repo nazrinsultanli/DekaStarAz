@@ -21,7 +21,7 @@ class TopImageButtomLabelS: UICollectionViewCell {
     private lazy var whiteUIView: UIView = {
         let whiteBack = UIView()
         whiteBack.translatesAutoresizingMaskIntoConstraints = false
-        whiteBack.backgroundColor = .systemGray6
+        whiteBack.backgroundColor = UIColor(named: "CellBackground")
         whiteBack.layer.cornerRadius = 10
 //        whiteBack.backgroundColor = .red
        // whiteBack.layer.borderWidth = 1
@@ -41,6 +41,7 @@ class TopImageButtomLabelS: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.textColor = .black
         label.textAlignment = .left
         label.numberOfLines = 0
         return label
@@ -51,6 +52,7 @@ class TopImageButtomLabelS: UICollectionViewCell {
         label.font = UIFont.boldSystemFont(ofSize: 12)
         label.textAlignment = .left
         label.numberOfLines = 0
+        label.textColor = .black
         return label
     }()
     
@@ -60,6 +62,7 @@ class TopImageButtomLabelS: UICollectionViewCell {
         label.font = UIFont.boldSystemFont(ofSize: 10)
         label.textAlignment = .left
         label.numberOfLines = 0
+        label.textColor = .black
         return label
     }()
     
@@ -69,11 +72,13 @@ class TopImageButtomLabelS: UICollectionViewCell {
         label.font = UIFont.boldSystemFont(ofSize: 10)
         label.textAlignment = .left
         label.numberOfLines = 0
+        label.textColor = .black
         return label
     }()
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureConstraints()
+        contentView.backgroundColor = .clear
     }
     
     required init?(coder: NSCoder) {

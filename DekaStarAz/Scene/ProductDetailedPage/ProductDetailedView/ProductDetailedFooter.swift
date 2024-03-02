@@ -20,10 +20,11 @@ class ProductDetailedFooter: UICollectionReusableView {
         let button = UIButton(type: .system)
         button.setTitle("Favorite Elave Et", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .systemPurple
+        button.backgroundColor = UIColor(named: "Universal2Color")
         button.layer.cornerRadius = 8.0
         button.addTarget(self, action: #selector(favButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 20)
         return button
     }()
     
@@ -31,10 +32,11 @@ class ProductDetailedFooter: UICollectionReusableView {
         let button = UIButton(type: .system)
         button.setTitle("Baskete Elave Et", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .systemIndigo
+        button.backgroundColor = UIColor(named: "UniversalColor")
         button.layer.cornerRadius = 8.0
         button.addTarget(self, action: #selector(basketButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 20)
         return button
     }()
     override init(frame: CGRect) {
@@ -60,14 +62,15 @@ class ProductDetailedFooter: UICollectionReusableView {
         
         NSLayoutConstraint.activate([
             addToFavoriteButton.topAnchor.constraint(equalTo: topAnchor, constant: 10),
-            addToFavoriteButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 15),
-            addToFavoriteButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -15),
-            addToBasketButton.heightAnchor.constraint(equalToConstant: 40),
+            addToFavoriteButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 20),
+            addToFavoriteButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -20),
+            addToFavoriteButton.heightAnchor.constraint(equalToConstant: 60),
             
             addToBasketButton.topAnchor.constraint(equalTo: addToFavoriteButton.bottomAnchor, constant: 10),
             addToBasketButton.leadingAnchor.constraint(equalTo: addToFavoriteButton.leadingAnchor),
             addToBasketButton.trailingAnchor.constraint(equalTo: addToFavoriteButton.trailingAnchor),
-            addToBasketButton.bottomAnchor.constraint(equalTo: bottomAnchor ),
+            addToBasketButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -20 ),
+            addToBasketButton.heightAnchor.constraint(equalToConstant: 60),
             
             
         ])
@@ -79,7 +82,7 @@ class ProductDetailedFooter: UICollectionReusableView {
         addToFavoriteButton.backgroundColor = .systemGreen
     
         UIView.animate(withDuration: 1.0, delay: 0, options: .curveEaseInOut, animations: {
-            self.addToFavoriteButton.backgroundColor = .systemPurple
+            self.addToFavoriteButton.backgroundColor =  UIColor(named: "Universal2Color")
         }, completion: nil)
         delegate?.didTapBFavorite(state: true)
     }
@@ -88,7 +91,7 @@ class ProductDetailedFooter: UICollectionReusableView {
         addToBasketButton.backgroundColor = .green
     
         UIView.animate(withDuration: 1.0, delay: 0, options: .curveEaseInOut, animations: {
-            self.addToBasketButton.backgroundColor = .systemIndigo
+            self.addToBasketButton.backgroundColor = UIColor(named: "UniversalColor")
         }, completion: nil)
         delegate?.didTapBasket(state: true)
 

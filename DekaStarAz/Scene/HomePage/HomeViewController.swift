@@ -21,6 +21,7 @@ class HomeViewController: UIViewController {
                                           collectionViewLayout: layout)
         collection.showsHorizontalScrollIndicator = false
         collection.translatesAutoresizingMaskIntoConstraints = false
+        collection.backgroundColor = .clear
         
         
         collection.register(HomeCollectionCell.self,
@@ -53,25 +54,26 @@ class HomeViewController: UIViewController {
         }
 
     private func configureUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: "backgroundColor")
 
         searchBar.sizeToFit()
         searchBar.delegate = self
-        searchBar.tintColor = .black
-        searchBar.barTintColor = .black
+        searchBar.tintColor = UIColor(named: "BlackWhite") // black
+        searchBar.barTintColor = UIColor(named: "BlackWhite") // black
 
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "listTitle".localized
         navigationController?.navigationBar.tintColor = .systemIndigo
 
         if let searchTextField = searchBar.value(forKey: "searchField") as? UITextField {
-            searchTextField.textColor = .black
+            searchTextField.textColor = UIColor(named: "BlackWhite") // black
             if let placeholderLabel = searchTextField.value(forKey: "placeholderLabel") as? UILabel {
-                placeholderLabel.textColor = .black
+                placeholderLabel.textColor = UIColor(named: "BlackWhite") // black
             }
         }
 
         showSearchBarButton(shouldShow: true)
+        self.hideKeyboardWhenTappedAround()
     }
 
     

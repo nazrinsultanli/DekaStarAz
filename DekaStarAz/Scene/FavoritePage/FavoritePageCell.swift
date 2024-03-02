@@ -20,36 +20,36 @@ class FavoritePageCell: UITableViewCell {
     lazy var modelNameLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 1
-        label.textColor = .black
+        label.textColor = UIColor(named: "BlackWhite") // black
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 18, weight: .bold)
+        label.font = .systemFont(ofSize: 20, weight: .bold)
         return label
     }()
     
     lazy var collectionLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.textColor = .black
+        label.textColor = UIColor(named: "BlackWhite") // black
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 14, weight: .medium)
+        label.font = .systemFont(ofSize: 18, weight: .medium)
         return label
     }()
     
     lazy var originalPriceLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.textColor = .black
+        label.textColor = UIColor(named: "BlackWhite") // black
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 12, weight: .medium)
+        label.font = .systemFont(ofSize: 16, weight: .medium)
         return label
     }()
     
     lazy var discountedPriceLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.textColor = .black
+        label.textColor = UIColor(named: "BlackWhite") // black
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 12, weight: .medium)
+        label.font = .systemFont(ofSize: 16, weight: .medium)
         return label
     }()
     
@@ -99,7 +99,7 @@ class FavoritePageCell: UITableViewCell {
             
             originalPriceLabel.topAnchor.constraint(equalTo: collectionLabel.bottomAnchor),
             originalPriceLabel.leadingAnchor.constraint(equalTo: photo.trailingAnchor, constant: 4),
-            originalPriceLabel.widthAnchor.constraint(equalToConstant: 80),
+            originalPriceLabel.widthAnchor.constraint(equalToConstant: 100),
             //originalPriceLabel.heightAnchor.constraint(equalToConstant: 20),
             originalPriceLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
             

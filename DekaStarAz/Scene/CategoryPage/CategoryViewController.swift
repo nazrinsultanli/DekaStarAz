@@ -39,7 +39,7 @@ class CategoryViewController: UIViewController {
     
     private func configureUI() {
         title = "Kateqoriya"
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: "backgroundColor")
         
     }
     private func configureViewModel() {

@@ -30,17 +30,18 @@ class SettingViewController: UIViewController {
 
     private func configureUI() {
         title = "Daha cox"
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: "backgroundColor")
         configureDrowDownMenu()
     }
 
     private func configureViewModel() {
         tableView.reloadData()
     }
-    func configureDrowDownMenu() {  // MARK: dropdown
+    // MARK: dropdown
+    func configureDrowDownMenu() {
         let dropdownButton = UIButton(type: .custom)
         dropdownButton.setTitle("Language", for: .normal)
-        dropdownButton.setTitleColor(.black, for: .normal)
+        dropdownButton.setTitleColor(UIColor(named: "BlackWhite") , for: .normal)
         dropdownButton.addTarget(self, action: #selector(dropdownButtonTapped(sender:)), for: .touchUpInside)
 
         let dropdownMenu = DropdownMenu(items: ["az", "en", "ru"])
@@ -53,9 +54,8 @@ class SettingViewController: UIViewController {
         navigationItem.rightBarButtonItem = dropdownBarButtonItem
     }
 
-
-    
-    @objc func dropdownButtonTapped(sender: UIButton) {  // MARK: dropdown
+    // MARK: dropdown
+    @objc func dropdownButtonTapped(sender: UIButton) {
         guard let dropdownMenu = dropdownMenu else { return }
         dropdownMenu.isHidden = !dropdownMenu.isHidden
 
@@ -92,6 +92,7 @@ extension SettingViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: TitleWithDisclosureTableCell.reuseID, for: indexPath) as! TitleWithDisclosureTableCell
         let itemType = viewModel.settingItems[indexPath.row]
         cell.configure(item: itemType.rawValue)
+        cell.backgroundColor = .clear
         return cell
     }
 
@@ -104,23 +105,21 @@ extension SettingViewController: UITableViewDataSource, UITableViewDelegate {
 //        let controller = SettingDetailedPageController()
 //        controller.viewModel = .init(settingType: itemType)
 //        navigationController?.show(controller, sender: nil)
-        
-        viewModel.settingItemSafari(link: )
+        let itemType = viewModel.settingItems[indexPath.row]
+        viewModel.settingItemSafari(type: itemType)
         
     }
 }
 
-
-extension SettingViewController: DropdownMenuDelegate {  // MARK: dropdown
+// MARK: dropdown
+extension SettingViewController: DropdownMenuDelegate {
     func didSelectItem(item: String) {
         // Update the title of the dropdownButton
         if let customView = navigationItem.rightBarButtonItem?.customView as? UIButton {
             customView.setTitle(item, for: .normal)
         }
-
         // Remove the dropdownMenu from its superview
         dropdownMenu?.removeFromSuperview()
-
         // Handle any other logic related to the selected item
         print("Selected item: \(item)")
     }

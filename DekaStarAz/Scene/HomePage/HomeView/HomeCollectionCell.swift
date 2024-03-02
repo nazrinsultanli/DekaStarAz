@@ -36,9 +36,9 @@ class HomeCollectionCell: UICollectionViewCell {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .clear
-        button.setTitle("hamisina bax", for: .normal)
-        button.titleLabel?.font = .systemFont(ofSize: 12, weight: .bold)
-        button.setTitleColor(.systemIndigo, for: .normal)
+        button.setTitle("Hamisina bax", for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 14, weight: .bold)
+        button.setTitleColor(UIColor(named: "UniversalColor"), for: .normal)
         return button
     }()
     
@@ -51,7 +51,7 @@ class HomeCollectionCell: UICollectionViewCell {
         collection.translatesAutoresizingMaskIntoConstraints = false
         collection.delegate = self
         collection.dataSource = self
-        
+        collection.backgroundColor = .clear
         collection.register(TopImageButtomLabelS.self, forCellWithReuseIdentifier: TopImageButtomLabelS.reuseID)
         collection.register(HomeKolleksiyaCell.self, forCellWithReuseIdentifier: HomeKolleksiyaCell.reuseID)
         return collection

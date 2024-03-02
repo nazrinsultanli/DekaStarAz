@@ -23,6 +23,7 @@ class HomeBannerView: UICollectionReusableView {
         collection.delegate = self
         collection.dataSource = self
         collection.isPagingEnabled = true
+        collection.backgroundColor = .clear
         collection.register(HomeBannerCell.self,
                             forCellWithReuseIdentifier: HomeBannerCell.reuseID)
         

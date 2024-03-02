@@ -25,7 +25,7 @@ class FavoriteViewController: UIViewController {
     lazy var noItems: UILabel = {
         let label = UILabel()
         label.numberOfLines = 1
-        label.textColor = .black
+        label.textColor = UIColor(named: "BlackWhite") // black
         label.text = "Sevilenler qutusu Boshdur"
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -36,8 +36,7 @@ class FavoriteViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Secilmishler"
-        view.backgroundColor = .white
-        
+        view.backgroundColor = UIColor(named: "backgroundColor")
         configureConstraint()
     }
     
@@ -76,8 +75,6 @@ class FavoriteViewController: UIViewController {
             noItems.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             noItems.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             noItems.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            
-            
         ])
     }
 }
@@ -90,6 +87,7 @@ extension FavoriteViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FavoritePageCell.reuseID) as! FavoritePageCell
         cell.configure(data: viewModel.favItemsfromFile[indexPath.row])
+        cell.backgroundColor = .clear
         return cell
     }
     

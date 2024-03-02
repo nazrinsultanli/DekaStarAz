@@ -58,13 +58,14 @@ class ProductDetailedViewController: UIViewController{
                 print("Failed to read products from file.")
             }
         }
+        self.hideKeyboardWhenTappedAround()
     }
     
  
     
     private func configureUI() {
         title = "Products"
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: "backgroundColor")
         
     }
     private func configureViewModel() {
@@ -137,7 +138,7 @@ extension  ProductDetailedViewController:  UICollectionViewDataSource, UICollect
     
     //MARK: Footer View
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        CGSize(width: view.frame.size.width, height: 100)
+        CGSize(width: view.frame.size.width, height: 160)
     }
 }
 
@@ -150,10 +151,6 @@ extension ProductDetailedViewController: ProductDetailFooterDelagate {
                 if basketDataFromFile.isEmpty {
                     basketDataFromFile.append(item)
                 } else {
-//                    if !(basketDataFromFile.contains(where: { $0.slug == item.slug })) {
-//                        basketDataFromFile.append(item)
-//                    }
-                    
                     if let index = basketDataFromFile.firstIndex(where: { $0.slug == item.slug }) {
                         basketDataFromFile[index] = item
                     } else {

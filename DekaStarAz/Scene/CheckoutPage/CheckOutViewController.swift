@@ -15,7 +15,7 @@ class CheckOutViewController: UIViewController {
     private let fullNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 14, weight: .medium)
+        label.font = .systemFont(ofSize: 18, weight: .medium)
         label.textAlignment = .left
         label.numberOfLines = 0
         label.text = "Ad Soyad:"
@@ -25,21 +25,21 @@ class CheckOutViewController: UIViewController {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "Ad Soyadinizi daxil edin"
-        textField.font = UIFont.systemFont(ofSize: 14)
+        textField.font = UIFont.systemFont(ofSize: 18)
         textField.borderStyle = .roundedRect
         textField.textAlignment = .left
         textField.autocorrectionType = .no
         textField.keyboardType = .default
         textField.returnKeyType = .next
         textField.clearButtonMode = .whileEditing
+        textField.backgroundColor = .clear
         return textField
     }()
 
-    
     private let phoneLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 14, weight: .medium)
+        label.font = .systemFont(ofSize: 18, weight: .medium)
         label.textAlignment = .left
         label.numberOfLines = 0
         label.text = "Nomre:"
@@ -49,20 +49,21 @@ class CheckOutViewController: UIViewController {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "Nomrenizi daxil edin"
-        textField.font = UIFont.systemFont(ofSize: 14)
+        textField.font = UIFont.systemFont(ofSize: 18)
         textField.borderStyle = .roundedRect
         textField.textAlignment = .left
         textField.autocorrectionType = .no
         textField.keyboardType = .numberPad
         textField.returnKeyType = .next
         textField.clearButtonMode = .whileEditing
+        textField.backgroundColor = .clear
         return textField
     }()
     
     private let adressLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 14, weight: .medium)
+        label.font = .systemFont(ofSize: 18, weight: .medium)
         label.textAlignment = .left
         label.numberOfLines = 0
         label.text = "Adress:"
@@ -72,16 +73,16 @@ class CheckOutViewController: UIViewController {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "Adressi daxil edin"
-        textField.font = UIFont.systemFont(ofSize: 14)
+        textField.font = UIFont.systemFont(ofSize: 18)
         textField.borderStyle = .roundedRect
         textField.textAlignment = .left
         textField.autocorrectionType = .no
         textField.keyboardType = .default
         textField.returnKeyType = .done
         textField.clearButtonMode = .whileEditing
+        textField.backgroundColor = .clear
         return textField
     }()
-    
     
     private lazy var checkButton: UIButton = {
         let button = UIButton()
@@ -90,6 +91,7 @@ class CheckOutViewController: UIViewController {
         button.setBackgroundImage(UIImage(systemName: "circle"), for: .normal)
         button.addTarget(self, action: #selector(didChecked), for: .touchUpInside)
         button.contentMode = .scaleAspectFit
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 20)
         return button
     }()
 
@@ -110,16 +112,16 @@ class CheckOutViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = .clear
         button.setTitle("shertleri", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
 
-        button.setTitleColor(.systemIndigo, for: .normal)
-        //button.addTarget(self, action: #selector(didChecked), for: .touchUpInside)
+        button.setTitleColor(UIColor(named: "UniversalColor"), for: .normal)
+        button.addTarget(self, action: #selector(shertleriTapped), for: .touchUpInside)
         return button
     }()
     private let readAndAcceptLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 14, weight: .medium)
+        label.font = .systemFont(ofSize: 16, weight: .medium)
         label.textAlignment = .left
         label.numberOfLines = 0
         label.text = "oxudum və qəbul etdim"
@@ -136,7 +138,10 @@ class CheckOutViewController: UIViewController {
         }
         
     }
-    
+    @objc func shertleriTapped() {
+        UIApplication.shared.presentSafariViewController(urlLink: SafariLinks.privacyPolicy.rawValue)
+
+    }
     @objc func tamamlaButtonTapped() {
         builder?.name = fullNameTextField.text
         builder?.address = adressTextField.text
@@ -147,17 +152,21 @@ class CheckOutViewController: UIViewController {
         navigationController?.show(controller, sender: nil)
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "CheckOut"
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: "backgroundColor")
         configureConstraint()
-        configureViewModel()
+        configureUI()
+        self.hideKeyboardWhenTappedAround()
         
     }
     
-    func configureViewModel() {
-        
+    func configureUI() {
+        fullNameTextField.delegate = self
+        phoneNameTextField.delegate = self
+        adressTextField.delegate = self
     }
     func configureConstraint() {
         view.addSubview(fullNameLabel)
@@ -220,8 +229,8 @@ class CheckOutViewController: UIViewController {
             
             finishButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             finishButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
-            finishButton.heightAnchor.constraint(equalToConstant: 40),
-            finishButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
+            finishButton.heightAnchor.constraint(equalToConstant: 60),
+            finishButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
             
             
             
@@ -231,3 +240,17 @@ class CheckOutViewController: UIViewController {
     }
     
 }
+
+extension CheckOutViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+           if textField == fullNameTextField {
+               phoneNameTextField.becomeFirstResponder()
+           } else if textField == phoneNameTextField {
+               adressTextField.becomeFirstResponder()
+           } else {
+               textField.resignFirstResponder()
+           }
+           return true
+       }
+}
+

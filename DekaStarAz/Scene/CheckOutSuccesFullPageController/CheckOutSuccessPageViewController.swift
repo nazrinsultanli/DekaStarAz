@@ -8,25 +8,23 @@
 import UIKit
 
 class CheckOutSuccessPageViewController: UIViewController {
-
     var viewModel = CheckOutViewModel()
     
-    lazy var totalPriceLabel: UILabel = {
+    lazy var successMessage: UILabel = {
         let label = UILabel()
         label.numberOfLines = 1
-        label.textColor = .black
+        label.textColor = UIColor(named: "BlackWhite") // black
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 18, weight: .medium)
+        label.font = .systemFont(ofSize: 20, weight: .medium)
         return label
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "page"
-        view.backgroundColor = .white
+        navigationItem.title = "ChechOutPage"
+        view.backgroundColor = UIColor(named: "backgroundColor")
         configureConstraint()
-        
     }
     override func viewWillAppear(_ animated: Bool) {
         configureViewModel()
@@ -36,9 +34,10 @@ class CheckOutSuccessPageViewController: UIViewController {
         viewModel.postData()
         viewModel.error = { errorMessage in
             print("Error:\(errorMessage)")
+            self.successMessage.text = "Problem Bash verdi!"
         }
         viewModel.success =  {
-            self.totalPriceLabel.text = "successfully Done!"
+            self.successMessage.text = "successfully Done!"
             self.dismissBackPage()
         }
     }
@@ -50,17 +49,14 @@ class CheckOutSuccessPageViewController: UIViewController {
     }
     
     func configureConstraint() {
-       
-        view.addSubview(totalPriceLabel)
-
+        view.addSubview(successMessage)
+        
         NSLayoutConstraint.activate([
-            totalPriceLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            totalPriceLabel.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            totalPriceLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            totalPriceLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-          
-            
+            successMessage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            successMessage.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            successMessage.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            successMessage.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
         ])
     }
-
+    
 }

@@ -20,6 +20,7 @@ class ProductsViewController: UIViewController {
                                           collectionViewLayout: layout)
         collection.showsHorizontalScrollIndicator = false
         collection.translatesAutoresizingMaskIntoConstraints = false
+        collection.backgroundColor = .clear
         collection.register(TopImageButtomLabelS.self,
                             forCellWithReuseIdentifier: TopImageButtomLabelS.reuseID)
         return collection
@@ -28,7 +29,7 @@ class ProductsViewController: UIViewController {
     lazy var noItems: UILabel = {
         let label = UILabel()
         label.numberOfLines = 1
-        label.textColor = .black
+        label.textColor = UIColor(named: "BlackWhite") // black
         label.text = "Mehsul Tapilmadi"
         label.textAlignment = .center
         label.isHidden = true
@@ -50,7 +51,7 @@ class ProductsViewController: UIViewController {
     
     private func configureUI() {
         title = "Products"
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: "backgroundColor")
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             image: UIImage(systemName: "line.3.horizontal.decrease.circle.fill"),

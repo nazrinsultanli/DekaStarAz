@@ -21,73 +21,73 @@ class BasketCell: UITableViewCell {
     lazy var modelNameLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 1
-        label.textColor = .black
+        label.textColor = UIColor(named: "BlackWhite") // black
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 16, weight: .bold)
+        label.font = .systemFont(ofSize: 18, weight: .bold)
         return label
     }()
     
     lazy var codeLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.textColor = .black
+        label.textColor = UIColor(named: "BlackWhite") // black
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 14, weight: .medium)
+        label.font = .systemFont(ofSize: 16, weight: .medium)
         return label
     }()
     
     lazy var originalPriceLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.textColor = .black
+        label.textColor = UIColor(named: "BlackWhite") // black
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 12, weight: .medium)
+        label.font = .systemFont(ofSize: 14, weight: .medium)
         return label
     }()
     
     lazy var discountedPriceLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.textColor = .black
+        label.textColor = UIColor(named: "BlackWhite") // black
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 12, weight: .medium)
+        label.font = .systemFont(ofSize: 14, weight: .medium)
         return label
     }()
     
     lazy var quantityLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.textColor = .black
+        label.textColor = UIColor(named: "BlackWhite") // black
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 12, weight: .medium)
+        label.font = .systemFont(ofSize: 14, weight: .medium)
         return label
     }()
     
     lazy var unitLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.textColor = .black
+        label.textColor = UIColor(named: "BlackWhite") // black
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 12, weight: .medium)
+        label.font = .systemFont(ofSize: 14, weight: .medium)
         return label
     }()
     
     lazy var totalText: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.textColor = .black
+        label.textColor = UIColor(named: "BlackWhite") // black
         label.text = "Total:"
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 12, weight: .medium)
+        label.font = .systemFont(ofSize: 14, weight: .medium)
         return label
     }()
     
     lazy var totalLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.textColor = .black
+        label.textColor = UIColor(named: "BlackWhite") // black
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 12, weight: .medium)
+        label.font = .systemFont(ofSize: 14, weight: .medium)
         return label
     }()
     
@@ -145,7 +145,7 @@ class BasketCell: UITableViewCell {
             //MARK: quantity
             quantityLabel.topAnchor.constraint(equalTo: codeLabel.bottomAnchor),
             quantityLabel.leadingAnchor.constraint(equalTo: photo.trailingAnchor, constant: 10),
-            quantityLabel.widthAnchor.constraint(equalToConstant: 80),
+            quantityLabel.widthAnchor.constraint(equalToConstant: 100),
             quantityLabel.heightAnchor.constraint(equalToConstant: 20),
             
             unitLabel.topAnchor.constraint(equalTo: codeLabel.bottomAnchor),
@@ -156,7 +156,7 @@ class BasketCell: UITableViewCell {
             //MARK: price
             originalPriceLabel.topAnchor.constraint(equalTo: quantityLabel.bottomAnchor),
             originalPriceLabel.leadingAnchor.constraint(equalTo: photo.trailingAnchor, constant: 10),
-            originalPriceLabel.widthAnchor.constraint(equalToConstant: 80),
+            originalPriceLabel.widthAnchor.constraint(equalToConstant: 100),
             originalPriceLabel.heightAnchor.constraint(equalToConstant: 20),
             
             discountedPriceLabel.topAnchor.constraint(equalTo: quantityLabel.bottomAnchor),
@@ -167,7 +167,7 @@ class BasketCell: UITableViewCell {
             //MARK: price
             totalText.topAnchor.constraint(equalTo: originalPriceLabel.bottomAnchor),
             totalText.leadingAnchor.constraint(equalTo: photo.trailingAnchor, constant: 10),
-            totalText.widthAnchor.constraint(equalToConstant: 80),
+            totalText.widthAnchor.constraint(equalToConstant: 150),
             totalText.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
 //            totalText.heightAnchor.constraint(equalToConstant: 20),
             
@@ -184,7 +184,7 @@ class BasketCell: UITableViewCell {
         photo.loadImage(url: data.imageFeatureURL  ?? "")
         modelNameLabel.text = data.name
         codeLabel.text = data.code
-        unitLabel.text = data.quantityType
+        unitLabel.text = data.quantityType?.lowercased()
         quantityLabel.text = "\(String(describing: data.userQuantity ?? 0 ))"
         
         var total: Double = 0.0
@@ -192,7 +192,7 @@ class BasketCell: UITableViewCell {
             let quantity = Double(data.userQuantity ?? 0)
             total = quantity * price
             }
-        totalText.text = "\(total) AZN"
+        totalText.text = "Total: \(total) AZN"
         
         if data.discount == 0 {
             originalPriceLabel.text = "\(String(describing: data.regularPrice ?? "")) AZN"

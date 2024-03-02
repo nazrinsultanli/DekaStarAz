@@ -25,7 +25,7 @@ class BasketViewController: UIViewController {
     lazy var noItems: UILabel = {
         let label = UILabel()
         label.numberOfLines = 1
-        label.textColor = .black
+        label.textColor = UIColor(named: "BlackWhite") // black
         label.text = "Sebet Boshdur"
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -37,21 +37,21 @@ class BasketViewController: UIViewController {
         let label = UILabel()
         label.isHidden = true
         label.numberOfLines = 1
-        label.textColor = .black
-        label.text = "Total:"
+        label.textColor = UIColor(named: "BlackWhite") // black
+        label.text = "Sebet:"
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 18, weight: .bold)
+        label.font = .systemFont(ofSize: 22, weight: .bold)
         return label
     }()
     
     lazy var totalPriceLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 1
-        label.textColor = .black
+        label.textColor = UIColor(named: "BlackWhite") // black
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 18, weight: .medium)
+        label.font = .systemFont(ofSize: 22, weight: .medium)
         return label
     }()
     private lazy var checkOutButton: UIButton = {
@@ -59,7 +59,8 @@ class BasketViewController: UIViewController {
         button.isHidden = true
         button.setTitle("Check Out Et", for: .normal)
         button.setTitleColor(.white, for: .normal)
-        button.backgroundColor = .systemIndigo
+        button.backgroundColor = UIColor(named: "UniversalColor")
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 20)
         button.layer.cornerRadius = 8.0
         button.addTarget(self, action: #selector(checkOutButtonTapped), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -77,7 +78,7 @@ class BasketViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Secilmishler"
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: "backgroundColor")
         configureConstraint()
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -132,14 +133,11 @@ class BasketViewController: UIViewController {
           //  totalPriceText.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
             //totalPriceText.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             
-            checkOutButton.topAnchor.constraint(equalTo: totalPriceText.bottomAnchor, constant: 10),
+            checkOutButton.topAnchor.constraint(equalTo: totalPriceText.bottomAnchor, constant: 20),
             checkOutButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
             checkOutButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
-            checkOutButton.heightAnchor.constraint(equalToConstant: 40),
-            checkOutButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
-            
-            
-            
+            checkOutButton.heightAnchor.constraint(equalToConstant: 60),
+            checkOutButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
             
             noItems.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             noItems.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
@@ -159,6 +157,7 @@ extension BasketViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: BasketCell.reuseID) as! BasketCell
         cell.configure(data: viewModel.basketItemsfromFile[indexPath.row])
+        cell.backgroundColor = .clear
         return cell
     }
     

@@ -14,7 +14,7 @@ class HomeKolleksiyaCell: UICollectionViewCell {
     private lazy var shadowUIView: UIView = {
         let grayBack = UIView()
         grayBack.translatesAutoresizingMaskIntoConstraints = false
-        grayBack.backgroundColor = .black
+        grayBack.backgroundColor = UIColor(named: "BlackWhite") // black
         grayBack.layer.cornerRadius = 10
         grayBack.layer.borderWidth = 1
         grayBack.alpha = 0.3
@@ -34,10 +34,10 @@ class HomeKolleksiyaCell: UICollectionViewCell {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.font = .systemFont(ofSize: 22, weight: .heavy)
         label.textAlignment = .center
         label.numberOfLines = 0
-        label.textColor = .white
+        label.textColor = UIColor(named: "backgroundColor")
         return label
     }()
    
@@ -70,7 +70,7 @@ class HomeKolleksiyaCell: UICollectionViewCell {
             titleLabel.topAnchor.constraint(equalTo: imageView.topAnchor, constant: 30),
             titleLabel.leadingAnchor.constraint(equalTo: imageView.leadingAnchor, constant: 0),
             titleLabel.trailingAnchor.constraint(equalTo: imageView.trailingAnchor, constant: 0),
-            titleLabel.heightAnchor.constraint(equalToConstant: 20),
+            titleLabel.heightAnchor.constraint(equalToConstant: 30),
             
         ])
     }

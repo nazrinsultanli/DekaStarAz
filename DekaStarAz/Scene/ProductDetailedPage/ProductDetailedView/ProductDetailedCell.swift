@@ -20,7 +20,7 @@ class ProductDetailedCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         //label.font = UIFont.boldSystemFont(ofSize: 18)
-        label.font = .systemFont(ofSize: 20, weight: .heavy)
+        label.font = .systemFont(ofSize: 22, weight: .heavy)
         label.textAlignment = .left
         label.numberOfLines = 0
         return label
@@ -28,7 +28,7 @@ class ProductDetailedCell: UICollectionViewCell {
     private let originalPriceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 18, weight: .bold)
+        label.font = .systemFont(ofSize: 20, weight: .bold)
         label.textAlignment = .left
         label.numberOfLines = 0
         return label
@@ -36,7 +36,7 @@ class ProductDetailedCell: UICollectionViewCell {
     private let discountedPriceLAbel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = .systemFont(ofSize: 18, weight: .heavy)
+        label.font = .systemFont(ofSize: 20, weight: .heavy)
         label.textAlignment = .left
         label.numberOfLines = 0
         return label
@@ -44,7 +44,7 @@ class ProductDetailedCell: UICollectionViewCell {
     private let kodText: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont.boldSystemFont(ofSize: 16)
         label.textAlignment = .left
         label.numberOfLines = 0
         label.text = "Kod"
@@ -53,7 +53,7 @@ class ProductDetailedCell: UICollectionViewCell {
     private let kodLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont.boldSystemFont(ofSize: 16)
         label.textAlignment = .left
         label.numberOfLines = 0
         return label
@@ -61,7 +61,7 @@ class ProductDetailedCell: UICollectionViewCell {
     private let kateqoriyaText: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont.boldSystemFont(ofSize: 16)
         label.textAlignment = .left
         label.numberOfLines = 0
         label.text = "Kateqoriya"
@@ -78,7 +78,7 @@ class ProductDetailedCell: UICollectionViewCell {
     private let kolleksiyaText: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont.boldSystemFont(ofSize: 16)
         label.textAlignment = .left
         label.numberOfLines = 0
         label.text = "Kolleksiya"
@@ -87,7 +87,7 @@ class ProductDetailedCell: UICollectionViewCell {
     private let kolleksiyaLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont.boldSystemFont(ofSize: 16)
         label.textAlignment = .left
         label.numberOfLines = 0
         return label
@@ -95,7 +95,7 @@ class ProductDetailedCell: UICollectionViewCell {
     private let movcudluqText: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont.boldSystemFont(ofSize: 16)
         label.textAlignment = .left
         label.numberOfLines = 0
         label.text = "Movcudluq"
@@ -104,7 +104,7 @@ class ProductDetailedCell: UICollectionViewCell {
     private let movcudluqLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont.boldSystemFont(ofSize: 16)
         label.textAlignment = .left
         label.numberOfLines = 0
         return label
@@ -112,7 +112,7 @@ class ProductDetailedCell: UICollectionViewCell {
     private let sayText: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont.boldSystemFont(ofSize: 16)
         label.textAlignment = .left
         label.numberOfLines = 0
         label.text = "say"
@@ -122,20 +122,21 @@ class ProductDetailedCell: UICollectionViewCell {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.placeholder = "Say"
-        textField.font = UIFont.systemFont(ofSize: 14)
+        textField.font = UIFont.systemFont(ofSize: 16)
         textField.borderStyle = .roundedRect
         textField.textAlignment = .left
         textField.autocorrectionType = .no
         textField.keyboardType = .numberPad
         textField.returnKeyType = .done
         textField.clearButtonMode = .whileEditing
+        textField.backgroundColor = .clear
         return textField
     }()
     
     private let unitLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont.boldSystemFont(ofSize: 16)
         label.textAlignment = .left
         label.numberOfLines = 0
         label.text = "m2"
@@ -145,7 +146,7 @@ class ProductDetailedCell: UICollectionViewCell {
     private let descriptionLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont.boldSystemFont(ofSize: 16)
         label.textAlignment = .left
         label.numberOfLines = 0
         label.setContentCompressionResistancePriority(.required, for: .vertical)
@@ -158,6 +159,7 @@ class ProductDetailedCell: UICollectionViewCell {
         super.init(frame: frame)
         sayTextField.delegate = self
         configureConstraints()
+        self.hideKeyboardWhenTappedAround()
     }
     
     required init?(coder: NSCoder) {
@@ -199,6 +201,7 @@ class ProductDetailedCell: UICollectionViewCell {
         sayUnit.addArrangedSubview(unitLabel)
         sayUnit.axis = .horizontal
         sayUnit.translatesAutoresizingMaskIntoConstraints = false
+        sayUnit.spacing = 10
         
         
         let sayStack = UIStackView()
@@ -242,13 +245,15 @@ class ProductDetailedCell: UICollectionViewCell {
             discountedPriceLAbel.topAnchor.constraint(equalTo: modelNameLabel.bottomAnchor),
             discountedPriceLAbel.leadingAnchor.constraint(equalTo: originalPriceLabel.trailingAnchor),
             discountedPriceLAbel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            discountedPriceLAbel.heightAnchor.constraint(equalToConstant: 40),
+            discountedPriceLAbel.heightAnchor.constraint(equalToConstant: 30),
             
             kodText.widthAnchor.constraint(equalToConstant: 120),
             kateqoriyaText.widthAnchor.constraint(equalToConstant: 120),
             kolleksiyaText.widthAnchor.constraint(equalToConstant: 120),
             movcudluqText.widthAnchor.constraint(equalToConstant: 120),
             sayText.widthAnchor.constraint(equalToConstant: 120),
+            sayTextField.widthAnchor.constraint(equalToConstant: 80),
+           
            
             generalStack.topAnchor.constraint(equalTo: originalPriceLabel.bottomAnchor),
             generalStack.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -281,6 +286,7 @@ class ProductDetailedCell: UICollectionViewCell {
             originalPriceLabel.attributedText = "\(String(describing: item.regularPrice ?? "")) AZN".strikeThrough()
             discountedPriceLAbel.text = "\(String(describing: item.discountPrice ?? "")) AZN"
         }
+        unitLabel.text = item.quantityType?.lowercased()
     }
 }
 

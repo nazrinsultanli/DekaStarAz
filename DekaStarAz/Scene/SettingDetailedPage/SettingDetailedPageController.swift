@@ -31,7 +31,7 @@ class SettingDetailedPageController: UIViewController {
     }
     private func configureUI() {
         title = viewModel?.settingType?.rawValue
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: "backgroundColor")
         
     }
 

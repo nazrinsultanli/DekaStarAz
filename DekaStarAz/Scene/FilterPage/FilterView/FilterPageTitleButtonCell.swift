@@ -14,7 +14,7 @@ class FilterPageTitleButtonCell: UITableViewCell {
     private let filterNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.font = UIFont.boldSystemFont(ofSize: 18)
         label.textAlignment = .left
         label.numberOfLines = 0
         return label
@@ -33,6 +33,7 @@ class FilterPageTitleButtonCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configureConstraints()
+        contentView.backgroundColor = .clear
     }
     
     required init?(coder: NSCoder) {

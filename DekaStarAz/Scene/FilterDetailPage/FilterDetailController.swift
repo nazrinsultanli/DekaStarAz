@@ -21,12 +21,12 @@ class FilterDetailController: UIViewController {
         table.register(FilterDetailListCell.self, forCellReuseIdentifier: FilterDetailListCell.reuseID)
         table.dataSource = self
         table.delegate = self
+        tableView.backgroundColor = .clear
         return table
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configureUI()
         configureConstraints()
         configureViewModel()
@@ -36,7 +36,7 @@ class FilterDetailController: UIViewController {
     
     private func configureUI() {
         title = viewModel?.filterType?.rawValue
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: "backgroundColor")
         
     }
     
@@ -71,6 +71,7 @@ extension FilterDetailController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: FilterDetailListCell.reuseID, for: indexPath) as! FilterDetailListCell
+        cell.backgroundColor = .clear
         cell.configure(item: viewModel?.filterItems[indexPath.row].titleText ?? "")
         return cell
     }

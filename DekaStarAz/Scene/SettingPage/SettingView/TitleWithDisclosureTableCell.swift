@@ -14,7 +14,7 @@ class TitleWithDisclosureTableCell: UITableViewCell {
     private let filterNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = UIFont.boldSystemFont(ofSize: 20)
         label.textAlignment = .left
         label.numberOfLines = 0
         return label
