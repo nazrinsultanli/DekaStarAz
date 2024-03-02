@@ -35,6 +35,7 @@ class BasketViewController: UIViewController {
     
     lazy var totalPriceText: UILabel = {
         let label = UILabel()
+        label.isHidden = true
         label.numberOfLines = 1
         label.textColor = .black
         label.text = "Total:"
@@ -55,6 +56,7 @@ class BasketViewController: UIViewController {
     }()
     private lazy var checkOutButton: UIButton = {
         let button = UIButton(type: .system)
+        button.isHidden = true
         button.setTitle("Check Out Et", for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.backgroundColor = .systemIndigo
@@ -84,8 +86,8 @@ class BasketViewController: UIViewController {
     
     func configureViewModel() {
         viewModel.readBasketProductsFromFile { [weak self] in
-            self?.table.reloadData()
             self?.configureVisibility()
+            self?.table.reloadData()
             self?.totalPriceLabel.text = "\(String(describing: self?.viewModel.calculateTotalPrice() ?? 0.0)) AZN"
         }
     }
@@ -96,11 +98,13 @@ class BasketViewController: UIViewController {
             table.isHidden = true
             totalPriceText.isHidden = true
             totalPriceLabel.isHidden = true
+            checkOutButton.isHidden = true
         } else {
             noItems.isHidden = true
             table.isHidden = false
             totalPriceText.isHidden = false
             totalPriceLabel.isHidden = false
+            checkOutButton.isHidden = false
         }
     }
 

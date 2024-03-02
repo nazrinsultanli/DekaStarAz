@@ -16,9 +16,9 @@ import Foundation
 
 // sf controller
 // tableview autodimension collection view-
-// cordinator yoxdu
-// initilize elemek dependency
-
+// cordinator yoxdu -- 100 faiz qoy
+// initilize elemek dependency -- 100 qoy
+// pagination -- 100 faiz qoy
 // dil meselesi
 
 
