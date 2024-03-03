@@ -35,7 +35,7 @@ class FavoriteViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Secilmishler"
+        navigationItem.title = "Sevilenler"
         view.backgroundColor = UIColor(named: "backgroundColor")
         configureConstraint()
     }

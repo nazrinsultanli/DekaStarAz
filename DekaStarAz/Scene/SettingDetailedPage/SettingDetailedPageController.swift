@@ -44,7 +44,6 @@ class SettingDetailedPageController: UIViewController {
         }
     }
     
-
     private func configureConstraints() {
         view.addSubview(tableView)
         NSLayoutConstraint.activate([

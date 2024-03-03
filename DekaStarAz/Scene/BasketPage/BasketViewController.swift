@@ -78,7 +78,7 @@ class BasketViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Secilmishler"
+        navigationItem.title = "Sebet"
         view.backgroundColor = UIColor(named: "backgroundColor")
         configureConstraint()
     }
