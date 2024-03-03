@@ -10,6 +10,7 @@ import UIKit
 class FilterDetailViewCoordinator: Coordinator {
     var filterBuilder: FilterBuilder?
     var filterType: FilterItemsNames?
+//    var selectedCategory: String?
     var navigationController: UINavigationController
     
     init(filterBuilder: FilterBuilder, filterType: FilterItemsNames,  navigationController: UINavigationController) {
@@ -19,11 +20,12 @@ class FilterDetailViewCoordinator: Coordinator {
     }
 
     func start() {
-        let controller = FilterDetailController()
-        if let builder = filterBuilder, let fType = filterType {
-            controller.viewModel = .init(filterBuilder: builder, filterType: fType)
+        var controller = UIViewController()
+        if let filterBuilder = filterBuilder, let filterType = filterType {
+            controller = FilterDetailController(viewModel: .init(filterBuilder: filterBuilder, filterType: filterType)) { category in
+                self.filterBuilder?.selectedCategory = category
+            }
         }
-//        controller.viewModel = .init(filterBuilder: filterBuilder ?? nil, filterType: filterType ?? nil)
         navigationController.show(controller, sender: nil)
     }
 }

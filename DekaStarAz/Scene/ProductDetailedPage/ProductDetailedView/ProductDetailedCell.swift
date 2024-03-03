@@ -115,7 +115,7 @@ class ProductDetailedCell: UICollectionViewCell {
         label.font = UIFont.boldSystemFont(ofSize: 16)
         label.textAlignment = .left
         label.numberOfLines = 0
-        label.text = "say"
+        label.text = "Miqdar"
         return label
     }()
     private let sayTextField: UITextField = {
@@ -151,6 +151,9 @@ class ProductDetailedCell: UICollectionViewCell {
         label.numberOfLines = 0
         label.setContentCompressionResistancePriority(.required, for: .vertical)
         label.setContentHuggingPriority(.required, for: .vertical)
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.5 
+        label.preferredMaxLayoutWidth = 100 
         return label
     }()
     
@@ -221,8 +224,7 @@ class ProductDetailedCell: UICollectionViewCell {
         contentView.addSubview(discountedPriceLAbel)
         contentView.addSubview(generalStack)
         contentView.addSubview(descriptionLabel)
-
-        descriptionLabel.backgroundColor = .lightGray
+//        descriptionLabel.backgroundColor = .lightGray
      
         NSLayoutConstraint.activate([
             unitLabel.widthAnchor.constraint(equalToConstant: 100),
@@ -257,7 +259,7 @@ class ProductDetailedCell: UICollectionViewCell {
             descriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             descriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
 //            descriptionLabel.heightAnchor.constraint(equalToConstant: 200),
-            descriptionLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
+            descriptionLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
     }
 

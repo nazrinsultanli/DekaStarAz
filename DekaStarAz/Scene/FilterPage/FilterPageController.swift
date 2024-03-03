@@ -122,24 +122,13 @@ extension FilterPageController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let controller = FilterDetailController()
         let itemType = viewModel.filterItems[indexPath.row]
         switch itemType {
         case .category:
-            controller.viewModel = .init(filterBuilder: filterBuilder, filterType: itemType)
-            controller.didSelectCategory = { [weak self] categorySlugId in
-                self?.filterBuilder.selectedCategory = categorySlugId
-            }
-            navigationController?.show(controller, sender: nil)
-            //MARK: problem
-//            let controller = FilterDetailController()
-//            controller.didSelectCategory = { [weak self] categorySlugId in
-//                self?.filterBuilder.selectedCategory = categorySlugId
-//            }
-//            let coordinator = FilterDetailViewCoordinator(filterBuilder: filterBuilder,
-//                                                          filterType: itemType,
-//                                                          navigationController: navigationController ?? UINavigationController())
-//            coordinator.start()
+            let coordinator = FilterDetailViewCoordinator(filterBuilder: filterBuilder,
+                                                          filterType: itemType,
+                                                          navigationController:navigationController ?? UINavigationController())
+            coordinator.start()            
         case .collection:
             let coordinator = FilterDetailViewCoordinator(filterBuilder: filterBuilder,
                                                           filterType: itemType,

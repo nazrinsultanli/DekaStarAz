@@ -101,9 +101,10 @@ extension  ProductDetailedViewController:  UICollectionViewDataSource, UICollect
         }
         return cell
     }
-    
+    //MARK: problem: solve by Sivamaq
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        .init(width: collectionView.frame.width-30, height: collectionView.frame.height)
+//        .init(width: collectionView.frame.width-30, height: collectionView.frame.height)
+        .init(width: collectionView.frame.width-30, height:550)
     }
   
     
