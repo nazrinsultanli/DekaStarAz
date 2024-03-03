@@ -8,10 +8,10 @@
 import Foundation
 class CheckOutViewModel {
     var builder: CheckoutBuilder?
-    var totalCheckOutPrice: Double = 0.0
-    var stateCheck = true
-    
-    init(builder: CheckoutBuilder? = nil, totalCheckOutPrice: Double, stateCheck: Bool) {
+    var totalCheckOutPrice: Double?
+    var stateCheck: Bool?
+
+    init(builder: CheckoutBuilder?, totalCheckOutPrice: Double, stateCheck: Bool? = true) {
         self.builder = builder
         self.totalCheckOutPrice = totalCheckOutPrice
         self.stateCheck = stateCheck

@@ -67,14 +67,14 @@ class BasketViewController: UIViewController {
         return button
     }()
 
-   @objc func checkOutButtonTapped() {
-       let controller = CheckOutViewController()
-       controller.viewModel?.builder = viewModel.builder
-       controller.viewModel?.totalCheckOutPrice = viewModel.calculateTotalPrice()
-       viewModel.writeToBuilder()
-       navigationController?.show(controller, sender: nil)
-       
+    @objc func checkOutButtonTapped() {
+        viewModel.writeToBuilder()
+        let coordinator = CheckOutCoordinator(builder: viewModel.builder,
+                                              totalCheckOutPrice: viewModel.calculateTotalPrice(),
+                                              navigationController: navigationController ?? UINavigationController())
+        coordinator.start()
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -120,7 +120,6 @@ class BasketViewController: UIViewController {
 
         NSLayoutConstraint.activate([
             table.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-//            table.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             table.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             table.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             
@@ -131,8 +130,6 @@ class BasketViewController: UIViewController {
             totalPriceLabel.topAnchor.constraint(equalTo: table.bottomAnchor, constant: 10),
             totalPriceLabel.leadingAnchor.constraint(equalTo: totalPriceText.trailingAnchor, constant: 20),
             totalPriceLabel.heightAnchor.constraint(equalToConstant: 20),
-          //  totalPriceText.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
-            //totalPriceText.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             
             checkOutButton.topAnchor.constraint(equalTo: totalPriceText.bottomAnchor, constant: 20),
             checkOutButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),

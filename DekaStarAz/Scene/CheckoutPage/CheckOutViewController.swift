@@ -9,6 +9,7 @@ import UIKit
 
 class CheckOutViewController: UIViewController {
     var viewModel: CheckOutViewModel?
+    
     private let fullNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -126,15 +127,19 @@ class CheckOutViewController: UIViewController {
     }()
 
     @objc func didChecked() {
-        if viewModel?.stateCheck == true {
+        guard let viewModel = viewModel else {
+            return // viewModel is nil, cannot proceed
+        }
+
+        if viewModel.stateCheck == true {
             checkButton.setBackgroundImage(UIImage(systemName: "circle.fill"), for: .normal)
-            viewModel?.stateCheck = false
+            viewModel.stateCheck = false
         } else {
             checkButton.setBackgroundImage(UIImage(systemName: "circle"), for: .normal)
-            viewModel?.stateCheck = true
+            viewModel.stateCheck = true
         }
-        
     }
+
     @objc func shertleriTapped() {
         UIApplication.shared.presentSafariViewController(urlLink: SafariLinks.privacyPolicy.rawValue)
 
@@ -157,7 +162,6 @@ class CheckOutViewController: UIViewController {
         configureConstraint()
         configureUI()
         self.hideKeyboardWhenTappedAround()
-        
     }
     
     func configureUI() {

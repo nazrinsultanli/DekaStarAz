@@ -24,31 +24,5 @@ class CheckoutBuilder {
           "cart": cartItems.map{ $0.toDictionary()}
         ]
     }
-    
-
-    
-//    func chekoutBuild() -> [String: Any]{
-//        [ "name": chekoutItems?.name ?? "",
-//          "phone": chekoutItems?.phone ?? "",
-//          "address": chekoutItems?.address ?? "",
-//          "terms_agreed": chekoutItems?.termsAgreed ?? "",
-//          "cart": cartItems ?? []
-//        ]
-//    }
 }
 
-//
-//class PurchaseBuilder {
-//    var car: Car?
-//    var address: String?
-//    var cardNumber: String?
-//    
-//    func build() -> [String: Any] {
-//        guard let car = car else { return [:] }
-//        return ["item": car, "address": address ?? "", "cardNumber": cardNumber ?? ""]
-//    }
-//    
-//    func buildPurchaseModel() -> PurchaseModel {
-//        .init(car: car, address: address, cardNumber: cardNumber)
-//    }
-//}
