@@ -155,12 +155,8 @@ extension HomeViewController: HomeCollectionCellDelegate {
             let controller = ProductsViewCoordinator(categorySlugId: item,
                                                      homeItemsType: itemType,
                                                      searchText: nil,
-                                                     navigationController: UINavigationController())
+                                                     navigationController: navigationController ?? UINavigationController())
             controller.start()
-//            let controller = ProductsViewController()
-//            controller.viewModel = .init(categorySlugId: item, homeItemsType: itemType, searchText:  nil)
-            
-//            navigationController?.show(controller, sender: nil)
         }
         else {
             let controller = ProductDetailedViewController()
@@ -179,12 +175,8 @@ extension HomeViewController: HomeCollectionCellDelegate {
             let controller = ProductsViewCoordinator(categorySlugId: "",
                                                      homeItemsType: itemType,
                                                      searchText: nil,
-                                                     navigationController: UINavigationController())
+                                                     navigationController: navigationController ?? UINavigationController())
             controller.start()
-//            
-//            let controller = ProductsViewController()
-//            controller.viewModel = .init(categorySlugId: "", homeItemsType: itemType, searchText: nil)
-//            navigationController?.show(controller, sender: nil)
         }
     }
 }
@@ -201,7 +193,7 @@ extension HomeViewController: UISearchBarDelegate {
         let controller = ProductsViewCoordinator(categorySlugId: "",
                                                  homeItemsType: nil,
                                                  searchText: searchBar.text ?? "",
-                                                 navigationController: UINavigationController())
+                                                 navigationController: navigationController ?? UINavigationController())
         controller.pushStart()
         
 //        let controller = ProductsViewController()
