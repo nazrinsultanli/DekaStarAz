@@ -141,7 +141,7 @@ class BasketCell: UITableViewCell {
             //MARK: quantity
             quantityLabel.topAnchor.constraint(equalTo: codeLabel.bottomAnchor),
             quantityLabel.leadingAnchor.constraint(equalTo: photo.trailingAnchor, constant: 10),
-            quantityLabel.widthAnchor.constraint(equalToConstant: 100),
+            quantityLabel.widthAnchor.constraint(equalToConstant: 120),
             quantityLabel.heightAnchor.constraint(equalToConstant: 20),
             
             unitLabel.topAnchor.constraint(equalTo: codeLabel.bottomAnchor),
@@ -152,7 +152,7 @@ class BasketCell: UITableViewCell {
             //MARK: price
             originalPriceLabel.topAnchor.constraint(equalTo: quantityLabel.bottomAnchor),
             originalPriceLabel.leadingAnchor.constraint(equalTo: photo.trailingAnchor, constant: 10),
-            originalPriceLabel.widthAnchor.constraint(equalToConstant: 100),
+            originalPriceLabel.widthAnchor.constraint(equalToConstant: 120),
             originalPriceLabel.heightAnchor.constraint(equalToConstant: 20),
             
             discountedPriceLabel.topAnchor.constraint(equalTo: quantityLabel.bottomAnchor),
