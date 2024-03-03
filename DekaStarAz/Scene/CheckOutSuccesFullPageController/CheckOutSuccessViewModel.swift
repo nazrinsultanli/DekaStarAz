@@ -12,6 +12,10 @@ class CheckOutSuccessViewModel {
     var success: (() -> Void)?
     var error: ((String) -> Void)?
     
+    init(builder: CheckoutBuilder?) {
+        self.builder = builder
+    }
+    
     func postData() {
         manager.postBasketProducts(postData: builder?.chekoutBuild() ?? [:]) { data, errorMessage in
             if let errorMessage {

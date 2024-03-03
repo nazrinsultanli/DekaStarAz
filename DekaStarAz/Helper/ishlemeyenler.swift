@@ -17,8 +17,6 @@ import Foundation
 // - filterden detailed filtere kecende telefonda donur
 
 // tableview autodimension collection view-
-// cordinator yoxdu -- 100 faiz qoy
-// initilize elemek dependency -- 100 qoy
 // pagination -- 100 faiz qoy
 // dil meselesi ?? 
 
@@ -26,17 +24,6 @@ import Foundation
 
 //+ productDetail - slug id (productscontroller, home controller,
 //- + filter detailedcontroller - (filterBuilder: filterBuilder, filterType: itemType) (filterpage, favorite, baskeet)
-// checkout viewcontroller - builder - totalcheoutprice, (basket view)
+// +checkout viewcontroller - builder - totalcheoutprice, (basket view)
 // chekout succes -  builder ( chekcouview)
 
-//
-//    func didSelectSeeAll(endpoint: MovieEndpoint) {
-//        let controller = SeeAllCoordinator(navigationController: navigationController ?? UINavigationController(), endpoint: endpoint)
-//        controller.start()
-//    }
-//
-//    func didSelectMovie(_ movie: Int) {
-//        print(movie)
-//        let controller = MovieDetailedCoordinator(navigationController: navigationController ?? UINavigationController(), movieID: movie)
-//        controller.start()
-//       }

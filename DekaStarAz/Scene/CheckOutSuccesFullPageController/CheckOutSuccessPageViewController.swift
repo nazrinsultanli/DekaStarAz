@@ -8,7 +8,7 @@
 import UIKit
 
 class CheckOutSuccessPageViewController: UIViewController {
-    var viewModel = CheckOutSuccessViewModel()
+    var viewModel: CheckOutSuccessViewModel?
     
     lazy var successMessage: UILabel = {
         let label = UILabel()
@@ -31,12 +31,12 @@ class CheckOutSuccessPageViewController: UIViewController {
     }
     
     private func configureViewModel() {
-        viewModel.postData()
-        viewModel.error = { errorMessage in
+        viewModel?.postData()
+        viewModel?.error = { errorMessage in
             print("Error:\(errorMessage)")
             self.successMessage.text = "Problem Bash verdi!"
         }
-        viewModel.success =  {
+        viewModel?.success =  {
             self.successMessage.text = "successfully Done!"
             self.dismissBackPage()
         }

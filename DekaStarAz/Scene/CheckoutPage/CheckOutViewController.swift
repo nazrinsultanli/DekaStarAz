@@ -149,9 +149,9 @@ class CheckOutViewController: UIViewController {
         viewModel?.builder?.address = adressTextField.text
         viewModel?.builder?.phone = phoneNameTextField.text
         viewModel?.builder?.termsAgreed = !(viewModel?.stateCheck ?? false)
-        let controller = CheckOutSuccessPageViewController()
-        controller.viewModel.builder = viewModel?.builder
-        navigationController?.show(controller, sender: nil)
+        let coordinator = CheckOutSuccessCoordinator(builder: viewModel?.builder,
+                                                     navigationController: navigationController ?? UINavigationController())
+        coordinator.start()
     }
     
     
