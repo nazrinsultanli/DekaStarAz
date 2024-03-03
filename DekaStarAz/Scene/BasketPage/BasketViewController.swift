@@ -69,10 +69,11 @@ class BasketViewController: UIViewController {
 
    @objc func checkOutButtonTapped() {
        let controller = CheckOutViewController()
-       controller.builder = viewModel.builder
-       controller.totalCheckOutPrice = viewModel.calculateTotalPrice()
+       controller.viewModel?.builder = viewModel.builder
+       controller.viewModel?.totalCheckOutPrice = viewModel.calculateTotalPrice()
        viewModel.writeToBuilder()
        navigationController?.show(controller, sender: nil)
+       
     }
     
     override func viewDidLoad() {
@@ -162,9 +163,8 @@ extension BasketViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let controller = ProductDetailedViewController()
-        controller.viewModel.slug = viewModel.basketItemsfromFile[indexPath.row].slug
-        navigationController?.show(controller, sender: nil)
+        let coordinator = ProductDetailedViewCoordinator(slug: viewModel.basketItemsfromFile[indexPath.row].slug ?? "", navigationController: navigationController ?? UINavigationController())
+        coordinator.start()
     }
     
    // MARK: Delete Process

@@ -152,16 +152,15 @@ extension HomeViewController: HomeCollectionCellDelegate {
     func didSelectProductId(item: String, itemType: HomePageItemType) {
         if itemType == .category {
             
-            let controller = ProductsViewCoordinator(categorySlugId: item,
+            let coordinator = ProductsViewCoordinator(categorySlugId: item,
                                                      homeItemsType: itemType,
                                                      searchText: nil,
                                                      navigationController: navigationController ?? UINavigationController())
-            controller.start()
+            coordinator.start()
         }
         else {
-            let controller = ProductDetailedViewController()
-            controller.viewModel.slug = item
-            navigationController?.show(controller, sender: nil)
+            let coordinator = ProductDetailedViewCoordinator(slug: item, navigationController: navigationController ?? UINavigationController())
+            coordinator.start()
         }
     }
     
@@ -172,11 +171,11 @@ extension HomeViewController: HomeCollectionCellDelegate {
             tabBarController?.selectedIndex = 1
         }
         else {
-            let controller = ProductsViewCoordinator(categorySlugId: "",
+            let coordinator = ProductsViewCoordinator(categorySlugId: "",
                                                      homeItemsType: itemType,
                                                      searchText: nil,
                                                      navigationController: navigationController ?? UINavigationController())
-            controller.start()
+            coordinator.start()
         }
     }
 }
@@ -190,16 +189,10 @@ extension HomeViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         
-        let controller = ProductsViewCoordinator(categorySlugId: "",
+        let coordinator = ProductsViewCoordinator(categorySlugId: "",
                                                  homeItemsType: nil,
                                                  searchText: searchBar.text ?? "",
                                                  navigationController: navigationController ?? UINavigationController())
-        controller.pushStart()
-        
-//        let controller = ProductsViewController()
-//        controller.viewModel = .init(categorySlugId: "", homeItemsType: nil, searchText: searchBar.text ?? "")
-        print("searc:")
-        print(searchBar.text ?? "" )
-//        navigationController?.pushViewController(controller, animated: true)
+        coordinator.pushStart()
     }
 }

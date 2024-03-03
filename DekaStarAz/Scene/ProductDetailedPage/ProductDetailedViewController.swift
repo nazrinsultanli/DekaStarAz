@@ -9,7 +9,7 @@ import UIKit
 
 class ProductDetailedViewController: UIViewController{
     
-    var viewModel = ProductDetailedViewModel()
+    var viewModel: ProductDetailedViewModel?
     var productQuantity: Int = 0
     let filemManager = FileManagerHelper()
     var favoriteDataFromFile: [ProductModel] = []
@@ -64,11 +64,11 @@ class ProductDetailedViewController: UIViewController{
         view.backgroundColor = UIColor(named: "backgroundColor")
     }
     private func configureViewModel() {
-        viewModel.getSingleProduct()
-        viewModel.error = { errorMessage in
+        viewModel?.getSingleProduct()
+        viewModel?.error = { errorMessage in
             print("Error:\(errorMessage)")
         }
-        viewModel.success =  {
+        viewModel?.success =  {
             self.collectionView.delegate = self
             self.collectionView.dataSource = self
             self.collectionView.reloadData()
@@ -94,7 +94,7 @@ extension  ProductDetailedViewController:  UICollectionViewDataSource, UICollect
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductDetailedCell.reuseID, for: indexPath) as! ProductDetailedCell
-        if let item = viewModel.singleProduct {
+        if let item = viewModel?.singleProduct {
             cell.configure(item: item)
             cell.delegate = self
             cell.indexPath = indexPath
@@ -113,7 +113,7 @@ extension  ProductDetailedViewController:  UICollectionViewDataSource, UICollect
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                                          withReuseIdentifier: "\(ProductDetailedHeader.self)",
                                                                          for: indexPath) as! ProductDetailedHeader
-            header.singleProduct = viewModel.singleProduct
+            header.singleProduct = viewModel?.singleProduct
             return header
         }
         else {
@@ -138,7 +138,7 @@ extension  ProductDetailedViewController:  UICollectionViewDataSource, UICollect
 extension ProductDetailedViewController: ProductDetailFooterDelagate {
     func didTapBasket(state: Bool) {
         if state {
-            if let itemToWrite = viewModel.singleProduct {
+            if let itemToWrite = viewModel?.singleProduct {
                 var item = itemToWrite
                 item.userQuantity = productQuantity
                 if basketDataFromFile.isEmpty {
@@ -157,7 +157,7 @@ extension ProductDetailedViewController: ProductDetailFooterDelagate {
     
     func didTapBFavorite(state: Bool) {
         if state {
-            if let itemToWrite = viewModel.singleProduct {
+            if let itemToWrite = viewModel?.singleProduct {
                 if favoriteDataFromFile.isEmpty {
                     favoriteDataFromFile.append(itemToWrite)
                 } else {

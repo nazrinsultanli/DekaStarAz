@@ -14,6 +14,10 @@ class ProductDetailedViewModel {
     var error: ((String) -> Void)?
     var singleProduct: ProductModel?
     
+    init(slug: String) {
+        self.slug = slug
+    }
+    
     func getSingleProduct () {
         manager.getPrododuct(slug: slug ?? "", language: "az") { data, errorMessage in
             if let errorMessage {

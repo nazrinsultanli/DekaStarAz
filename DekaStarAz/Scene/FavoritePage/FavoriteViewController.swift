@@ -91,10 +91,9 @@ extension FavoriteViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let controller = ProductDetailedViewController()
-        controller.viewModel.slug = viewModel.favItemsfromFile[indexPath.row].slug
-        navigationController?.show(controller, sender: nil)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {        
+        let coordinator = ProductDetailedViewCoordinator(slug: viewModel.favItemsfromFile[indexPath.row].slug ?? "", navigationController: navigationController ?? UINavigationController())
+        coordinator.start()
     }
     
     //MARK: Delete Process

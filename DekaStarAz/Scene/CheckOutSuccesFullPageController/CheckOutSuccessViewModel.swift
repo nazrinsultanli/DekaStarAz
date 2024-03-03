@@ -6,7 +6,7 @@
 //
 
 import Foundation
-class CheckOutViewModel {
+class CheckOutSuccessViewModel {
     private let manager = CheckOutManager()
     var builder: CheckoutBuilder?
     var success: (() -> Void)?

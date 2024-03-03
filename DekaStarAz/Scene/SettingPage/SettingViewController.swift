@@ -101,10 +101,6 @@ extension SettingViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let itemType = viewModel.settingItems[indexPath.row]
-//        let controller = SettingDetailedPageController()
-//        controller.viewModel = .init(settingType: itemType)
-//        navigationController?.show(controller, sender: nil)
         let itemType = viewModel.settingItems[indexPath.row]
         viewModel.settingItemSafari(type: itemType)
         

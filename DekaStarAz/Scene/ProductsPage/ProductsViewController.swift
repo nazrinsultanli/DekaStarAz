@@ -132,8 +132,7 @@ extension ProductsViewController: UICollectionViewDataSource, UICollectionViewDe
         .init(top: 10, left: 10, bottom: 0, right: 10)
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let controller = ProductDetailedViewController()
-        controller.viewModel.slug = viewModel?.productsItems[indexPath.item].slug
-        navigationController?.show(controller, sender: nil)
+        let coordinator = ProductDetailedViewCoordinator(slug: viewModel?.productsItems[indexPath.item].slug ?? "", navigationController: navigationController ?? UINavigationController())
+        coordinator.start()
     }
 }

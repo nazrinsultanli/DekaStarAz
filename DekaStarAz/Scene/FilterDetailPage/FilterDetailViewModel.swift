@@ -22,6 +22,8 @@ class FilterDetailViewModel {
         selectedCategory = filterBuilder.selectedCategory
     }
     
+
+    
     func getfilterItems() {
         switch self.filterType {
         case .category:

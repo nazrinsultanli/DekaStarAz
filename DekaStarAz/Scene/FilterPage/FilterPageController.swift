@@ -131,12 +131,25 @@ extension FilterPageController: UITableViewDataSource, UITableViewDelegate {
                 self?.filterBuilder.selectedCategory = categorySlugId
             }
             navigationController?.show(controller, sender: nil)
+            //MARK: problem
+//            let controller = FilterDetailController()
+//            controller.didSelectCategory = { [weak self] categorySlugId in
+//                self?.filterBuilder.selectedCategory = categorySlugId
+//            }
+//            let coordinator = FilterDetailViewCoordinator(filterBuilder: filterBuilder,
+//                                                          filterType: itemType,
+//                                                          navigationController: navigationController ?? UINavigationController())
+//            coordinator.start()
         case .collection:
-            controller.viewModel = .init(filterBuilder: filterBuilder, filterType: itemType)
-            navigationController?.show(controller, sender: nil)
+            let coordinator = FilterDetailViewCoordinator(filterBuilder: filterBuilder,
+                                                          filterType: itemType,
+                                                          navigationController: navigationController ?? UINavigationController())
+            coordinator.start()
         case .brand:
-            controller.viewModel = .init(filterBuilder: filterBuilder, filterType: itemType)
-            navigationController?.show(controller, sender: nil)
+            let coordinator = FilterDetailViewCoordinator(filterBuilder: filterBuilder,
+                                                          filterType: itemType,
+                                                          navigationController: navigationController ?? UINavigationController())
+            coordinator.start()
         default:
             break
         }

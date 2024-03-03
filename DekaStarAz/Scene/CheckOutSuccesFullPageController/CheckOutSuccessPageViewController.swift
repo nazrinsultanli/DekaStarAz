@@ -8,7 +8,7 @@
 import UIKit
 
 class CheckOutSuccessPageViewController: UIViewController {
-    var viewModel = CheckOutViewModel()
+    var viewModel = CheckOutSuccessViewModel()
     
     lazy var successMessage: UILabel = {
         let label = UILabel()

@@ -20,7 +20,7 @@ class FilterDetailController: UIViewController {
         table.register(FilterDetailListCell.self, forCellReuseIdentifier: FilterDetailListCell.reuseID)
         table.dataSource = self
         table.delegate = self
-        tableView.backgroundColor = .clear
+        table.backgroundColor = .clear
         return table
     }()
 

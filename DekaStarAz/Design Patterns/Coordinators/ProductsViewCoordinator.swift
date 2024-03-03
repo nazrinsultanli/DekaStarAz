@@ -28,7 +28,6 @@ class ProductsViewCoordinator: Coordinator {
         controller.viewModel = .init(categorySlugId: categorySlugId ?? "",
                                      homeItemsType: homeItemsType,
                                      searchText: searchText)
-        controller.hidesBottomBarWhenPushed = true
         navigationController.show(controller, sender: nil)
     }
     
@@ -37,7 +36,6 @@ class ProductsViewCoordinator: Coordinator {
         controller.viewModel = .init(categorySlugId: categorySlugId ?? "",
                                      homeItemsType: homeItemsType,
                                      searchText: searchText)
-        controller.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(controller, animated: true)
     }
     

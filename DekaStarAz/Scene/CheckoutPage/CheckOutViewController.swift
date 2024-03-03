@@ -8,10 +8,7 @@
 import UIKit
 
 class CheckOutViewController: UIViewController {
-    var builder: CheckoutBuilder?
-    var totalCheckOutPrice: Double = 0.0
-    var stateCheck = true
-    
+    var viewModel: CheckOutViewModel?
     private let fullNameLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -129,12 +126,12 @@ class CheckOutViewController: UIViewController {
     }()
 
     @objc func didChecked() {
-        if stateCheck == true {
+        if viewModel?.stateCheck == true {
             checkButton.setBackgroundImage(UIImage(systemName: "circle.fill"), for: .normal)
-            stateCheck = false
+            viewModel?.stateCheck = false
         } else {
             checkButton.setBackgroundImage(UIImage(systemName: "circle"), for: .normal)
-            stateCheck = true
+            viewModel?.stateCheck = true
         }
         
     }
@@ -143,12 +140,12 @@ class CheckOutViewController: UIViewController {
 
     }
     @objc func tamamlaButtonTapped() {
-        builder?.name = fullNameTextField.text
-        builder?.address = adressTextField.text
-        builder?.phone = phoneNameTextField.text
-        builder?.termsAgreed = !stateCheck
+        viewModel?.builder?.name = fullNameTextField.text
+        viewModel?.builder?.address = adressTextField.text
+        viewModel?.builder?.phone = phoneNameTextField.text
+        viewModel?.builder?.termsAgreed = !(viewModel?.stateCheck ?? false)
         let controller = CheckOutSuccessPageViewController()
-        controller.viewModel.builder = builder
+        controller.viewModel.builder = viewModel?.builder
         navigationController?.show(controller, sender: nil)
     }
     

@@ -80,10 +80,9 @@ extension CategoryViewController:UICollectionViewDataSource, UICollectionViewDel
         .init(top: 10, left: 20, bottom: 0, right: 20)
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let controller = ProductsViewController()
-        controller.viewModel = .init(categorySlugId: viewModel.categoryItems[indexPath.item].slugId, homeItemsType: .category, searchText: nil)
-//        controller.viewModel.categorySlugId = viewModel.categoryItems[indexPath.item].slugId
-//        controller.viewModel.homeItemsType = .category
-        navigationController?.show(controller, sender: nil)
+        let coordinator = ProductsViewCoordinator(categorySlugId: viewModel.categoryItems[indexPath.item].slugId,
+                                                 homeItemsType: .category, searchText: nil, navigationController: navigationController ?? UINavigationController())
+        coordinator.start()
+        
     }
 }

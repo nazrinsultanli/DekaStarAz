@@ -24,7 +24,10 @@ import Foundation
 
 
 
-
+//+ productDetail - slug id (productscontroller, home controller,
+//- + filter detailedcontroller - (filterBuilder: filterBuilder, filterType: itemType) (filterpage, favorite, baskeet)
+// checkout viewcontroller - builder - totalcheoutprice, (basket view)
+// chekout succes -  builder ( chekcouview)
 
 //
 //    func didSelectSeeAll(endpoint: MovieEndpoint) {
