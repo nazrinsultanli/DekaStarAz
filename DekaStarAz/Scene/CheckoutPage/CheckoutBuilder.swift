@@ -7,10 +7,7 @@
 
 import Foundation
 class CheckoutBuilder {
-    //var chekoutItems:  CheckoutModel?
     var cartItems = [CartModel]()
-    
-
     var name: String?
     var phone: String?
     var address: String?

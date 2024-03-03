@@ -119,10 +119,6 @@ class BasketCell: UITableViewCell {
         addSubview(totalText)
         addSubview(totalLabel)
    
-//        modelNameLabel.backgroundColor = .red
-//        codeLabel.backgroundColor = .yellow
-//        unitLabel.backgroundColor = .green
-        
         NSLayoutConstraint.activate([
             //MARK: photo
             photo.topAnchor.constraint(equalTo: topAnchor, constant: 8),
@@ -169,13 +165,11 @@ class BasketCell: UITableViewCell {
             totalText.leadingAnchor.constraint(equalTo: photo.trailingAnchor, constant: 10),
             totalText.widthAnchor.constraint(equalToConstant: 150),
             totalText.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
-//            totalText.heightAnchor.constraint(equalToConstant: 20),
             
             totalLabel.topAnchor.constraint(equalTo: originalPriceLabel.bottomAnchor),
             totalLabel.leadingAnchor.constraint(equalTo: totalText.trailingAnchor),
             totalLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             totalLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
-//            totalLabel.heightAnchor.constraint(equalToConstant: 20),
         ])
     }
     

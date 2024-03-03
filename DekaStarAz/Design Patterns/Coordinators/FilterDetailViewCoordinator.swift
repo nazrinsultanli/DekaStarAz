@@ -10,7 +10,6 @@ import UIKit
 class FilterDetailViewCoordinator: Coordinator {
     var filterBuilder: FilterBuilder?
     var filterType: FilterItemsNames?
-//    var selectedCategory: String?
     var navigationController: UINavigationController
     
     init(filterBuilder: FilterBuilder, filterType: FilterItemsNames,  navigationController: UINavigationController) {

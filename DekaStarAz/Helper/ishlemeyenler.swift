@@ -14,16 +14,6 @@ import Foundation
 // search +
 // sf controller+
 
-// - filterden detailed filtere kecende telefonda donur
-
 // tableview autodimension collection view-
 // pagination -- 100 faiz qoy
 // dil meselesi ?? 
-
-
-
-//+ productDetail - slug id (productscontroller, home controller,
-//- + filter detailedcontroller - (filterBuilder: filterBuilder, filterType: itemType) (filterpage, favorite, baskeet)
-// +checkout viewcontroller - builder - totalcheoutprice, (basket view)
-// chekout succes -  builder ( chekcouview)
-

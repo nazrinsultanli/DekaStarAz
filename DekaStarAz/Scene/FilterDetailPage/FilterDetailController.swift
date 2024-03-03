@@ -22,13 +22,7 @@ class FilterDetailController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-//    init(viewModel: TarotSelectionViewModel, closure: @escaping () -> Void) {
-//            self.viewModel = viewModel
-//            self.yourClosure = closure
-//            super.init(nibName: nil, bundle: nil)
-//        }
-//    
+     
     private lazy var tableView: UITableView = {
         let table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false

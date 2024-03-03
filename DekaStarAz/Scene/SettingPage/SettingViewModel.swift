@@ -14,7 +14,6 @@ enum SettingItemsNames: String, CaseIterable {
     case contactData = "Elaqe"
     case privacyPolicy = "Mexfilik Siyaseti"
     case deliveryPolicy = "Catdirilma siyaseti"
-    
 }
 
 struct SettingItemsStructModel {
@@ -38,7 +37,6 @@ class SettingViewModel {
         case .deliveryPolicy:
             url = SafariLinks.deliveryPolicy.rawValue
         }
-        
         UIApplication.shared.presentSafariViewController(urlLink: url ?? "")
     }
 }

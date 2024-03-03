@@ -15,9 +15,6 @@ class SettingDetailedPageController: UIViewController {
         table.translatesAutoresizingMaskIntoConstraints = false
         table.separatorStyle = .none
         table.backgroundColor = .clear
-        //MARK: problem----------------------
-//        table.estimatedRowHeight = 500
-//        table.rowHeight = UITableView.automaticDimension
         table.register(TopImageButtomLabelTableCell.self, forCellReuseIdentifier: TopImageButtomLabelTableCell.reuseID)
         table.register(ContactDataCell.self, forCellReuseIdentifier: ContactDataCell.reuseID)
         return table
@@ -78,7 +75,7 @@ extension SettingDetailedPageController: UITableViewDataSource, UITableViewDeleg
             return cell
         }
     }
-    //MARK: problem----------------------
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         200
     }

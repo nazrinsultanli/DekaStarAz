@@ -195,7 +195,6 @@ class ContactDataCell: UITableViewCell {
             emailLabel.topAnchor.constraint(equalTo: emailText.bottomAnchor),
             emailLabel.leadingAnchor.constraint(equalTo: emailImage.trailingAnchor, constant: 10),
             emailLabel.heightAnchor.constraint(equalToConstant: 40),
-            
         ])
     }
     
@@ -205,5 +204,4 @@ class ContactDataCell: UITableViewCell {
         hoursLabel.text = item.workingHour
         emailLabel.text = item.email[0].email
     }
-    
 }

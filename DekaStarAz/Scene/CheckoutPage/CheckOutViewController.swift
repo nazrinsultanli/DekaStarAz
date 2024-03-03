@@ -232,10 +232,6 @@ class CheckOutViewController: UIViewController {
             finishButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
             finishButton.heightAnchor.constraint(equalToConstant: 60),
             finishButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
-            
-            
-            
-            
         ])
         
     }
