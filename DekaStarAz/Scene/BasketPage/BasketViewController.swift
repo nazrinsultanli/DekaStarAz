@@ -8,7 +8,7 @@
 import UIKit
 
 class BasketViewController: UIViewController {
-
+    
     var viewModel = BasketViewModel()
     
     lazy var table: UITableView = {
@@ -66,7 +66,7 @@ class BasketViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
-
+    
     @objc func checkOutButtonTapped() {
         viewModel.writeToBuilder()
         let coordinator = CheckOutCoordinator(builder: viewModel.builder,
@@ -109,7 +109,6 @@ class BasketViewController: UIViewController {
             checkOutButton.isHidden = false
         }
     }
-
     
     func configureConstraint() {
         view.addSubview(table)
@@ -117,7 +116,7 @@ class BasketViewController: UIViewController {
         view.addSubview(checkOutButton)
         view.addSubview(totalPriceText)
         view.addSubview(totalPriceLabel)
-
+        
         NSLayoutConstraint.activate([
             table.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             table.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -162,24 +161,24 @@ extension BasketViewController: UITableViewDataSource, UITableViewDelegate {
         coordinator.start()
     }
     
-   // MARK: Delete Process
+    // MARK: Delete Process
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-            let deleteAction = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
-                self.deleteData(at: indexPath)
-            }
-            let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction])
-            return swipeActions
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
+            self.deleteData(at: indexPath)
         }
-
-        func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-            return true
-        }
-
-        func deleteData(at indexPath: IndexPath) {
-            viewModel.basketItemsfromFile.remove(at: indexPath.item)
-            let fileManager = FileManagerHelper()
-            fileManager.writeDataToFile(data: viewModel.basketItemsfromFile, fileSelection: .basket)
-            configureViewModel()
-        }
+        let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction])
+        return swipeActions
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func deleteData(at indexPath: IndexPath) {
+        viewModel.basketItemsfromFile.remove(at: indexPath.item)
+        let fileManager = FileManagerHelper()
+        fileManager.writeDataToFile(data: viewModel.basketItemsfromFile, fileSelection: .basket)
+        configureViewModel()
+    }
     
 }

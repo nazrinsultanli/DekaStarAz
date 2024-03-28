@@ -35,7 +35,7 @@ class HomeViewModel {
             }
         }
     }
-
+    
     func getAllHomeItems() {
         getCategoryItem(endPoint: CategoryEndpoint.categoryEndpoint, title: "Categories", type: .category) {
             self.getEachItems(endPoint: HomeItemsEndpoint.recentEndpoint, title: "Recent Products", type: .recent) {
@@ -67,5 +67,5 @@ class HomeViewModel {
             }
         }
     }
-
+    
 }

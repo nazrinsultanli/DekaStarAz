@@ -9,7 +9,7 @@ import UIKit
 
 class FavoritePageCell: UITableViewCell {
     static let reuseID =  "FavoritePageCell"
-
+    
     lazy var photo: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -65,21 +65,21 @@ class FavoritePageCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-
+    
     private func configureConstraint() {
         addSubview(photo)
         addSubview(modelNameLabel)
         addSubview(collectionLabel)
         addSubview(originalPriceLabel)
         addSubview(discountedPriceLabel)
-   
-//        modelNameLabel.backgroundColor = .red
-//        collectionLabel.backgroundColor = .yellow
-//        originalPriceLabel.backgroundColor = .green
+        
+        //        modelNameLabel.backgroundColor = .red
+        //        collectionLabel.backgroundColor = .yellow
+        //        originalPriceLabel.backgroundColor = .green
         
         NSLayoutConstraint.activate([
             photo.topAnchor.constraint(equalTo: topAnchor, constant: 8),
@@ -95,7 +95,7 @@ class FavoritePageCell: UITableViewCell {
             collectionLabel.topAnchor.constraint(equalTo: modelNameLabel.bottomAnchor),
             collectionLabel.leadingAnchor.constraint(equalTo: photo.trailingAnchor, constant: 4),
             collectionLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 8),
-//            collectionLabel.heightAnchor.constraint(equalToConstant: 20),
+            //            collectionLabel.heightAnchor.constraint(equalToConstant: 20),
             
             originalPriceLabel.topAnchor.constraint(equalTo: collectionLabel.bottomAnchor),
             originalPriceLabel.leadingAnchor.constraint(equalTo: photo.trailingAnchor, constant: 4),
@@ -106,7 +106,7 @@ class FavoritePageCell: UITableViewCell {
             discountedPriceLabel.topAnchor.constraint(equalTo: collectionLabel.bottomAnchor),
             discountedPriceLabel.leadingAnchor.constraint(equalTo: originalPriceLabel.trailingAnchor),
             discountedPriceLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 8),
-           // discountedPriceLabel.heightAnchor.constraint(equalToConstant: 20),
+            // discountedPriceLabel.heightAnchor.constraint(equalToConstant: 20),
             discountedPriceLabel.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
         ])
     }
@@ -119,12 +119,12 @@ class FavoritePageCell: UITableViewCell {
         if data.discount == 0 {
             originalPriceLabel.text = "\(String(describing: data.regularPrice ?? "")) AZN"
             discountedPriceLabel.isHidden = true
-           
+            
         } else{
             originalPriceLabel.attributedText = "\(String(describing: data.regularPrice ?? "")) AZN".strikeThrough()
             discountedPriceLabel.text = "\(String(describing: data.discountPrice ?? "")) AZN"
         }
-       
+        
     }
 }
 

@@ -87,13 +87,13 @@ class ProductsViewModel {
             }
         case .category:
             filterManager.getFilteredPrododuct(categoryKey: categorySlugId ?? "",
-                                         collection: "",
-                                         brand: "",
-                                         inStock: true,
-                                         minPrice: "",
-                                         maxPrice: "",
-                                         language:
-                                            "az"){ data, errorMessage in
+                                               collection: "",
+                                               brand: "",
+                                               inStock: true,
+                                               minPrice: "",
+                                               maxPrice: "",
+                                               language:
+                                                "az"){ data, errorMessage in
                 if let errorMessage {
                     self.error?(errorMessage)
                 } else if let data {

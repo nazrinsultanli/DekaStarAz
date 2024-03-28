@@ -34,6 +34,9 @@ class CheckOutSuccessPageViewController: UIViewController {
         viewModel?.postData()
         viewModel?.error = { errorMessage in
             print("Error:\(errorMessage)")
+            let alert = UIAlertController(title: "Error:", message: "\(errorMessage)", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
             self.successMessage.text = "Problem Bash verdi!"
         }
         viewModel?.success =  {

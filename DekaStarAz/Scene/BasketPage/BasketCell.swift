@@ -8,9 +8,9 @@
 import UIKit
 
 class BasketCell: UITableViewCell {
-
+    
     static let reuseID =  "BasketCell"
-
+    
     lazy var photo: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -103,11 +103,11 @@ class BasketCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-
+    
     private func configureConstraint() {
         addSubview(photo)
         addSubview(modelNameLabel)
@@ -118,7 +118,7 @@ class BasketCell: UITableViewCell {
         addSubview(unitLabel)
         addSubview(totalText)
         addSubview(totalLabel)
-   
+        
         NSLayoutConstraint.activate([
             //MARK: photo
             photo.topAnchor.constraint(equalTo: topAnchor, constant: 8),
@@ -185,18 +185,18 @@ class BasketCell: UITableViewCell {
         if let price =  Double(data.discountPrice ?? "0.0") {
             let quantity = Double(data.userQuantity ?? 0)
             total = quantity * price
-            }
+        }
         totalText.text = "Total: \(total) AZN"
         
         if data.discount == 0 {
             originalPriceLabel.text = "\(String(describing: data.regularPrice ?? "")) AZN"
             discountedPriceLabel.isHidden = true
-           
+            
         } else{
             originalPriceLabel.attributedText = "\(String(describing: data.regularPrice ?? "")) AZN".strikeThrough()
             discountedPriceLabel.text = "\(String(describing: data.discountPrice ?? "")) AZN"
         }
-       
+        
     }
 }
 

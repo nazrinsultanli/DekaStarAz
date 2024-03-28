@@ -8,7 +8,7 @@
 import UIKit
 
 class ProductDetailedHeader: UICollectionReusableView {
- 
+    
     static let reuseID = "ProductDetailedHeader"
     var singleProduct: ProductModel?
     private lazy var collectionView: UICollectionView = {
@@ -53,17 +53,17 @@ class ProductDetailedHeader: UICollectionReusableView {
 
 extension ProductDetailedHeader: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-           singleProduct?.images?.count ?? 0
-       }
-   
-       func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-           let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductDetailedHeaderCell.reuseID, for: indexPath) as! ProductDetailedHeaderCell
-           if let image = singleProduct?.images?[indexPath.row] {
-               cell.configure(item: image)
-           }
-           return cell
-       }
-       func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-           .init(width: collectionView.frame.width, height: collectionView.frame.height)
-       }
+        singleProduct?.images?.count ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductDetailedHeaderCell.reuseID, for: indexPath) as! ProductDetailedHeaderCell
+        if let image = singleProduct?.images?[indexPath.row] {
+            cell.configure(item: image)
+        }
+        return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        .init(width: collectionView.frame.width, height: collectionView.frame.height)
+    }
 }

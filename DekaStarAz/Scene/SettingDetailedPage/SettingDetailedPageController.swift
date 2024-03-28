@@ -31,13 +31,16 @@ class SettingDetailedPageController: UIViewController {
         view.backgroundColor = UIColor(named: "backgroundColor")
         
     }
-
+    
     private func configureViewModel() {
         tableView.dataSource = self
         tableView.delegate = self
         viewModel?.getSettingItems()
         viewModel?.error = { errorMessage in
             print("Error:\(errorMessage)")
+            let alert = UIAlertController(title: "Error:", message: "\(errorMessage)", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
         viewModel?.success =  {
             self.tableView.reloadData()
@@ -74,7 +77,7 @@ extension SettingDetailedPageController: UITableViewDataSource, UITableViewDeleg
             return cell
         }
     }
-
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         200
     }

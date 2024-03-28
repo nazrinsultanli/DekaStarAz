@@ -23,7 +23,7 @@ class ProductsViewController: UIViewController {
                             forCellWithReuseIdentifier: TopImageButtomLabelS.reuseID)
         return collection
     }()
-
+    
     lazy var noItems: UILabel = {
         let label = UILabel()
         label.numberOfLines = 1
@@ -42,10 +42,6 @@ class ProductsViewController: UIViewController {
         configureViewModel()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-//        configureViewModel()
-    }
-    
     private func configureUI() {
         title = "Products"
         view.backgroundColor = UIColor(named: "backgroundColor")
@@ -58,7 +54,7 @@ class ProductsViewController: UIViewController {
         )
     }
     
- 
+    
     @objc func filterButton() {
         let filterController = FilterPageController()
         filterController.filterCompleted = { [weak self] filterItemsModel in
@@ -67,11 +63,14 @@ class ProductsViewController: UIViewController {
         }
         navigationController?.pushViewController(filterController, animated: true)
     }
-
+    
     private func configureViewModel() {
         viewModel?.getAllItems()
         viewModel?.error = { errorMessage in
             print("Error:\(errorMessage)")
+            let alert = UIAlertController(title: "Error:", message: "\(errorMessage)", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
         viewModel?.success =  {
             self.configureVisibility()
@@ -80,7 +79,7 @@ class ProductsViewController: UIViewController {
             self.collectionView.reloadData()
         }
     }
-
+    
     func configureVisibility() {
         if ((viewModel?.productsItems.isEmpty) != nil) {
             noItems.isHidden = true
@@ -99,7 +98,7 @@ class ProductsViewController: UIViewController {
             collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor,constant: 0),
             collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,constant: 0),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,constant: 0),
-        
+            
             noItems.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             noItems.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             noItems.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -111,19 +110,19 @@ class ProductsViewController: UIViewController {
 extension ProductsViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     //MARK: Collection view for rest Items
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-       // viewModel.categoryItems.count
+        // viewModel.categoryItems.count
         viewModel?.productsItems.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-     
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TopImageButtomLabelS.reuseID, for: indexPath) as! TopImageButtomLabelS
         if let item = viewModel?.productsItems[indexPath.item] {
             cell.configure(item: item)
         }
         return cell
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         .init(width: collectionView.frame.width/2-20, height: 180)
     }

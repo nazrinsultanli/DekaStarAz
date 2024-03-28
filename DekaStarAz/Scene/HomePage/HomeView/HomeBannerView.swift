@@ -53,7 +53,7 @@ class HomeBannerView: UICollectionReusableView {
         ])
     }
 }
- 
+
 extension HomeBannerView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         bannerItemsReusableView.count

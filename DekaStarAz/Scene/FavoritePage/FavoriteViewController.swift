@@ -32,7 +32,7 @@ class FavoriteViewController: UIViewController {
         label.font = .systemFont(ofSize: 18, weight: .bold)
         return label
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "Sevilenler"
@@ -60,7 +60,7 @@ class FavoriteViewController: UIViewController {
             table.isHidden = false
         }
     }
-
+    
     func configureConstraint() {
         view.addSubview(table)
         view.addSubview(noItems)
@@ -91,30 +91,30 @@ extension FavoriteViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {        
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let coordinator = ProductDetailedViewCoordinator(slug: viewModel.favItemsfromFile[indexPath.row].slug ?? "", navigationController: navigationController ?? UINavigationController())
         coordinator.start()
     }
     
     //MARK: Delete Process
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-            let deleteAction = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
-                self.deleteData(at: indexPath)
-            }
-            let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction])
-            return swipeActions
+        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") {  (contextualAction, view, boolValue) in
+            self.deleteData(at: indexPath)
         }
-
-        func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-            return true
-        }
-
-        func deleteData(at indexPath: IndexPath) {
-            viewModel.favItemsfromFile.remove(at: indexPath.item)            
-            let fileManager = FileManagerHelper()
-            fileManager.writeDataToFile(data: viewModel.favItemsfromFile, fileSelection: .favorite)
-            configureViewModel()
-        }
+        let swipeActions = UISwipeActionsConfiguration(actions: [deleteAction])
+        return swipeActions
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func deleteData(at indexPath: IndexPath) {
+        viewModel.favItemsfromFile.remove(at: indexPath.item)
+        let fileManager = FileManagerHelper()
+        fileManager.writeDataToFile(data: viewModel.favItemsfromFile, fileSelection: .favorite)
+        configureViewModel()
+    }
     
 }
 

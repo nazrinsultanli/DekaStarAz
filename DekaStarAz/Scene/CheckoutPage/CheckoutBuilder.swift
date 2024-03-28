@@ -12,7 +12,7 @@ class CheckoutBuilder {
     var phone: String?
     var address: String?
     var termsAgreed: Bool?
-
+    
     func chekoutBuild() -> [String: Any]{
         [ "name": name ?? "",
           "phone": phone ?? "",

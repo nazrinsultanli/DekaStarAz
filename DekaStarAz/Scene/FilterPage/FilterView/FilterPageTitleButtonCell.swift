@@ -7,7 +7,7 @@
 
 import UIKit
 class FilterPageTitleButtonCell: UITableViewCell {
-
+    
     static let reuseID = "FilterPageTitleButtonCell"
     var filterBuilder: FilterBuilder?
     var stateButton = false
@@ -19,7 +19,7 @@ class FilterPageTitleButtonCell: UITableViewCell {
         label.numberOfLines = 0
         return label
     }()
-
+    
     private lazy var checkButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -43,7 +43,7 @@ class FilterPageTitleButtonCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
     }
-
+    
     @objc func didChecked() {
         stateButton = !stateButton
         if stateButton {
@@ -53,11 +53,11 @@ class FilterPageTitleButtonCell: UITableViewCell {
         }
         filterBuilder?.inStock = stateButton
     }
-
+    
     private func configureConstraints() {
         contentView.addSubview(filterNameLabel)
         contentView.addSubview(checkButton)
-
+        
         NSLayoutConstraint.activate([
             filterNameLabel.topAnchor.constraint(equalTo: topAnchor, constant: 8),
             filterNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
@@ -70,7 +70,7 @@ class FilterPageTitleButtonCell: UITableViewCell {
             checkButton.heightAnchor.constraint(equalToConstant: 20)
         ])
     }
-
+    
     func configure(item: String) {
         filterNameLabel.text = item
     }

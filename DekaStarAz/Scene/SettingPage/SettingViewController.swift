@@ -20,20 +20,20 @@ class SettingViewController: UIViewController {
         table.register(TitleWithDisclosureTableCell.self, forCellReuseIdentifier: TitleWithDisclosureTableCell.reuseID)
         return table
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
         configureConstraints()
         configureViewModel()
     }
-
+    
     private func configureUI() {
         title = "Daha cox"
         view.backgroundColor = UIColor(named: "backgroundColor")
         configureDrowDownMenu()
     }
-
+    
     private func configureViewModel() {
         tableView.reloadData()
     }
@@ -43,22 +43,22 @@ class SettingViewController: UIViewController {
         dropdownButton.setTitle("Language", for: .normal)
         dropdownButton.setTitleColor(UIColor(named: "BlackWhite") , for: .normal)
         dropdownButton.addTarget(self, action: #selector(dropdownButtonTapped(sender:)), for: .touchUpInside)
-
+        
         let dropdownMenu = DropdownMenu(items: ["az", "en", "ru"])
         dropdownMenu.delegate = self
         dropdownMenu.isHidden = true
         view.addSubview(dropdownMenu)
         self.dropdownMenu = dropdownMenu
-
+        
         let dropdownBarButtonItem = UIBarButtonItem(customView: dropdownButton)
         navigationItem.rightBarButtonItem = dropdownBarButtonItem
     }
-
+    
     // MARK: dropdown
     @objc func dropdownButtonTapped(sender: UIButton) {
         guard let dropdownMenu = dropdownMenu else { return }
         dropdownMenu.isHidden = !dropdownMenu.isHidden
-
+        
         if dropdownMenu.isHidden {
             dropdownMenu.removeFromSuperview()
         } else {
@@ -70,12 +70,12 @@ class SettingViewController: UIViewController {
             }
         }
     }
-
-
+    
+    
     private func configureConstraints() {
         view.addSubview(tableView)
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
@@ -87,7 +87,7 @@ extension SettingViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.settingItems.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TitleWithDisclosureTableCell.reuseID, for: indexPath) as! TitleWithDisclosureTableCell
         let itemType = viewModel.settingItems[indexPath.row]
@@ -95,11 +95,11 @@ extension SettingViewController: UITableViewDataSource, UITableViewDelegate {
         cell.backgroundColor = .clear
         return cell
     }
-
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }
-
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let itemType = viewModel.settingItems[indexPath.row]
         viewModel.settingItemSafari(type: itemType)

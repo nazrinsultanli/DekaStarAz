@@ -72,10 +72,10 @@ class ProductDetailedFooter: UICollectionReusableView {
             addToBasketButton.heightAnchor.constraint(equalToConstant: 60),
         ])
     }
-     
+    
     @objc func favButtonTapped () {
         addToFavoriteButton.backgroundColor = .systemGreen
-    
+        
         UIView.animate(withDuration: 1.0, delay: 0, options: .curveEaseInOut, animations: {
             self.addToFavoriteButton.backgroundColor =  UIColor(named: "Universal2Color")
         }, completion: nil)
@@ -84,7 +84,7 @@ class ProductDetailedFooter: UICollectionReusableView {
     
     @objc func basketButtonTapped () {
         addToBasketButton.backgroundColor = .green
-    
+        
         UIView.animate(withDuration: 1.0, delay: 0, options: .curveEaseInOut, animations: {
             self.addToBasketButton.backgroundColor = UIColor(named: "UniversalColor")
         }, completion: nil)

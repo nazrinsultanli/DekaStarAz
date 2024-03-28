@@ -14,7 +14,7 @@ class ProductDetailedViewController: UIViewController{
     let filemManager = FileManagerHelper()
     var favoriteDataFromFile: [ProductModel] = []
     var basketDataFromFile: [ProductModel] = []
-
+    
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
@@ -27,7 +27,7 @@ class ProductDetailedViewController: UIViewController{
                             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                             withReuseIdentifier: ProductDetailedHeader.reuseID)
         collection.register(ProductDetailedFooter.self,
-                           forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
+                            forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
                             withReuseIdentifier: ProductDetailedFooter.reuseID)
         collection.backgroundColor = .clear
         return collection
@@ -38,7 +38,7 @@ class ProductDetailedViewController: UIViewController{
         configureUI()
         configureConstraints()
         configureViewModel()
-
+        
         filemManager.readDataFromFile(fileSelection: .favorite) { (items: [ProductModel]?) in
             if let items = items {
                 self.favoriteDataFromFile = items
@@ -57,7 +57,7 @@ class ProductDetailedViewController: UIViewController{
         self.hideKeyboardWhenTappedAround()
     }
     
- 
+    
     
     private func configureUI() {
         title = "Products"
@@ -67,6 +67,9 @@ class ProductDetailedViewController: UIViewController{
         viewModel?.getSingleProduct()
         viewModel?.error = { errorMessage in
             print("Error:\(errorMessage)")
+            let alert = UIAlertController(title: "Error:", message: "\(errorMessage)", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
         viewModel?.success =  {
             self.collectionView.delegate = self
@@ -74,7 +77,7 @@ class ProductDetailedViewController: UIViewController{
             self.collectionView.reloadData()
         }
     }
-
+    
     private func configureConstraints() {
         view.addSubview(collectionView)
         
@@ -89,7 +92,7 @@ class ProductDetailedViewController: UIViewController{
 
 extension  ProductDetailedViewController:  UICollectionViewDataSource, UICollectionViewDelegate , UICollectionViewDelegateFlowLayout{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-       1
+        1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -103,10 +106,10 @@ extension  ProductDetailedViewController:  UICollectionViewDataSource, UICollect
     }
     //MARK: problem: solve by Sivamaq
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        .init(width: collectionView.frame.width-30, height: collectionView.frame.height)
+        //        .init(width: collectionView.frame.width-30, height: collectionView.frame.height)
         .init(width: collectionView.frame.width-30, height:550)
     }
-  
+    
     
     //MARK: HEADER View
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -119,13 +122,13 @@ extension  ProductDetailedViewController:  UICollectionViewDataSource, UICollect
         }
         else {
             let footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                         withReuseIdentifier: "\(ProductDetailedFooter.self)",
-                                                                         for: indexPath) as! ProductDetailedFooter
+                                                                             withReuseIdentifier: "\(ProductDetailedFooter.self)",
+                                                                             for: indexPath) as! ProductDetailedFooter
             footerView.delegate = self
             return footerView
         }
     }
-   
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         CGSize(width: view.frame.size.width, height: view.frame.size.width*2/3)
     }

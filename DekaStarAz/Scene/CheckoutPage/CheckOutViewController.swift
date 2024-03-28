@@ -33,7 +33,7 @@ class CheckOutViewController: UIViewController {
         textField.backgroundColor = .clear
         return textField
     }()
-
+    
     private let phoneLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -92,7 +92,7 @@ class CheckOutViewController: UIViewController {
         button.titleLabel?.font = UIFont.systemFont(ofSize: 20)
         return button
     }()
-
+    
     private lazy var finishButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Tamamla", for: .normal)
@@ -111,7 +111,7 @@ class CheckOutViewController: UIViewController {
         button.backgroundColor = .clear
         button.setTitle("shertleri", for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
-
+        
         button.setTitleColor(UIColor(named: "UniversalColor"), for: .normal)
         button.addTarget(self, action: #selector(shertleriTapped), for: .touchUpInside)
         return button
@@ -125,12 +125,12 @@ class CheckOutViewController: UIViewController {
         label.text = "oxudum və qəbul etdim"
         return label
     }()
-
+    
     @objc func didChecked() {
         guard let viewModel = viewModel else {
             return // viewModel is nil, cannot proceed
         }
-
+        
         if viewModel.stateCheck == true {
             checkButton.setBackgroundImage(UIImage(systemName: "circle.fill"), for: .normal)
             viewModel.stateCheck = false
@@ -139,10 +139,10 @@ class CheckOutViewController: UIViewController {
             viewModel.stateCheck = true
         }
     }
-
+    
     @objc func shertleriTapped() {
         UIApplication.shared.presentSafariViewController(urlLink: SafariLinks.privacyPolicy.rawValue)
-
+        
     }
     @objc func tamamlaButtonTapped() {
         viewModel?.builder?.name = fullNameTextField.text
@@ -222,7 +222,7 @@ class CheckOutViewController: UIViewController {
             shertleriButton.topAnchor.constraint(equalTo: adressTextField.bottomAnchor, constant: 10),
             shertleriButton.leadingAnchor.constraint(equalTo: checkButton.trailingAnchor, constant: 20),
             shertleriButton.heightAnchor.constraint(equalToConstant: 50),
-
+            
             readAndAcceptLabel.centerYAnchor.constraint(equalTo: shertleriButton.centerYAnchor),
             readAndAcceptLabel.leadingAnchor.constraint(equalTo: shertleriButton.trailingAnchor, constant: 10),
             readAndAcceptLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
@@ -240,14 +240,14 @@ class CheckOutViewController: UIViewController {
 
 extension CheckOutViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-           if textField == fullNameTextField {
-               phoneNameTextField.becomeFirstResponder()
-           } else if textField == phoneNameTextField {
-               adressTextField.becomeFirstResponder()
-           } else {
-               textField.resignFirstResponder()
-           }
-           return true
-       }
+        if textField == fullNameTextField {
+            phoneNameTextField.becomeFirstResponder()
+        } else if textField == phoneNameTextField {
+            adressTextField.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+        return true
+    }
 }
 

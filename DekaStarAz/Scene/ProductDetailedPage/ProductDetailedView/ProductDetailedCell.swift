@@ -170,7 +170,7 @@ class ProductDetailedCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
     }
-
+    
     private func configureConstraints() {
         let kodStack = UIStackView()
         kodStack.addArrangedSubview(kodText)
@@ -224,8 +224,8 @@ class ProductDetailedCell: UICollectionViewCell {
         contentView.addSubview(discountedPriceLAbel)
         contentView.addSubview(generalStack)
         contentView.addSubview(descriptionLabel)
-//        descriptionLabel.backgroundColor = .lightGray
-     
+        //        descriptionLabel.backgroundColor = .lightGray
+        
         NSLayoutConstraint.activate([
             unitLabel.widthAnchor.constraint(equalToConstant: 100),
             modelNameLabel.topAnchor.constraint(equalTo: topAnchor),
@@ -249,7 +249,7 @@ class ProductDetailedCell: UICollectionViewCell {
             movcudluqText.widthAnchor.constraint(equalToConstant: 120),
             sayText.widthAnchor.constraint(equalToConstant: 120),
             sayTextField.widthAnchor.constraint(equalToConstant: 80),
-           
+            
             generalStack.topAnchor.constraint(equalTo: originalPriceLabel.bottomAnchor),
             generalStack.leadingAnchor.constraint(equalTo: leadingAnchor),
             generalStack.trailingAnchor.constraint(equalTo: trailingAnchor),
@@ -258,11 +258,11 @@ class ProductDetailedCell: UICollectionViewCell {
             descriptionLabel.topAnchor.constraint(equalTo: generalStack.bottomAnchor),
             descriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             descriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-//            descriptionLabel.heightAnchor.constraint(equalToConstant: 200),
+            //            descriptionLabel.heightAnchor.constraint(equalToConstant: 200),
             descriptionLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
     }
-
+    
     func configure(item: ProductModel){
         modelNameLabel.text = item.name
         kodLabel.text = item.code

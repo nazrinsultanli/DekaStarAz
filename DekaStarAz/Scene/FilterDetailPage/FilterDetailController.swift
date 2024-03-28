@@ -9,7 +9,7 @@
 import UIKit
 
 class FilterDetailController: UIViewController {
-
+    
     var viewModel: FilterDetailViewModel?
     var didSelectCategory: ((String) -> Void)?
     
@@ -22,7 +22,7 @@ class FilterDetailController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-     
+    
     private lazy var tableView: UITableView = {
         let table = UITableView()
         table.translatesAutoresizingMaskIntoConstraints = false
@@ -33,7 +33,7 @@ class FilterDetailController: UIViewController {
         table.backgroundColor = .clear
         return table
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
@@ -49,12 +49,15 @@ class FilterDetailController: UIViewController {
         viewModel?.getfilterItems()
         viewModel?.error = { errorMessage in
             print("Error:\(errorMessage)")
+            let alert = UIAlertController(title: "Error:", message: "\(errorMessage)", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
         viewModel?.success =  {
             self.tableView.reloadData()
         }
     }
-
+    
     private func configureConstraints() {
         view.addSubview(tableView)
         
@@ -78,7 +81,7 @@ extension FilterDetailController: UITableViewDataSource, UITableViewDelegate {
         cell.configure(item: viewModel?.filterItems[indexPath.row].titleText ?? "")
         return cell
     }
-
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch viewModel?.filterType {
         case .category:

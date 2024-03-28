@@ -82,7 +82,7 @@ extension FilterPageController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
+        
         let itemType = viewModel.filterItems[indexPath.item]
         switch itemType {
         case .category:
@@ -128,7 +128,7 @@ extension FilterPageController: UITableViewDataSource, UITableViewDelegate {
             let coordinator = FilterDetailViewCoordinator(filterBuilder: filterBuilder,
                                                           filterType: itemType,
                                                           navigationController:navigationController ?? UINavigationController())
-            coordinator.start()            
+            coordinator.start()
         case .collection:
             let coordinator = FilterDetailViewCoordinator(filterBuilder: filterBuilder,
                                                           filterType: itemType,

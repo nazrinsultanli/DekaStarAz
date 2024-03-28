@@ -22,7 +22,7 @@ class CategoryViewController: UIViewController {
         collection.backgroundColor = .clear
         return collection
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
@@ -30,7 +30,7 @@ class CategoryViewController: UIViewController {
         configureViewModel()
     }
     
- 
+    
     
     private func configureUI() {
         title = "Kateqoriya"
@@ -41,6 +41,9 @@ class CategoryViewController: UIViewController {
         viewModel.getCategoryItem()
         viewModel.error = { errorMessage in
             print("Error:\(errorMessage)")
+            let alert = UIAlertController(title: "Error:", message: "\(errorMessage)", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
         viewModel.success =  {
             self.collectionView.delegate = self
@@ -48,7 +51,7 @@ class CategoryViewController: UIViewController {
             self.collectionView.reloadData()
         }
     }
-
+    
     private func configureConstraints() {
         view.addSubview(collectionView)
         
@@ -71,7 +74,7 @@ extension CategoryViewController:UICollectionViewDataSource, UICollectionViewDel
         cell.configure(item: viewModel.categoryItems[indexPath.item])
         return cell
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         .init(width: collectionView.frame.width-20, height: 260)
     }
@@ -81,7 +84,7 @@ extension CategoryViewController:UICollectionViewDataSource, UICollectionViewDel
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let coordinator = ProductsViewCoordinator(categorySlugId: viewModel.categoryItems[indexPath.item].slugId,
-                                                 homeItemsType: .category, searchText: nil, navigationController: navigationController ?? UINavigationController())
+                                                  homeItemsType: .category, searchText: nil, navigationController: navigationController ?? UINavigationController())
         coordinator.start()
         
     }

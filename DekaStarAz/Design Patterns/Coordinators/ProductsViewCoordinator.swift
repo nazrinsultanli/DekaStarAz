@@ -30,13 +30,4 @@ class ProductsViewCoordinator: Coordinator {
                                      searchText: searchText)
         navigationController.show(controller, sender: nil)
     }
-    
-    func pushStart() {
-        let controller = ProductsViewController()
-        controller.viewModel = .init(categorySlugId: categorySlugId ?? "",
-                                     homeItemsType: homeItemsType,
-                                     searchText: searchText)
-        navigationController.pushViewController(controller, animated: true)
-    }
-    
 }

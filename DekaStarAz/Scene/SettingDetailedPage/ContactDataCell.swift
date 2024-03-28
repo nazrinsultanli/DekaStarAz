@@ -9,7 +9,7 @@ import UIKit
 
 class ContactDataCell: UITableViewCell {
     static let reuseID = "ContactDataCell"
-
+    
     lazy var adressImage: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -37,8 +37,8 @@ class ContactDataCell: UITableViewCell {
         imageView.image = UIImage(systemName: "envelope")
         return imageView
     }()
-
-
+    
+    
     private let adressText: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -57,7 +57,7 @@ class ContactDataCell: UITableViewCell {
         label.numberOfLines = 0
         return label
     }()
-   
+    
     private let phoneText: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -112,17 +112,17 @@ class ContactDataCell: UITableViewCell {
         label.numberOfLines = 0
         return label
     }()
-
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
         setupConstraints()
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     private func setupUI() {
         contentView.addSubview(adressImage)
         contentView.addSubview(phoneImage)
@@ -137,7 +137,7 @@ class ContactDataCell: UITableViewCell {
         contentView.addSubview(emailText)
         contentView.addSubview(emailLabel)
     }
-
+    
     private func setupConstraints() {
         NSLayoutConstraint.activate([
             // MARK: adress

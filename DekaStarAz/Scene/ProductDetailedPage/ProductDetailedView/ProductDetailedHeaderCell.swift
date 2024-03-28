@@ -30,7 +30,7 @@ class ProductDetailedHeaderCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
     }
-
+    
     func configure(item: ProductImage) {
         imageView.loadImage(url: item.image ?? "" )
     }

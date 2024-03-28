@@ -36,7 +36,7 @@ class TopImageButtomLabelTableCell: UITableViewCell {
             titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
-
+    
     func configure(item: SettingsPageItemsProtocols){
         titleLabel.attributedText = item.siteTextLabel.htmlToAttributedString
     }

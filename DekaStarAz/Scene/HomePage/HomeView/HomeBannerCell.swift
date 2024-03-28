@@ -32,7 +32,7 @@ class HomeBannerCell: UICollectionViewCell {
     func configure(item: BannerModel) {
         imageView.loadImage(url: item.image ?? "")
     }
-
+    
     private func configureContraints() {
         addSubview(imageView)
         NSLayoutConstraint.activate([

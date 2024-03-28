@@ -62,7 +62,7 @@ class FilterPageTitleTextfieldCell: UITableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
     }
-
+    
     private func configureConstraints() {
         contentView.addSubview(filterNameLabel)
         contentView.addSubview(priceField)
@@ -76,13 +76,13 @@ class FilterPageTitleTextfieldCell: UITableViewCell {
             
             priceField.topAnchor.constraint(equalTo: topAnchor, constant: 8),
             priceField.leadingAnchor.constraint(equalTo: filterNameLabel.trailingAnchor, constant: 16),
-//            disclosureIndicator.trailingAnchor.constraint(equalTo: trailingAnchor),
+            //            disclosureIndicator.trailingAnchor.constraint(equalTo: trailingAnchor),
             priceField.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
             priceField.widthAnchor.constraint(equalToConstant: 100),
             
             priceUnit.topAnchor.constraint(equalTo: topAnchor, constant: 8),
             priceUnit.leadingAnchor.constraint(equalTo: priceField.trailingAnchor, constant: 20),
-//            disclosureIndicator.trailingAnchor.constraint(equalTo: trailingAnchor),
+            //            disclosureIndicator.trailingAnchor.constraint(equalTo: trailingAnchor),
             priceUnit.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
             priceUnit.widthAnchor.constraint(equalToConstant: 40),
             priceUnit.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16) 

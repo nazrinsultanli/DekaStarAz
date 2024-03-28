@@ -10,7 +10,7 @@ class CheckOutViewModel {
     var builder: CheckoutBuilder?
     var totalCheckOutPrice: Double?
     var stateCheck: Bool?
-
+    
     init(builder: CheckoutBuilder?, totalCheckOutPrice: Double, stateCheck: Bool? = true) {
         self.builder = builder
         self.totalCheckOutPrice = totalCheckOutPrice

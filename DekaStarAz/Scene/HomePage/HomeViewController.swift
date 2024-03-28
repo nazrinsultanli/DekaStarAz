@@ -32,12 +32,15 @@ class HomeViewController: UIViewController {
         layout.estimatedItemSize = .zero
         return collection
     }()
-
+    
     private func configureViewModel(){
         viewModel.getBanners()
         viewModel.getAllHomeItems()
         viewModel.error = { errorMessage in
             print("Error:\(errorMessage)")
+            let alert = UIAlertController(title: "Error:", message: "\(errorMessage)", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
         }
         viewModel.success =  {
             self.collectionView.delegate = self
@@ -47,35 +50,35 @@ class HomeViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-            super.viewDidLoad()
-            configureUI()
-            configureConstraints()
-            configureViewModel()
-        }
-
+        super.viewDidLoad()
+        configureUI()
+        configureConstraints()
+        configureViewModel()
+    }
+    
     private func configureUI() {
         view.backgroundColor = UIColor(named: "backgroundColor")
-
+        
         searchBar.sizeToFit()
         searchBar.delegate = self
         searchBar.tintColor = UIColor(named: "BlackWhite") // black
         searchBar.barTintColor = UIColor(named: "BlackWhite") // black
-
+        
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "listTitle".localized
         navigationController?.navigationBar.tintColor = .systemIndigo
-
+        
         if let searchTextField = searchBar.value(forKey: "searchField") as? UITextField {
             searchTextField.textColor = UIColor(named: "BlackWhite") // black
             if let placeholderLabel = searchTextField.value(forKey: "placeholderLabel") as? UILabel {
                 placeholderLabel.textColor = UIColor(named: "BlackWhite") // black
             }
         }
-
+        
         showSearchBarButton(shouldShow: true)
         self.hideKeyboardWhenTappedAround()
     }
-
+    
     
     func showSearchBarButton(shouldShow: Bool) {
         if shouldShow {
@@ -106,7 +109,7 @@ class HomeViewController: UIViewController {
             collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor,constant: 0),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor,constant: 0)])
     }
-   
+    
 }
 
 
@@ -125,7 +128,7 @@ extension HomeViewController:UICollectionViewDataSource, UICollectionViewDelegat
         return cell
     }
     
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         .init(width: collectionView.frame.width, height: 220)
     }
@@ -153,9 +156,9 @@ extension HomeViewController: HomeCollectionCellDelegate {
         if itemType == .category {
             
             let coordinator = ProductsViewCoordinator(categorySlugId: item,
-                                                     homeItemsType: itemType,
-                                                     searchText: nil,
-                                                     navigationController: navigationController ?? UINavigationController())
+                                                      homeItemsType: itemType,
+                                                      searchText: nil,
+                                                      navigationController: navigationController ?? UINavigationController())
             coordinator.start()
         }
         else {
@@ -172,9 +175,9 @@ extension HomeViewController: HomeCollectionCellDelegate {
         }
         else {
             let coordinator = ProductsViewCoordinator(categorySlugId: "",
-                                                     homeItemsType: itemType,
-                                                     searchText: nil,
-                                                     navigationController: navigationController ?? UINavigationController())
+                                                      homeItemsType: itemType,
+                                                      searchText: nil,
+                                                      navigationController: navigationController ?? UINavigationController())
             coordinator.start()
         }
     }
@@ -185,14 +188,14 @@ extension HomeViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         search(shouldShow: false)
     }
-
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         
         let coordinator = ProductsViewCoordinator(categorySlugId: "",
-                                                 homeItemsType: nil,
-                                                 searchText: searchBar.text ?? "",
-                                                 navigationController: navigationController ?? UINavigationController())
-        coordinator.pushStart()
+                                                  homeItemsType: nil,
+                                                  searchText: searchBar.text ?? "",
+                                                  navigationController: navigationController ?? UINavigationController())
+        coordinator.start()
     }
 }
