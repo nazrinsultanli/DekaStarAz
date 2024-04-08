@@ -33,9 +33,6 @@ class ProductManager: ProductUseCase, FilterUseCase {
        
         let filterUrl = ProductEndpoint.filterEndpoint.rawValue + "?collection=" + collection + "&brand=" + brand + "&in_stock=" + stock + "&min_price=" + minPrice + "&max_price=" + maxPrice + "&category=" + categoryKey + "&lang=" + language
         
-       
-        print("******")
-        print(filterUrl)
         NetworkManager.request(model: HomePageProductsModel.self,
                                url: filterUrl,
                                completion: completion)

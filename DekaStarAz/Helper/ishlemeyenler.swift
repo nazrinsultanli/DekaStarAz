@@ -17,3 +17,5 @@ import Foundation
 // tableview autodimension collection view-
 // pagination -- 100 faiz qoy
 // dil meselesi ?? 
+// launchScreen
+// logo app sigh

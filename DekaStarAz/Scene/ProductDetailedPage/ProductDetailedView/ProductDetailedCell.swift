@@ -142,6 +142,21 @@ class ProductDetailedCell: UICollectionViewCell {
         label.text = "m2"
         return label
     }()
+    private let decriptionText: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.text = "Mezmun"
+        return label
+    }()
+    private let descriptionScrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.backgroundColor = .clear
+        return scrollView
+    }()
     
     private let descriptionLabel: UILabel = {
         let label = UILabel()
@@ -153,7 +168,7 @@ class ProductDetailedCell: UICollectionViewCell {
         label.setContentHuggingPriority(.required, for: .vertical)
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.5 
-        label.preferredMaxLayoutWidth = 100 
+//        label.preferredMaxLayoutWidth = 100 
         return label
     }()
     
@@ -223,8 +238,12 @@ class ProductDetailedCell: UICollectionViewCell {
         contentView.addSubview(originalPriceLabel)
         contentView.addSubview(discountedPriceLAbel)
         contentView.addSubview(generalStack)
-        contentView.addSubview(descriptionLabel)
-        //        descriptionLabel.backgroundColor = .lightGray
+        contentView.addSubview(decriptionText)
+        contentView.addSubview(descriptionScrollView)
+//        contentView.addSubview(descriptionLabel)
+        self.descriptionScrollView.addSubview(descriptionLabel)
+//        descriptionScrollView.backgroundColor = .purple
+//        descriptionLabel.backgroundColor = .lightGray
         
         NSLayoutConstraint.activate([
             unitLabel.widthAnchor.constraint(equalToConstant: 100),
@@ -255,12 +274,25 @@ class ProductDetailedCell: UICollectionViewCell {
             generalStack.trailingAnchor.constraint(equalTo: trailingAnchor),
             generalStack.heightAnchor.constraint(equalToConstant: 180),
             
-            descriptionLabel.topAnchor.constraint(equalTo: generalStack.bottomAnchor),
-            descriptionLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
-            descriptionLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            //            descriptionLabel.heightAnchor.constraint(equalToConstant: 200),
-            descriptionLabel.bottomAnchor.constraint(equalTo: bottomAnchor),
-        ])
+            decriptionText.topAnchor.constraint(equalTo: generalStack.bottomAnchor, constant: 10),
+            decriptionText.leadingAnchor.constraint(equalTo: leadingAnchor),
+            decriptionText.trailingAnchor.constraint(equalTo: trailingAnchor),
+            decriptionText.heightAnchor.constraint(equalToConstant: 30),
+//            decriptionText.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
+            descriptionScrollView.topAnchor.constraint(equalTo: decriptionText.bottomAnchor),
+            descriptionScrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            descriptionScrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            descriptionScrollView.heightAnchor.constraint(equalToConstant: 250),
+//            descriptionScrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
+        
+            descriptionLabel.topAnchor.constraint(equalTo: descriptionScrollView.topAnchor),
+            descriptionLabel.leadingAnchor.constraint(equalTo: descriptionScrollView.leadingAnchor),
+            descriptionLabel.trailingAnchor.constraint(equalTo: descriptionScrollView.trailingAnchor),
+            descriptionLabel.bottomAnchor.constraint(equalTo: descriptionScrollView.bottomAnchor),
+            descriptionLabel.widthAnchor.constraint(equalTo: descriptionScrollView.widthAnchor),
+//            descriptionLabel.heightAnchor.constraint(equalTo: descriptionScrollView.heightAnchor),
+            ])
     }
     
     func configure(item: ProductModel){

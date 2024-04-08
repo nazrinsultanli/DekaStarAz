@@ -116,7 +116,7 @@ class FavoritePageCell: UITableViewCell {
         modelNameLabel.text = data.name
         collectionLabel.text = data.collection?.name
         
-        if data.discount == 0 {
+        if data.discount == 0 || data.regularPrice == data.discountPrice {
             originalPriceLabel.text = "\(String(describing: data.regularPrice ?? "")) AZN"
             discountedPriceLabel.isHidden = true
             

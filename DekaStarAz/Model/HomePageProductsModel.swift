@@ -25,7 +25,8 @@ struct HomePageProductsModel: Codable {
 
 // MARK: - Links
 struct Links: Codable {
-    let next, previous: Int?
+    let next: String?
+    let previous: Int?
     let current, first, last: String?
 }
 
@@ -69,9 +70,11 @@ struct HomeProductResult: Codable, HomePagesItemsProtocols {
     let discount: Int?
     let discountPrice: String?
     let inStock: Bool?
-    let imagefeatureurl, isActiveDisplayValue, inStockDisplayValue, createdAt: String?
-    let updatedAt: String?
+    let imagefeatureurl, isActiveDisplayValue, inStockDisplayValue, quantityType: String?
+    let updatedAt, createdAt: String?
     let collection: CollectionModel?
+    
+    
     
 
     enum CodingKeys: String, CodingKey {
@@ -85,6 +88,7 @@ struct HomeProductResult: Codable, HomePagesItemsProtocols {
         case inStockDisplayValue = "in_stock_display_value"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
+        case quantityType = "quantity_type"
     }
 }
 
@@ -93,12 +97,13 @@ struct CollectionModel: Codable {
         let id: Int?
         let name, slug: String?
         let coverImage: String?
-        let categoryName, createdAt, updatedAt: String?
+       // let categoryName: String?
+        let createdAt, updatedAt: String?
 
         enum CodingKeys: String, CodingKey {
             case id, name, slug
             case coverImage = "cover_image"
-            case categoryName = "category_name"
+           // case categoryName = "category_name"
             case createdAt = "created_at"
             case updatedAt = "updated_at"
         }

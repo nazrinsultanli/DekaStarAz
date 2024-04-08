@@ -30,8 +30,6 @@ class CategoryViewController: UIViewController {
         configureViewModel()
     }
     
-    
-    
     private func configureUI() {
         title = "Kateqoriya"
         view.backgroundColor = UIColor(named: "backgroundColor")
