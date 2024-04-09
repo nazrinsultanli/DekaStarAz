@@ -33,7 +33,6 @@ class TopImageButtomLabelS: UICollectionViewCell {
         imageView.layer.cornerRadius = 10
         imageView.layer.masksToBounds = true
         imageView.contentMode = .scaleToFill
-        imageView.backgroundColor = .brown
         return imageView
     }()
     
@@ -75,6 +74,7 @@ class TopImageButtomLabelS: UICollectionViewCell {
         label.textColor = .black
         return label
     }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureConstraints()

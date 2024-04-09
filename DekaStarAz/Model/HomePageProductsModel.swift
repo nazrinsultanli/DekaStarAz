@@ -26,7 +26,7 @@ struct HomePageProductsModel: Codable {
 // MARK: - Links
 struct Links: Codable {
     let next: String?
-    let previous: Int?
+    let previous: String?
     let current, first, last: String?
 }
 

@@ -16,6 +16,10 @@ protocol FilterUseCase {
                               language: String,
                               completion: @escaping((HomePageProductsModel?,String?) ->Void))
     
+    func getPaginationProduct(urlNext: String,
+                              completion: @escaping((HomePageProductsModel?,String?) ->Void))
+    
+    
     func getFilterEntries(completion: @escaping((FilterEntriesModel?,String?) ->Void))
     
     func getFilterSpecificEntries(categoryKey:String,

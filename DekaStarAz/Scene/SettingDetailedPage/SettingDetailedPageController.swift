@@ -84,7 +84,7 @@ extension SettingDetailedPageController: UITableViewDataSource, UITableViewDeleg
     //MARK: header view
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: tableView.frame.width*2/3))
-        headerView.backgroundColor = .brown
+//        headerView.backgroundColor = .brown
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: tableView.frame.width*2/3))
         imageView.loadImage(url: viewModel?.settingItem?.photoLink ?? "")
         imageView.contentMode = .scaleAspectFill

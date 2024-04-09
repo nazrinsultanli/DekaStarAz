@@ -27,7 +27,7 @@ class HomeKolleksiyaCell: UICollectionViewCell {
         imageView.layer.cornerRadius = 10
         imageView.layer.masksToBounds = true
         imageView.contentMode = .scaleToFill
-        imageView.backgroundColor = .brown
+//        imageView.backgroundColor = .brown
         return imageView
     }()
     

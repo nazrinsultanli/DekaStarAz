@@ -31,7 +31,7 @@ class ProductsViewModel {
         self.searchText = searchText
     }
     
-    func getAllItems(){
+    func getAllItems() {
         if searchText  != nil {
             productsItems.removeAll()
             getSearchItems(searchedText: searchText ?? "")
@@ -42,7 +42,7 @@ class ProductsViewModel {
                     getItems(type: homeItemsType)
                 }
             }
-            else{
+            else {
                 productsItems.removeAll()
                 if let item = filterItemsInfo {
                     getFilteredItems(items: item)
@@ -66,7 +66,7 @@ class ProductsViewModel {
     func getItems(type: HomePageItemType) {
         switch type {
         case .discounted:
-            manager.getHomeItems(endPoint: HomeItemsEndpoint.discountedEndpoint){ data, errorMessage in
+            manager.getHomeItems(endPoint: HomeItemsEndpoint.discountedEndpoint) { data, errorMessage in
                 if let errorMessage {
                     self.error?(errorMessage)
                 } else if let data {
@@ -76,7 +76,7 @@ class ProductsViewModel {
                 }
             }
         case .recent:
-            manager.getHomeItems(endPoint: HomeItemsEndpoint.recentEndpoint){ data, errorMessage in
+            manager.getHomeItems(endPoint: HomeItemsEndpoint.recentEndpoint) { data, errorMessage in
                 if let errorMessage {
                     self.error?(errorMessage)
                 } else if let data {
@@ -92,8 +92,7 @@ class ProductsViewModel {
                                                inStock: true,
                                                minPrice: "",
                                                maxPrice: "",
-                                               language:
-                                                "az"){ data, errorMessage in
+                                               language: "az") { data, errorMessage in
                 if let errorMessage {
                     self.error?(errorMessage)
                 } else if let data {
@@ -120,6 +119,25 @@ class ProductsViewModel {
                 self.productsItems.append(contentsOf:data.results ?? [])
                 self.success?()
             }
+        }
+    }
+    
+    func pagination() {
+        filterManager.getPaginationProduct(urlNext: product?.links?.next ??
+        "") { data, errorMessage in
+            if let errorMessage {
+                self.error?(errorMessage)
+            } else if let data {
+                self.product = data
+                self.productsItems.append(contentsOf:data.results ?? [])
+                self.success?()
+            }
+        }
+    }
+    
+    func pagination(index: Int) {
+        if index == productsItems.count - 1 && (product?.links?.next != nil) {
+            pagination()
         }
     }
     

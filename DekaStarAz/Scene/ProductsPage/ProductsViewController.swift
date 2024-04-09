@@ -28,7 +28,7 @@ class ProductsViewController: UIViewController {
         let label = UILabel()
         label.numberOfLines = 1
         label.textColor = UIColor(named: "BlackWhite") // black
-        label.text = "Mehsul Tapilmadi"
+        label.text = "Mehsul Tapilmadi!"
         label.textAlignment = .center
         label.isHidden = true
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -81,12 +81,12 @@ class ProductsViewController: UIViewController {
     }
     
     func configureVisibility() {
-        if ((viewModel?.productsItems.isEmpty) != nil) {
-            noItems.isHidden = true
-            collectionView.isHidden = false
-        } else {
+        if viewModel?.productsItems.count == 0 {
             noItems.isHidden = false
             collectionView.isHidden = true
+        } else {
+            noItems.isHidden = true
+            collectionView.isHidden = false
         }
     }
     private func configureConstraints() {
@@ -111,7 +111,9 @@ extension ProductsViewController: UICollectionViewDataSource, UICollectionViewDe
     //MARK: Collection view for rest Items
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         // viewModel.categoryItems.count
-        viewModel?.productsItems.count ?? 0
+        print(viewModel?.productsItems.count ?? 0)
+        return viewModel?.productsItems.count ?? 0
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -133,5 +135,8 @@ extension ProductsViewController: UICollectionViewDataSource, UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let coordinator = ProductDetailedViewCoordinator(slug: viewModel?.productsItems[indexPath.item].slug ?? "", navigationController: navigationController ?? UINavigationController())
         coordinator.start()
+    }
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        viewModel?.pagination(index: indexPath.item)
     }
 }

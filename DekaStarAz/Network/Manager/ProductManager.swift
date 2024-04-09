@@ -8,6 +8,13 @@
 import Foundation
 
 class ProductManager: ProductUseCase, FilterUseCase {
+    func getPaginationProduct(urlNext: String, completion: @escaping ((HomePageProductsModel?, String?) -> Void)) {
+        let url = urlNext.replacingOccurrences(of: NetworkHelperLinker.baseUrl, with: "")
+        NetworkManager.request(model: HomePageProductsModel.self,
+                               url: url,
+                               completion: completion)
+    }
+    
     func getFilterSpecificEntries(categoryKey: String, completion: @escaping ((FilterEntriesModel?, String?) -> Void)) {
         NetworkManager.request(model: FilterEntriesModel.self,
                                url: ProductEndpoint.filterSomeEntries.rawValue + categoryKey,
@@ -45,5 +52,7 @@ class ProductManager: ProductUseCase, FilterUseCase {
                                url: ProductEndpoint.productEndpoint.rawValue + slug + "?" + NetworkHelperLinker.language + language,
                                completion: completion)
     }
+    
+    
 }
 
